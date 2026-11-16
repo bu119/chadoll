@@ -36,7 +36,7 @@ export async function Timeline() {
         <Photo
           photo={nowPhoto}
           sizes="(min-width: 768px) 36vw, 384px"
-          caption="간식 발견!"
+          caption="간식 생각에 입맛 다시는 중"
           className="mx-auto w-full max-w-sm md:col-span-5 md:max-w-none md:self-end"
         />
       </div>

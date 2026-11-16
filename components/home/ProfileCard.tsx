@@ -50,7 +50,7 @@ export async function ProfileCard() {
         <Photo
           photo={profilePhoto}
           sizes="(min-width: 768px) 36vw, 384px"
-          caption="뛰지 마세요, 천천히요."
+          caption="카페에서 쉬는 게 제일 좋아요."
           className="mx-auto w-full max-w-sm md:col-span-5 md:mt-10 md:max-w-none"
         />
       </div>

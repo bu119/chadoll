@@ -34,11 +34,11 @@ function photo(file: string, alt: string): Photo {
 export const heroPhoto: Photo = photo("main", "복슬복슬한 털을 뽐내며 정면을 보고 활짝 웃는 차돌이");
 
 /** 프로필 옆에 두는 사진 */
-export const profilePhoto: Photo = photo("gallery-28", "깃 달린 옷을 입고 카페 의자 방석에 앉은 차돌이");
+export const profilePhoto: Photo = photo("gallery-09", "카페 테이블 앞에 앉아 활짝 웃는 차돌이");
 /** 타임라인 "지금" 옆에 두는 사진 */
 export const nowPhoto: Photo = photo(
-  "gallery-29",
-  "간식을 든 손 앞에서 기대에 찬 얼굴로 서 있는 차돌이",
+  "gallery-40",
+  "햇살 드는 테라스에서 혀로 코를 핥는 차돌이",
 );
 /** 푸터의 인사 사진 */
 export const farewellPhoto: Photo = photo("gallery-05", "노란 낙엽이 떨어진 길에서 뒤돌아보는 차돌이");
@@ -71,7 +71,7 @@ const scenes: GalleryScene[] = [
     note: "볕 좋은 자리는 누구보다 잘 찾아요.",
     photos: [
       photo("gallery-38", "햇살 드는 나무 데크 위에 서서 올려다보는 차돌이"),
-      photo("gallery-40", "햇살 드는 테라스에서 혀로 코를 핥는 차돌이"),
+      photo("gallery-29", "간식을 든 손 앞에서 기대에 찬 얼굴로 서 있는 차돌이"),
       photo("gallery-39", "테라스 의자에 놓인 겉옷 옆에 앉은 차돌이"),
       photo("gallery-41", "햇살에 눈을 감고 혀를 내민 차돌이"),
     ],
@@ -109,7 +109,7 @@ const scenes: GalleryScene[] = [
     title: "카페",
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
-      photo("gallery-09", "카페 테이블 앞에 앉아 활짝 웃는 차돌이"),
+      photo("gallery-28", "깃 달린 옷을 입고 카페 의자 방석에 앉은 차돌이"),
       photo("gallery-22", "카페 문 앞 방석에 앉아 올려다보는 차돌이"),
       photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이"),
       photo("gallery-23", "카페에서 쓰다듬을 받으며 웃는 차돌이"),
@@ -123,9 +123,9 @@ const scenes: GalleryScene[] = [
     title: "비 오는 날",
     note: "우비만 입으면 비 오는 날 산책도 문제없어요.",
     photos: [
-      photo("gallery-16", "우비를 입고 회색 보도 위를 걷다 돌아보는 차돌이"),
-      photo("gallery-07", "우비를 입고 젖은 보도블록 위에서 올려다보는 차돌이"),
-      photo("gallery-06", "비 오는 날 빨간 무늬 우비를 입고 산책하는 차돌이"),
+      photo("gallery-45", "우비를 입고 회색 보도 위를 걷다 돌아보는 차돌이"),
+      photo("gallery-46", "우비를 입고 젖은 보도블록 위에서 올려다보는 차돌이"),
+      photo("gallery-47", "비 오는 날 빨간 무늬 우비를 입고 산책하는 차돌이"),
     ],
   },
   {

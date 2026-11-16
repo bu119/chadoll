@@ -29,9 +29,10 @@ const PHOTOS = {
   "gallery-14": 38,
   "gallery-15": 57,
   // 비 오는 날
-  "gallery-06": 4,
-  "gallery-07": 22,
-  "gallery-16": 17,
+  // 차돌이가 작게 찍혀서 차돌이 중심으로 잘라 쓴다. (crop: 원본 대비 비율)
+  "gallery-45": { n: 17, crop: { left: 0.27, top: 0.24, size: 0.62 } },
+  "gallery-46": { n: 22, crop: { left: 0.25, top: 0.23, size: 0.62 } },
+  "gallery-47": { n: 4, crop: { left: 0.26, top: 0.37, size: 0.62 } },
   // 소풍
   "gallery-17": 54,
   "gallery-18": 53,
@@ -66,7 +67,7 @@ const PHOTOS = {
   "gallery-25": 39,
   "gallery-26": 49,
   "gallery-27": 46,
-  // 프로필, 타임라인
+  // 처음엔 프로필·타임라인용이었고 지금은 사진첩(카페, 햇살 좋은 날)에 있다.
   "gallery-28": 59,
   "gallery-29": 55,
 };
@@ -77,13 +78,27 @@ const OG = { n: PHOTOS.main, top: 250 };
 const ICON = { n: 69, left: 158, top: 112, size: 810 };
 
 // 가로 사진은 세로(3:4)로 자른다. position 으로 남길 쪽을 정한다.
-const fitted = (n, position = "centre") =>
-  sharp(source(n)).rotate().resize(WIDTH, HEIGHT, { fit: "cover", position }); // rotate: EXIF 방향 보정
+const fitted = async (n, { position = "centre", crop } = {}) => {
+  let image = sharp(source(n)).rotate(); // rotate: EXIF 방향 보정
+  if (crop) {
+    const meta = await sharp(source(n)).metadata();
+    const turned = (meta.orientation ?? 1) >= 5; // 옆으로 누운 원본은 가로·세로가 바뀐다
+    const width = turned ? meta.height : meta.width;
+    const height = turned ? meta.width : meta.height;
+    image = image.extract({
+      left: Math.round(width * crop.left),
+      top: Math.round(height * crop.top),
+      width: Math.round(width * crop.size),
+      height: Math.round(height * crop.size),
+    });
+  }
+  return image.resize(WIDTH, HEIGHT, { fit: "cover", position });
+};
 
 async function resize(name, entry) {
-  const { n, position } = typeof entry === "number" ? { n: entry } : entry;
+  const { n, ...options } = typeof entry === "number" ? { n: entry } : entry;
   const out = path.join(OUT_DIR, `${name}.jpg`);
-  await fitted(n, position).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
+  await (await fitted(n, options)).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
   const { size } = await stat(out);
   console.log(`${name}.jpg  ← 차돌이 (${n}).jpg  ${(size / 1024).toFixed(0)}KB`);
 }
@@ -93,7 +108,7 @@ for (const [name, n] of Object.entries(PHOTOS)) {
   await resize(name, n);
 }
 
-await sharp(await fitted(OG.n).toBuffer())
+await sharp(await (await fitted(OG.n)).toBuffer())
   .extract({ left: 0, top: OG.top, width: 1200, height: 630 })
   .jpeg({ quality: QUALITY, mozjpeg: true })
   .toFile(path.join(OUT_DIR, "og.jpg"));
