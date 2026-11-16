@@ -21,16 +21,29 @@ export const chadol = {
   nicknames: ["간식 사냥꾼", "선비", "신사"],
   personality:
     "온순하고 점잖아요. 산책도 의젓하게 잘해서 동네에서는 '신사'로 통한답니다.",
-  /** 프로필에 풀어 쓰는 차돌이 이야기 */
-  story: [
-    "새로운 곳으로 모험 떠나는 것도, 카페에서 느긋하게 쉬는 것도 좋아해요.",
-    "소란스러운 건 질색이에요. 조용히, 천천히 다가오는 친구를 좋아하고, 앞에서 누가 설치면 뛰지 말라고 점잖게 한마디 해요.",
-    "고양이 같은 매력이 있는 강아지예요. 마음의 문을 열고 싶다면 간식이 제일 빠른 방법이랍니다.",
-    "말도 잘 알아들어서 똑똑하다는 칭찬을 자주 들어요.",
-  ],
+  /** 성격 밑에 붙는 한 줄 */
+  temper: "소란스러운 건 질색이라, 조용히 천천히 다가오는 친구를 좋아해요.",
   likes: ["간식", "산책", "새로운 곳 모험", "카페에서 쉬기", "조용한 친구"],
   dislikes: ["소란스러운 것"],
 } as const;
+
+export type TraitId = "adventure" | "cafe" | "cat" | "smart";
+
+export type Trait = {
+  id: TraitId;
+  title: string;
+  text: string;
+};
+
+/** "차돌이는요"에서 사진과 짝지어 보여주는 소개 네 가지 */
+export function getTraits(): Trait[] {
+  return [
+    { id: "adventure", title: "모험을 좋아해요", text: "처음 가 보는 길일수록 발걸음이 씩씩해져요." },
+    { id: "cafe", title: "카페에선 느긋하게", text: "새로운 곳 구경만큼 카페에서 쉬는 시간도 좋아해요." },
+    { id: "cat", title: "고양이 같은 강아지", text: "도도해 보여도 간식 하나면 마음의 문이 금방 열려요." },
+    { id: "smart", title: "부르면 달려와요", text: "말을 잘 알아들어서 똑똑하다는 칭찬을 자주 들어요." },
+  ];
+}
 
 export type SocialKind = "youtube" | "instagram";
 
