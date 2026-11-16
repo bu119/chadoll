@@ -12,42 +12,77 @@ const QUALITY = 80;
 
 const source = (n) => path.join(SRC_DIR, `차돌이 (${n}).jpg`);
 
-const HERO = 14;
-// lib/gallery.ts 의 순서와 같아야 한다.
-const GALLERY = [11, 13, 6, 18, 2, 4, 22, 21, 25, 27, 29, 23];
+// 파일 이름 → photos/ 의 원본 번호. lib/gallery.ts 가 이 파일 이름을 쓴다.
+// 새 사진은 맨 뒤에 이어 붙이고, 이미 있는 이름의 번호는 바꾸지 않는다.
+const PHOTOS = {
+  // 표지
+  hero: 44,
+  "hero-spring": 61,
+  "hero-autumn": 14,
+  // 산책길
+  "gallery-01": 11,
+  "gallery-02": 13,
+  "gallery-03": 6,
+  "gallery-04": 18,
+  "gallery-05": 2,
+  "gallery-11": 29,
+  "gallery-12": 23,
+  "gallery-13": 34,
+  "gallery-14": 38,
+  "gallery-15": 57,
+  // 비 오는 날
+  "gallery-06": 4,
+  "gallery-07": 22,
+  "gallery-16": 17,
+  // 소풍
+  "gallery-17": 54,
+  "gallery-18": 53,
+  "gallery-19": 32,
+  "gallery-20": 48,
+  "gallery-21": 47,
+  // 카페
+  "gallery-08": 21,
+  "gallery-09": 25,
+  "gallery-10": 27,
+  "gallery-22": 35,
+  "gallery-23": 37,
+  "gallery-24": 41,
+  "gallery-30": 50,
+  // 친구들과 (보호자 동의를 받은 사진만)
+  "gallery-25": 39,
+  "gallery-26": 49,
+  "gallery-27": 46,
+  // 프로필, 타임라인
+  "gallery-28": 59,
+  "gallery-29": 55,
+};
 
-async function resize(n, name) {
-  const out = path.join(OUT_DIR, name);
-  await sharp(source(n))
-    .rotate() // EXIF 방향 보정
-    .resize(WIDTH, HEIGHT, { fit: "cover" })
-    .jpeg({ quality: QUALITY, mozjpeg: true })
-    .toFile(out);
+// 공유 미리보기는 표지 사진에서, 탭 아이콘은 정면 얼굴 사진에서 잘라 쓴다.
+const OG = { n: PHOTOS.hero, top: 380 };
+const ICON = { n: PHOTOS["hero-autumn"], left: 250, top: 480, size: 560 };
+
+const fitted = (n) => sharp(source(n)).rotate().resize(WIDTH, HEIGHT, { fit: "cover" }); // rotate: EXIF 방향 보정
+
+async function resize(name, n) {
+  const out = path.join(OUT_DIR, `${name}.jpg`);
+  await fitted(n).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
   const { size } = await stat(out);
-  console.log(`${name}  ← 차돌이 (${n}).jpg  ${(size / 1024).toFixed(0)}KB`);
-}
-
-async function makeOgImage() {
-  const out = path.join(OUT_DIR, "og.jpg");
-  const resized = await sharp(source(HERO)).rotate().resize(WIDTH, HEIGHT, { fit: "cover" }).toBuffer();
-  await sharp(resized)
-    .extract({ left: 0, top: 430, width: 1200, height: 630 })
-    .jpeg({ quality: QUALITY, mozjpeg: true })
-    .toFile(out);
-  console.log("og.jpg  (1200×630)");
+  console.log(`${name}.jpg  ← 차돌이 (${n}).jpg  ${(size / 1024).toFixed(0)}KB`);
 }
 
 await mkdir(OUT_DIR, { recursive: true });
-await resize(HERO, "hero.jpg");
-for (const [i, n] of GALLERY.entries()) {
-  await resize(n, `gallery-${String(i + 1).padStart(2, "0")}.jpg`);
+for (const [name, n] of Object.entries(PHOTOS)) {
+  await resize(name, n);
 }
-await makeOgImage();
 
-// 브라우저 탭 아이콘: Hero 사진에서 얼굴만 잘라 쓴다.
-const face = await sharp(source(HERO)).rotate().resize(WIDTH, HEIGHT, { fit: "cover" }).toBuffer();
-await sharp(face)
-  .extract({ left: 250, top: 480, width: 560, height: 560 })
+await sharp(await fitted(OG.n).toBuffer())
+  .extract({ left: 0, top: OG.top, width: 1200, height: 630 })
+  .jpeg({ quality: QUALITY, mozjpeg: true })
+  .toFile(path.join(OUT_DIR, "og.jpg"));
+console.log("og.jpg  (1200×630)");
+
+await sharp(await fitted(ICON.n).toBuffer())
+  .extract({ left: ICON.left, top: ICON.top, width: ICON.size, height: ICON.size })
   .resize(256, 256)
   .png()
   .toFile(path.join("app", "icon.png"));
