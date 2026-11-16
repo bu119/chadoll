@@ -32,7 +32,7 @@ const PHOTOS = {
   // 차돌이가 작게 찍혀서 차돌이 중심으로 잘라 쓴다. (crop: 원본 대비 비율)
   "gallery-45": { n: 17, crop: { left: 0.27, top: 0.24, size: 0.62 } },
   "gallery-46": { n: 22, crop: { left: 0.25, top: 0.23, size: 0.62 } },
-  "gallery-47": { n: 4, crop: { left: 0.26, top: 0.37, size: 0.62 } },
+  "gallery-47": { n: 4, crop: { left: 0.25, top: 0.27, size: 0.62 } },
   // 소풍
   "gallery-17": 54,
   "gallery-18": 53,
