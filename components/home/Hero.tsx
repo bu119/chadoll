@@ -22,7 +22,7 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-md break-keep text-xl text-ink">
-            인형처럼 폭신폭신한 {chadol.breed}, 차돌이네 집에 오신 걸 환영해요.
+            간식과 산책을 사랑하는 {chadol.breed}이에요. 차돌이의 하루를 천천히 구경하고 가세요.
           </p>
           <SocialLinks className="mt-5" />
         </div>
