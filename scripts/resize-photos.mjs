@@ -16,9 +16,7 @@ const source = (n) => path.join(SRC_DIR, `차돌이 (${n}).jpg`);
 // 새 사진은 맨 뒤에 이어 붙이고, 이미 있는 이름의 번호는 바꾸지 않는다.
 const PHOTOS = {
   // 표지
-  hero: 44,
-  "hero-spring": 61,
-  "hero-autumn": 14,
+  main: 68,
   // 산책길
   "gallery-01": 11,
   "gallery-02": 13,
@@ -37,7 +35,7 @@ const PHOTOS = {
   // 소풍
   "gallery-17": 54,
   "gallery-18": 53,
-  "gallery-19": 32,
+  "gallery-31": 44,
   "gallery-20": 48,
   "gallery-21": 47,
   // 카페
@@ -48,7 +46,23 @@ const PHOTOS = {
   "gallery-23": 37,
   "gallery-24": 41,
   "gallery-30": 50,
+  // 숲길
+  "gallery-42": 74,
+  "gallery-43": { n: 75, position: "left" },
+  "gallery-44": { n: 76, position: "left" },
+  // 햇살 좋은 날
+  "gallery-38": 70,
+  "gallery-39": 71,
+  "gallery-40": 72,
+  "gallery-41": 73,
+  // 겨울
+  "gallery-32": 62,
+  "gallery-33": 63,
+  "gallery-35": 65,
+  "gallery-37": 67,
   // 친구들과 (보호자 동의를 받은 사진만)
+  "gallery-34": 64,
+  "gallery-36": 66,
   "gallery-25": 39,
   "gallery-26": 49,
   "gallery-27": 46,
@@ -57,15 +71,19 @@ const PHOTOS = {
   "gallery-29": 55,
 };
 
-// 공유 미리보기는 표지 사진에서, 탭 아이콘은 정면 얼굴 사진에서 잘라 쓴다.
-const OG = { n: PHOTOS.hero, top: 380 };
-const ICON = { n: PHOTOS["hero-autumn"], left: 250, top: 480, size: 560 };
+// 공유 미리보기는 표지 사진에서 잘라 쓴다.
+const OG = { n: PHOTOS.main, top: 250 };
+// 탭 아이콘은 차돌이 그림(69번, 정사각형)에서 그림 부분만 잘라 쓴다.
+const ICON = { n: 69, left: 158, top: 112, size: 810 };
 
-const fitted = (n) => sharp(source(n)).rotate().resize(WIDTH, HEIGHT, { fit: "cover" }); // rotate: EXIF 방향 보정
+// 가로 사진은 세로(3:4)로 자른다. position 으로 남길 쪽을 정한다.
+const fitted = (n, position = "centre") =>
+  sharp(source(n)).rotate().resize(WIDTH, HEIGHT, { fit: "cover", position }); // rotate: EXIF 방향 보정
 
-async function resize(name, n) {
+async function resize(name, entry) {
+  const { n, position } = typeof entry === "number" ? { n: entry } : entry;
   const out = path.join(OUT_DIR, `${name}.jpg`);
-  await fitted(n).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
+  await fitted(n, position).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
   const { size } = await stat(out);
   console.log(`${name}.jpg  ← 차돌이 (${n}).jpg  ${(size / 1024).toFixed(0)}KB`);
 }
@@ -81,7 +99,7 @@ await sharp(await fitted(OG.n).toBuffer())
   .toFile(path.join(OUT_DIR, "og.jpg"));
 console.log("og.jpg  (1200×630)");
 
-await sharp(await fitted(ICON.n).toBuffer())
+await sharp(source(ICON.n))
   .extract({ left: ICON.left, top: ICON.top, width: ICON.size, height: ICON.size })
   .resize(256, 256)
   .png()

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState, type KeyboardEvent } from "react";
-import { printFrame } from "@/components/ui/Photo";
+import { photoShape } from "@/components/ui/Photo";
 import type { GalleryScene, Photo, SceneId } from "@/lib/gallery";
 
 const roundButton =
@@ -25,22 +25,39 @@ const RATIO = "aspect-[3/4]";
 /** 격자 두 줄을 차지하는 큰 사진은 높이를 줄에 맞춘다. */
 const TALL = "aspect-[3/4] md:aspect-auto md:h-full";
 
-// 장면마다 사진을 놓는 방식이 다르다.
+// 사진을 놓는 방식 몇 가지. 이웃한 장면끼리 다른 방식을 쓴다.
+// 큰 사진 왼쪽, 작은 사진들이 옆과 아래를 채운다. (사진 5장 또는 9장)
+const leadLeft: Layout = {
+  grid: "md:grid-cols-4",
+  heading: "md:col-span-full",
+  lead: `md:col-span-2 md:row-span-2 ${TALL}`,
+  item: () => RATIO,
+};
+// 세 장을 나란히, 가운데만 살짝 내려서.
+const trio: Layout = {
+  grid: "md:grid-cols-3 md:gap-6",
+  heading: "md:col-span-full",
+  lead: `md:col-span-1 ${RATIO}`,
+  item: (i) => `${RATIO} ${i === 1 ? "md:mt-12" : ""}`,
+};
+
 const layouts: Record<SceneId, Layout> = {
-  // 큰 사진 왼쪽, 작은 사진들이 옆과 아래를 채운다.
-  walk: {
-    grid: "md:grid-cols-4 lg:grid-cols-6",
+  forest: trio,
+  // 큰 사진 왼쪽, 글은 오른쪽 위, 작은 사진 석 장은 오른쪽 아래.
+  winter: {
+    grid: "md:grid-cols-12 md:grid-rows-[1fr_auto] md:gap-5",
+    heading: "md:col-span-6 md:col-start-7 md:row-start-1",
+    lead: `md:col-span-6 md:col-start-1 md:row-span-2 md:row-start-1 ${RATIO}`,
+    item: () => `md:col-span-2 md:row-start-2 md:self-end ${RATIO}`,
+  },
+  // 넉 장을 한 줄로, 하나 걸러 하나씩 내려서.
+  sunny: {
+    grid: "md:grid-cols-4 md:gap-5",
     heading: "md:col-span-full",
-    lead: `md:col-span-2 md:row-span-2 ${TALL}`,
-    item: () => RATIO,
+    lead: `md:col-span-1 ${RATIO}`,
+    item: (i) => `${RATIO} ${i % 2 === 1 ? "md:mt-10" : ""}`,
   },
-  // 글 옆에 세 장을 엇갈려 놓는다.
-  rain: {
-    grid: "md:grid-cols-12 md:gap-6",
-    heading: "md:col-span-3 md:self-center",
-    lead: `md:col-span-3 ${RATIO}`,
-    item: (i) => `md:col-span-3 ${RATIO} ${i === 1 ? "md:mt-16" : "md:mt-6"}`,
-  },
+  walk: { ...leadLeft, grid: "md:grid-cols-4 lg:grid-cols-6" },
   // 큰 사진 오른쪽, 글과 작은 사진 넉 장은 왼쪽.
   picnic: {
     grid: "md:grid-cols-4 md:gap-5",
@@ -55,13 +72,14 @@ const layouts: Record<SceneId, Layout> = {
     lead: `md:col-span-2 md:col-start-4 md:row-span-2 md:row-start-2 ${TALL}`,
     item: () => RATIO,
   },
-  // 세 장을 나란히, 가운데만 살짝 내려서.
-  friends: {
-    grid: "md:grid-cols-3 md:gap-6",
-    heading: "md:col-span-full",
-    lead: `md:col-span-1 ${RATIO}`,
-    item: (i) => `${RATIO} ${i === 1 ? "md:mt-12" : ""}`,
+  // 글 옆에 세 장을 엇갈려 놓는다.
+  rain: {
+    grid: "md:grid-cols-12 md:gap-6",
+    heading: "md:col-span-3 md:self-center",
+    lead: `md:col-span-3 ${RATIO}`,
+    item: (i) => `md:col-span-3 ${RATIO} ${i === 1 ? "md:mt-16" : "md:mt-6"}`,
   },
+  friends: leadLeft,
 };
 
 export function Gallery({ scenes }: { scenes: GalleryScene[] }) {
@@ -108,7 +126,7 @@ export function Gallery({ scenes }: { scenes: GalleryScene[] }) {
                     type="button"
                     onClick={() => open(photo)}
                     aria-label={`${photo.alt} 사진 크게 보기`}
-                    className={`relative w-full cursor-zoom-in overflow-hidden ${printFrame} ${
+                    className={`relative w-full cursor-zoom-in ${photoShape} ${
                       i === 0 ? `col-span-2 ${layout.lead}` : layout.item(i)
                     } ${collapsed ? "hidden md:block" : "block"}`}
                   >
