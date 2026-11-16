@@ -25,7 +25,7 @@ const PHOTOS = {
   "gallery-05": 2,
   "gallery-11": 29,
   "gallery-12": 23,
-  "gallery-13": 34,
+  "gallery-13": { n: 34, crop: { left: 0.2, top: 0.19, size: 0.7 } },
   "gallery-14": 38,
   "gallery-15": 57,
   // 비 오는 날
@@ -71,7 +71,7 @@ const PHOTOS = {
   "gallery-28": 59,
   "gallery-29": 55,
   // 가을
-  "gallery-48": 1,
+  "gallery-48": { n: 1, crop: { left: 0.08, top: 0.2, size: 0.8 } },
   "gallery-49": { n: 7, crop: { left: 0.155, top: 0.2, size: 0.75 } }, // 위쪽 아파트는 잘라낸다
   "gallery-54": { n: 30, crop: { left: 0.29, top: 0.26, size: 0.42 } },
   // 친구들과

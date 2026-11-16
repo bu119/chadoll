@@ -118,11 +118,11 @@ const scenes: GalleryScene[] = [
     title: "소풍",
     note: "돗자리만 펴면 웃음이 나요.",
     photos: [
+      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이"),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
       photo("gallery-31", "해 질 녘 공원에서 분홍 하네스를 하고 옆을 바라보는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
       photo("gallery-18", "풀밭에 편 돗자리 위에 엎드려 쉬는 차돌이"),
-      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이"),
     ],
   },
   {
@@ -130,11 +130,11 @@ const scenes: GalleryScene[] = [
     title: "카페",
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
-      photo("gallery-28", "깃 달린 옷을 입고 카페 의자 방석에 앉은 차돌이"),
+      photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이"),
       photo("gallery-22", "카페 문 앞 방석에 앉아 올려다보는 차돌이"),
       photo("gallery-09", "카페 테이블 앞에 앉아 활짝 웃는 차돌이"),
       photo("gallery-30", "카페 둥근 러그 위에서 웃으며 서 있는 차돌이"),
-      photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이"),
+      photo("gallery-28", "깃 달린 옷을 입고 카페 의자 방석에 앉은 차돌이"),
       photo("gallery-23", "카페에서 쓰다듬을 받으며 웃는 차돌이"),
       photo("gallery-10", "카페에서 아이스커피 뒤로 얌전히 앉아 바라보는 차돌이"),
       photo("gallery-24", "털을 짧게 다듬고 카페 바닥에 서 있는 차돌이"),
