@@ -26,9 +26,9 @@ const RATIO = "aspect-[3/4]";
 const TALL = "aspect-[3/4] md:aspect-auto md:h-full";
 
 // 사진을 놓는 방식 몇 가지. 이웃한 장면끼리 다른 방식을 쓴다.
-// 큰 사진 왼쪽, 작은 사진들이 옆과 아래를 채운다. (사진 5장 또는 9장)
-const leadLeft: Layout = {
-  grid: "md:grid-cols-4",
+// 큰 사진 왼쪽, 작은 사진 다섯 장이 오른쪽과 아래를 채운다. (사진 6장)
+const leadOfSix: Layout = {
+  grid: "md:grid-cols-3",
   heading: "md:col-span-full",
   lead: `md:col-span-2 md:row-span-2 ${TALL}`,
   item: () => RATIO,
@@ -43,6 +43,7 @@ const trio: Layout = {
 
 const layouts: Record<SceneId, Layout> = {
   forest: trio,
+  autumn: leadOfSix,
   // 큰 사진 왼쪽, 글은 오른쪽 위, 작은 사진 석 장은 오른쪽 아래.
   winter: {
     grid: "md:grid-cols-12 md:grid-rows-[1fr_auto] md:gap-5",
@@ -57,7 +58,8 @@ const layouts: Record<SceneId, Layout> = {
     lead: `md:col-span-1 ${RATIO}`,
     item: (i) => `${RATIO} ${i % 2 === 1 ? "md:mt-10" : ""}`,
   },
-  walk: { ...leadLeft, grid: "md:grid-cols-4 lg:grid-cols-6" },
+  // 사진 6장, 큰 사진을 오른쪽에 둔다.
+  walk: { ...leadOfSix, lead: `md:col-span-2 md:col-start-2 md:row-span-2 md:row-start-2 ${TALL}` },
   // 큰 사진 오른쪽, 글과 작은 사진 넉 장은 왼쪽.
   picnic: {
     grid: "md:grid-cols-4 md:gap-5",
@@ -65,11 +67,11 @@ const layouts: Record<SceneId, Layout> = {
     lead: `md:col-span-2 md:col-start-3 md:row-span-3 md:row-start-1 ${TALL}`,
     item: () => RATIO,
   },
-  // 큰 사진 오른쪽, 작은 사진 여섯 장이 왼쪽 두 줄.
+  // 사진 8장. 아주 큰 사진 하나, 작은 사진은 오른쪽 세로 석 장과 아래 넉 장.
   cafe: {
-    grid: "md:grid-cols-5",
+    grid: "md:grid-cols-4",
     heading: "md:col-span-full",
-    lead: `md:col-span-2 md:col-start-4 md:row-span-2 md:row-start-2 ${TALL}`,
+    lead: `md:col-span-3 md:row-span-3 ${TALL}`,
     item: () => RATIO,
   },
   // 글 옆에 세 장을 엇갈려 놓는다.
@@ -79,7 +81,7 @@ const layouts: Record<SceneId, Layout> = {
     lead: `md:col-span-3 ${RATIO}`,
     item: (i) => `md:col-span-3 ${RATIO} ${i === 1 ? "md:mt-16" : "md:mt-6"}`,
   },
-  friends: leadLeft,
+  friends: leadOfSix,
 };
 
 export function Gallery({ scenes }: { scenes: GalleryScene[] }) {

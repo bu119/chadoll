@@ -25,7 +25,7 @@ const PHOTOS = {
   "gallery-05": 2,
   "gallery-11": 29,
   "gallery-12": 23,
-  "gallery-13": 34,
+  "gallery-13": { n: 34, crop: { left: 0.2, top: 0.19, size: 0.7 } },
   "gallery-14": 38,
   "gallery-15": 57,
   // 비 오는 날
@@ -38,9 +38,9 @@ const PHOTOS = {
   "gallery-18": 53,
   "gallery-31": 44,
   "gallery-20": 48,
-  "gallery-21": 47,
+  "gallery-21": { n: 47, crop: { left: 0.18, top: 0.085, size: 0.75 } },
   // 카페
-  "gallery-08": 21,
+  "gallery-08": { n: 21, crop: { left: 0.155, top: 0.205, size: 0.75 } },
   "gallery-09": 25,
   "gallery-10": 27,
   "gallery-22": 35,
@@ -70,6 +70,18 @@ const PHOTOS = {
   // 처음엔 프로필·타임라인용이었고 지금은 사진첩(카페, 햇살 좋은 날)에 있다.
   "gallery-28": 59,
   "gallery-29": 55,
+  // 가을
+  "gallery-48": { n: 1, crop: { left: 0.08, top: 0.2, size: 0.8 } },
+  "gallery-49": { n: 7, crop: { left: 0.155, top: 0.2, size: 0.75 } }, // 위쪽 아파트는 잘라낸다
+  "gallery-54": { n: 30, crop: { left: 0.29, top: 0.26, size: 0.42 } },
+  // 친구들과
+  "gallery-55": 40,
+  // 프로필과 "차돌이는요" 소개 네 칸
+  "gallery-50": 14,
+  "gallery-51": 19,
+  "gallery-52": 24,
+  "gallery-53": { n: 28, crop: { left: 0.25, top: 0.26, size: 0.5 } },
+  "gallery-56": 56,
 };
 
 // 공유 미리보기는 표지 사진에서 잘라 쓴다.
