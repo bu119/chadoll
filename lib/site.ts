@@ -14,6 +14,8 @@ export const chadol = {
   /** 성까지 붙인 정식 이름 */
   fullName: "김차돌",
   breed: "갈색 포메라니안",
+  /** 색을 빼고 견종만. 사진과 함께 쓰는 짧은 문장용 */
+  breedName: "포메라니안",
   /** 태어난 날짜는 몰라서 연·월만 관리한다. */
   birth: { year: 2014, month: 4 },
   /** 우리 집에 온 날 (YYYY-MM-DD) */
