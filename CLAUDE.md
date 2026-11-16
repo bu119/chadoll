@@ -46,12 +46,11 @@ components/
   layout/             Header, Footer, SocialLinks
   home/ diary/ friends/   페이지 전용 컴포넌트
 content/
-  diary/              YYYY-MM-DD-slug.md
   friends.ts          친구 목록 데이터
 lib/
   site.ts             차돌이 정보, SNS 링크
   date.ts             나이 · 함께한 일수 계산
-  diary.ts            getDiaries(), getDiary(slug)
+  diary.ts            getDiaries(), getDiary(slug)  (DB에서 읽기)
   friends.ts          getFriends(), getFriend(slug)
 public/images/        home/ diary/ friends/
 ```
@@ -60,16 +59,13 @@ public/images/        home/ diary/ friends/
 
 ### 차돌이 일기 (`/diary`)
 - 하루일기와 산책 에피소드를 **하나로 통일**한다. 구분은 `category`로 한다.
-- 지금은 마크다운 파일, 이후 DB로 옮긴다 (아키텍처 원칙 3).
+- DB에 저장한다. 글쓰기·수정·삭제는 보호자만 할 수 있다 (Server Actions).
 
-```md
----
-title: 단풍길에서 간식 사냥
-date: 2026-11-16
-category: 산책        # 일상 | 산책 | 여행 | 기념일
-cover: /images/diary/2026-11-16.jpg   # 선택
----
-본문 (차돌이 시점도 좋음)
+```ts
+{ slug: "2026-11-16-maple-walk", title: "단풍길에서 간식 사냥",
+  date: "2026-11-16", category: "산책",   // 일상 | 산책 | 여행 | 기념일
+  cover: "/images/diary/2026-11-16.jpg",   // 선택
+  body: "본문 (차돌이 시점도 좋음)" }
 ```
 
 ### 차돌이의 친구들 (`/friends`)
@@ -87,7 +83,7 @@ cover: /images/diary/2026-11-16.jpg   # 선택
 ```
 
 ### 방명록 (`/guestbook`)
-- DB 연결 후 만든다. 닉네임만 입력해서 작성하고, 보호자만 글을 삭제할 수 있다.
+- 일기와 같은 DB를 쓴다. 닉네임만 입력해서 작성하고, 보호자만 글을 삭제할 수 있다.
 - 스팸 방지(글자 수 제한, 짧은 시간 연속 작성 제한)를 넣는다.
 
 ### SNS 연결
@@ -159,8 +155,7 @@ cover: /images/diary/2026-11-16.jpg   # 선택
 ## 로드맵
 
 - [ ] 1단계: 메인 소개 (Hero, 프로필, 함께한 날 카운터, 갤러리, 타임라인, SNS 링크) → 배포
-- [ ] 2단계: 차돌이 일기 (마크다운)
-- [ ] 3단계: DB 연결 → 일기를 DB로 이전 + 방명록
-- [ ] 4단계: 차돌이의 친구들 (도감형 사진 카드)
+- [ ] 2단계: DB 연결 → 차돌이 일기 + 방명록
+- [ ] 3단계: 차돌이의 친구들 (도감형 사진 카드)
 
 메뉴는 확장을 고려해 만들되, 아직 없는 페이지는 메뉴에 노출하지 않는다.
