@@ -70,6 +70,18 @@ const PHOTOS = {
   // 처음엔 프로필·타임라인용이었고 지금은 사진첩(카페, 햇살 좋은 날)에 있다.
   "gallery-28": 59,
   "gallery-29": 55,
+  // 가을
+  "gallery-48": 1,
+  "gallery-49": { n: 7, crop: { left: 0.155, top: 0.2, size: 0.75 } }, // 위쪽 아파트는 잘라낸다
+  "gallery-54": { n: 30, crop: { left: 0.29, top: 0.26, size: 0.42 } },
+  // 친구들과
+  "gallery-55": 40,
+  // 프로필과 "차돌이는요" 소개 네 칸
+  "gallery-50": 14,
+  "gallery-51": 19,
+  "gallery-52": 24,
+  "gallery-53": { n: 28, crop: { left: 0.25, top: 0.26, size: 0.5 } },
+  "gallery-56": 56,
 };
 
 // 공유 미리보기는 표지 사진에서 잘라 쓴다.
