@@ -40,7 +40,7 @@ const PHOTOS = {
   "gallery-20": 48,
   "gallery-21": { n: 47, crop: { left: 0.18, top: 0.085, size: 0.75 } },
   // 카페
-  "gallery-08": 21,
+  "gallery-08": { n: 21, crop: { left: 0.155, top: 0.205, size: 0.75 } },
   "gallery-09": 25,
   "gallery-10": 27,
   "gallery-22": 35,
