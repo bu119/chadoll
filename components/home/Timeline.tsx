@@ -1,5 +1,7 @@
 import { AgeText } from "@/components/home/AgeText";
+import { Photo } from "@/components/ui/Photo";
 import { Section } from "@/components/ui/Section";
+import { nowPhoto } from "@/lib/gallery";
 import { getTodaySnapshot } from "@/lib/today";
 import { getTimeline } from "@/lib/site";
 
@@ -8,32 +10,36 @@ export async function Timeline() {
   const items = getTimeline();
 
   return (
-    <Section id="timeline" title="차돌이가 걸어온 길 🐾" tone="tinted">
-      <ol className="mx-auto max-w-2xl">
-        {items.map((item, index) => (
-          <li key={item.id} className="relative pb-10 pl-10 last:pb-0">
-            {index < items.length - 1 ? (
-              <span aria-hidden="true" className="absolute left-[0.6875rem] top-3 h-full w-0.5 bg-beige-400" />
-            ) : null}
-            <span
-              aria-hidden="true"
-              className={`absolute left-0 top-1.5 h-6 w-6 rounded-full border-4 border-cream-100 ${
-                item.current ? "bg-maple-500" : "bg-brown-600"
-              }`}
-            />
-            <p className="text-lg text-maple-600">{item.when}</p>
-            <h3 className="mt-1 font-display text-2xl text-brown-600">{item.title}</h3>
-            <p className="mt-2 break-keep text-xl text-brown-800">
+    <Section id="timeline" title="차돌이가 걸어온 길">
+      <div className="grid gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
+        {/* 세로선은 리드줄 색 */}
+        <ol className="border-l-[3px] border-butter md:col-span-7">
+          {items.map((item) => (
+            <li key={item.id} className="relative pb-12 pl-7 last:pb-0 sm:pl-10">
               {item.current ? (
-                <>
-                  어느덧 <AgeText serverAge={age} />살!{" "}
-                </>
+                <span aria-hidden="true" className="absolute -left-[9.5px] top-1 h-4 w-4 rounded-full bg-fur" />
               ) : null}
-              {item.description}
-            </p>
-          </li>
-        ))}
-      </ol>
+              <p className="text-base leading-none text-ink-soft">{item.when}</p>
+              <h3 className="mt-2 font-hand text-5xl leading-none text-ink sm:text-6xl">{item.title}</h3>
+              <p className="mt-3 max-w-lg break-keep text-xl text-ink">
+                {item.current ? (
+                  <>
+                    어느덧 <AgeText serverAge={age} />살!{" "}
+                  </>
+                ) : null}
+                {item.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <Photo
+          photo={nowPhoto}
+          sizes="(min-width: 768px) 36vw, 384px"
+          caption="간식 발견!"
+          className="mx-auto w-full max-w-sm -rotate-1 md:col-span-5 md:max-w-none md:self-end"
+        />
+      </div>
     </Section>
   );
 }

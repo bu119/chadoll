@@ -1,16 +1,15 @@
 import type { ReactNode } from "react";
 import { AgeText } from "@/components/home/AgeText";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Tag } from "@/components/ui/Tag";
+import { Photo } from "@/components/ui/Photo";
+import { profilePhoto } from "@/lib/gallery";
 import { getTodaySnapshot } from "@/lib/today";
 import { chadol } from "@/lib/site";
 
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="grid gap-1 border-b border-beige-200 py-4 last:border-b-0 sm:grid-cols-[8rem_1fr] sm:gap-4">
-      <dt className="font-display text-xl text-brown-600">{label}</dt>
-      <dd className="break-keep text-xl text-brown-800">{children}</dd>
+    <div className="flex items-baseline justify-between gap-6 border-t border-line py-4">
+      <dt className="shrink-0 text-base text-ink-soft">{label}</dt>
+      <dd className="break-keep text-right text-xl text-ink">{children}</dd>
     </div>
   );
 }
@@ -19,34 +18,42 @@ export async function ProfileCard() {
   const { age } = await getTodaySnapshot();
 
   return (
-    <Section id="profile" title="차돌이 프로필 📋" tone="tinted">
-      <Card className="mx-auto max-w-2xl">
-        <dl>
-          <Row label="이름">{chadol.name}</Row>
-          <Row label="견종">{chadol.breed}</Row>
-          <Row label="나이">
-            <AgeText serverAge={age} />살{" "}
-            <span className="text-lg text-brown-800/70">
-              ({chadol.birth.year}년 {chadol.birth.month}월생)
-            </span>
-          </Row>
-          <Row label="별명">
-            <span className="flex flex-wrap gap-2">
-              {chadol.nicknames.map((nickname) => (
-                <Tag key={nickname}>{nickname}</Tag>
-              ))}
-            </span>
-          </Row>
-          <Row label="성격">{chadol.personality}</Row>
-          <Row label="좋아하는 것">
-            <span className="flex flex-wrap gap-2">
-              {chadol.likes.map((like) => (
-                <Tag key={like}>{like}</Tag>
-              ))}
-            </span>
-          </Row>
-        </dl>
-      </Card>
-    </Section>
+    <section id="profile" aria-labelledby="profile-title" className="scroll-mt-20 px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
+        <div className="md:col-span-7">
+          <h2 id="profile-title" className="font-hand text-6xl leading-none text-ink sm:text-7xl">
+            차돌이는요
+          </h2>
+          <p className="mt-6 break-keep text-2xl leading-relaxed text-ink">{chadol.personality}</p>
+          <div className="mt-5 max-w-xl space-y-3">
+            {chadol.story.map((line) => (
+              <p key={line} className="break-keep text-xl text-ink">
+                {line}
+              </p>
+            ))}
+          </div>
+          <dl className="mt-10 gap-x-12 border-b border-line sm:grid sm:grid-cols-2 sm:border-b-0">
+            <Row label="이름">{chadol.fullName}</Row>
+            <Row label="견종">{chadol.breed}</Row>
+            <Row label="나이">
+              <AgeText serverAge={age} />살{" "}
+              <span className="text-base text-ink-soft">
+                ({chadol.birth.year}년 {chadol.birth.month}월생)
+              </span>
+            </Row>
+            <Row label="별명">{chadol.nicknames.join(", ")}</Row>
+            <Row label="좋아하는 것">{chadol.likes.join(", ")}</Row>
+            <Row label="싫어하는 것">{chadol.dislikes.join(", ")}</Row>
+          </dl>
+        </div>
+
+        <Photo
+          photo={profilePhoto}
+          sizes="(min-width: 768px) 36vw, 384px"
+          caption="뛰지 마세요, 천천히요."
+          className="mx-auto w-full max-w-sm rotate-1 md:col-span-5 md:mt-10 md:max-w-none"
+        />
+      </div>
+    </section>
   );
 }

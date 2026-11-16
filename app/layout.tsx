@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Gowun_Dodum, Jua } from "next/font/google";
+import { Gowun_Dodum, Nanum_Pen_Script } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+// 본문
 const gowun = Gowun_Dodum({
   variable: "--font-gowun",
   weight: "400",
@@ -12,8 +13,9 @@ const gowun = Gowun_Dodum({
   display: "swap",
 });
 
-const jua = Jua({
-  variable: "--font-jua",
+// 제목과 사진 메모에만 쓰는 펜글씨
+const pen = Nanum_Pen_Script({
+  variable: "--font-pen",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
         url: site.ogImage,
         width: 1200,
         height: 630,
-        alt: "단풍 든 공원에서 활짝 웃는 포메라니안 차돌이",
+        alt: "해 질 녘 공원에서 옆을 바라보는 포메라니안 차돌이",
       },
     ],
   },
@@ -58,13 +60,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fffbf3",
+  themeColor: "#f8f1e4",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${gowun.variable} ${jua.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans text-lg">
+    <html lang="ko" className={`${gowun.variable} ${pen.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col font-sans text-lg leading-[1.75]">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

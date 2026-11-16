@@ -10,7 +10,7 @@ export function SocialLinks({ className = "" }: SocialLinksProps) {
   if (links.length === 0) return null;
 
   return (
-    <ul className={`flex flex-wrap gap-3 ${className}`}>
+    <ul className={`flex flex-wrap gap-x-7 gap-y-1 ${className}`}>
       {links.map((link) => (
         <li key={link.id}>
           <a
@@ -18,10 +18,12 @@ export function SocialLinks({ className = "" }: SocialLinksProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`차돌이 ${link.label} (새 탭에서 열림)`}
-            className="inline-flex min-h-12 items-center gap-2 rounded-full border border-beige-200 bg-white px-5 text-lg text-brown-600 shadow-soft transition hover:-translate-y-0.5 hover:border-maple-500 hover:text-maple-500"
+            className="group inline-flex min-h-12 items-center gap-2 text-lg text-ink"
           >
-            <SocialIcon kind={link.kind} />
-            <span>{link.label}</span>
+            <SocialIcon kind={link.kind} className="h-5 w-5 text-ink-soft" />
+            <span className="underline decoration-butter decoration-[3px] underline-offset-[6px] transition-colors group-hover:decoration-fur">
+              {link.label}
+            </span>
           </a>
         </li>
       ))}
