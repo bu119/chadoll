@@ -51,7 +51,7 @@ export async function ProfileCard() {
           photo={profilePhoto}
           sizes="(min-width: 768px) 36vw, 384px"
           caption="뛰지 마세요, 천천히요."
-          className="mx-auto w-full max-w-sm rotate-1 md:col-span-5 md:mt-10 md:max-w-none"
+          className="mx-auto w-full max-w-sm md:col-span-5 md:mt-10 md:max-w-none"
         />
       </div>
     </section>

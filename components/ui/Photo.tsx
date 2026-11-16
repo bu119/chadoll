@@ -1,8 +1,8 @@
 import Image from "next/image";
 import type { Photo as PhotoData } from "@/lib/gallery";
 
-/** 인화한 사진처럼 보이는 흰 테두리. 사진첩의 버튼도 같은 테두리를 쓴다. */
-export const printFrame = "border-[6px] border-print bg-print ring-1 ring-line";
+/** 사진 모양: 테두리·그림자 없이 모서리만 살짝 둥글게. 사진첩의 버튼도 같이 쓴다. */
+export const photoShape = "overflow-hidden rounded-md";
 
 type PhotoProps = {
   photo: PhotoData;
@@ -11,14 +11,14 @@ type PhotoProps = {
   caption?: string;
   /** 첫 화면에 보이는 사진만 true */
   preload?: boolean;
-  /** 너비·위치·기울기 */
+  /** 너비·위치 */
   className?: string;
 };
 
 export function Photo({ photo, sizes, caption, preload = false, className = "" }: PhotoProps) {
   return (
     <figure className={className}>
-      <div className={`relative aspect-[3/4] overflow-hidden ${printFrame}`}>
+      <div className={`relative aspect-[3/4] ${photoShape}`}>
         <Image src={photo.src} alt={photo.alt} fill preload={preload} sizes={sizes} className="object-cover" />
       </div>
       {caption ? (

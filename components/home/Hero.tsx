@@ -1,36 +1,16 @@
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { LeashLine } from "@/components/ui/LeashLine";
 import { Photo } from "@/components/ui/Photo";
-import { heroPhotos } from "@/lib/gallery";
+import { heroPhoto } from "@/lib/gallery";
 import { chadol, site } from "@/lib/site";
 
 export function Hero() {
   return (
     <section className="px-5 pb-16 pt-8 sm:px-8 md:pb-24 md:pt-14">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-12 md:gap-8">
-        {/* 앨범 첫 장: 사진 세 장을 겹쳐 놓는다. */}
-        <div className="relative pb-[8%] md:col-span-7">
-          <Photo
-            photo={heroPhotos.main}
-            preload
-            sizes="(min-width: 768px) 38vw, 64vw"
-            className="w-[66%] -rotate-1"
-          />
-          <Photo
-            photo={heroPhotos.spring}
-            preload
-            sizes="(min-width: 768px) 21vw, 36vw"
-            className="absolute right-0 top-[4%] w-[37%] rotate-2"
-          />
-          <Photo
-            photo={heroPhotos.autumn}
-            preload
-            sizes="(min-width: 768px) 19vw, 32vw"
-            className="absolute bottom-0 right-[6%] w-[33%] -rotate-2"
-          />
-        </div>
+      <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+        <Photo photo={heroPhoto} preload sizes="(min-width: 768px) 45vw, 100vw" />
 
-        <div className="md:col-span-5">
+        <div>
           <h1 className="font-hand text-ink">
             <span className="block break-keep text-5xl leading-tight sm:text-6xl sm:leading-tight">
               {site.tagline},

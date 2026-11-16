@@ -37,7 +37,7 @@ export async function Timeline() {
           photo={nowPhoto}
           sizes="(min-width: 768px) 36vw, 384px"
           caption="간식 발견!"
-          className="mx-auto w-full max-w-sm -rotate-1 md:col-span-5 md:max-w-none md:self-end"
+          className="mx-auto w-full max-w-sm md:col-span-5 md:max-w-none md:self-end"
         />
       </div>
     </Section>
