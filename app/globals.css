@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 차돌이 털색에서 가져온 색. 색은 이 파일 한 곳에서만 관리한다. */
+@theme {
+  /* 앨범 종이 */
+  --color-paper: #f8f1e4;
+  --color-page: #efe1c8;
+  --color-line: #e2d3b8;
+  /* 글자 */
+  --color-ink: #33261c;
+  --color-ink-soft: #6f5b4a;
+  /* 차돌이 털 */
+  --color-fur: #c99a62;
+  --color-cocoa: #4a3426;
+  /* 노란 리드줄: 하나뿐인 포인트색 */
+  --color-butter: #f2d878;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* 본문 */
+  --font-sans: var(--font-gowun), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 제목과 사진 메모에만 쓰는 펜글씨. 획이 가늘어서 크게 쓴다. */
+  --font-hand: var(--font-pen), var(--font-gowun), "Malgun Gothic", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+/* 사진을 크게 보는 동안에는 뒤 화면이 스크롤되지 않게 한다. */
+html:has(dialog[open]) {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
