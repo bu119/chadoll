@@ -1,7 +1,10 @@
 import type { TraitId } from "@/lib/site";
 
-/** 사진 주제. 한 사진이 여러 주제에 들 수 있다. */
-export type Tag = "outdoors" | "slow" | "weather" | "company" | "seasons";
+/**
+ * 사진 주제. 차돌이가 좋아하는 것을 기준으로 나눈다. 한 사진이 여러 주제에 들 수 있다.
+ * 계절은 장면 이름(봄·여름 바다·가을·겨울)으로 보이므로 주제로 두지 않는다.
+ */
+export type Tag = "walks" | "trips" | "cafe" | "friends" | "faces";
 
 export type TagInfo = {
   id: Tag;
@@ -12,11 +15,11 @@ export type TagInfo = {
 };
 
 const tags: TagInfo[] = [
-  { id: "outdoors", label: "나들이", en: "OUTDOORS" },
-  { id: "slow", label: "느긋한 날", en: "SLOW DAYS" },
-  { id: "weather", label: "날씨", en: "WEATHER" },
-  { id: "company", label: "친구들", en: "GOOD COMPANY" },
-  { id: "seasons", label: "계절", en: "SEASONS" },
+  { id: "walks", label: "산책", en: "WALKS" },
+  { id: "trips", label: "나들이", en: "DAY TRIPS" },
+  { id: "cafe", label: "카페", en: "CAFE" },
+  { id: "friends", label: "친구들", en: "FRIENDS" },
+  { id: "faces", label: "얼굴", en: "PORTRAITS" },
 ];
 
 export type Photo = {
@@ -86,7 +89,7 @@ export const farewellPhoto: Photo = photo("gallery-05", "노란 낙엽이 떨어
 const scenes: GalleryScene[] = [
   {
     id: "forest",
-    tags: ["outdoors"],
+    tags: ["walks"],
     title: "숲길",
     note: "나무 냄새 맡으며 걷는 날은 표정부터 달라요.",
     photos: [
@@ -97,7 +100,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "spring",
-    tags: ["outdoors", "seasons"],
+    tags: ["walks"],
     title: "봄",
     note: "연둣빛 잔디 위에서는 발걸음이 가벼워요.",
     photos: [
@@ -110,7 +113,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "autumn",
-    tags: ["outdoors", "seasons"],
+    tags: ["walks"],
     title: "가을",
     note: "낙엽 밟는 소리를 제일 좋아해요.",
     photos: [
@@ -126,19 +129,19 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "winter",
-    tags: ["seasons"],
+    tags: [],
     title: "겨울",
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
-      photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이"),
-      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
-      photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴"),
-      photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이"),
+      photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이", ["faces"]),
+      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이", ["faces"]),
+      photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴", ["faces"]),
+      photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이", ["walks"]),
     ],
   },
   {
     id: "sunny",
-    tags: ["slow", "weather"],
+    tags: ["cafe"],
     title: "햇살 좋은 날",
     note: "볕 좋은 자리는 누구보다 잘 찾아요.",
     photos: [
@@ -149,7 +152,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "sea",
-    tags: ["outdoors", "seasons"],
+    tags: ["trips"],
     title: "여름 바다",
     note: "파도 앞에서도 의젓해요.",
     photos: [
@@ -159,7 +162,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "walk",
-    tags: ["outdoors"],
+    tags: ["walks"],
     title: "산책길",
     note: "매일 걷는 길도 차돌이랑 걸으면 새로워요.",
     photos: [
@@ -174,11 +177,11 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "picnic",
-    tags: ["outdoors"],
+    tags: ["trips"],
     title: "소풍",
     note: "돗자리만 펴면 웃음이 나요.",
     photos: [
-      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이", ["company"]),
+      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이", ["friends"]),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
       photo("gallery-31", "해 질 녘 공원에서 분홍 하네스를 하고 옆을 바라보는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
@@ -189,7 +192,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "cafe",
-    tags: ["slow"],
+    tags: ["cafe"],
     title: "카페",
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
@@ -207,7 +210,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "rain",
-    tags: ["weather"],
+    tags: ["walks"],
     title: "비 오는 날",
     note: "우비만 입으면 비 오는 날 산책도 문제없어요.",
     photos: [
@@ -218,7 +221,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "friends",
-    tags: ["company"],
+    tags: ["friends"],
     title: "친구들과",
     note: "조용히, 천천히 다가오는 친구가 좋아요.",
     photos: [
@@ -229,13 +232,13 @@ const scenes: GalleryScene[] = [
       photo("gallery-55", "탁자 밑에서 친구들과 나란히 올려다보는 차돌이"),
       photo("gallery-60", "소나무 아래에서 초록 옷을 맞춰 입은 친구와 나란히 앉은 차돌이"),
       photo("gallery-59", "햇살 드는 흙길에서 친구 둘과 나란히 선 차돌이"),
-      photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 친구와 함께 창밖을 보는 차돌이"),
+      photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 친구와 함께 창밖을 보는 차돌이", ["cafe"]),
       photo("gallery-61", "잔디밭에서 푸들 친구와 나란히 앉은 차돌이"),
     ],
   },
   {
     id: "closeup",
-    tags: [],
+    tags: ["faces"],
     title: "가까이서",
     note: "가까이 보면 더 복슬복슬해요.",
     photos: [

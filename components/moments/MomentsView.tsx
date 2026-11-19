@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PhotoViewer } from "@/components/moments/PhotoViewer";
 import { SceneSpreads } from "@/components/moments/SceneSpreads";
 import { Kicker } from "@/components/ui/Kicker";
-import { getMoments, getTags, toMomentPhotos, type Tag } from "@/lib/gallery";
+import { getMoments, getTags, isTag, toMomentPhotos, type Tag } from "@/lib/gallery";
 
 const chip =
   "inline-flex min-h-12 items-center rounded-[3px] border px-5 text-lg transition-colors";
@@ -14,6 +14,11 @@ export function MomentsView({ tag }: { tag?: Tag }) {
   const filters = [{ href: "/moments", label: "전체", current: !tag }].concat(
     getTags().map((info) => ({ href: `/moments/${info.id}`, label: info.label, current: info.id === tag })),
   );
+  // 주제 버튼에 붙이는 사진 수
+  const countOf = (href: string) => {
+    const id = href.split("/")[2];
+    return toMomentPhotos(getMoments(id && isTag(id) ? id : undefined)).length;
+  };
 
   return (
     <div className="px-5 pb-20 pt-12 sm:px-8 sm:pb-28 sm:pt-16">
@@ -39,6 +44,13 @@ export function MomentsView({ tag }: { tag?: Tag }) {
                   }`}
                 >
                   {filter.label}
+                  <span
+                    className={`ml-2 font-serif text-xl lining-nums ${filter.current ? "text-ivory" : "text-brown"}`}
+                  >
+                    <span className="sr-only"> </span>
+                    {countOf(filter.href)}
+                    <span className="sr-only">장</span>
+                  </span>
                 </Link>
               </li>
             ))}
