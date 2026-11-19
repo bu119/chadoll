@@ -71,8 +71,6 @@ const PHOTOS = {
   "gallery-48": { n: 3, crop: { left: 0.08, top: 0.2, size: 0.8 } },
   "gallery-49": { n: 9, crop: { left: 0.155, top: 0.2, size: 0.75 } }, // 위쪽 아파트는 잘라낸다
   "gallery-54": { n: 32, crop: { left: 0.29, top: 0.26, size: 0.42 } },
-  // 친구들과
-  "gallery-55": 42,
   // 프로필과 "차돌이는요" 소개 네 칸
   "gallery-50": 16,
   "gallery-51": 21,

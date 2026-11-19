@@ -229,7 +229,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-25", "탁자 옆에서 친구들과 함께 고개를 내민 차돌이"),
       photo("gallery-26", "돗자리 위에서 친구들과 어울리는 차돌이"),
       photo("gallery-27", "잔디밭에서 친구와 나란히 선 차돌이"),
-      photo("gallery-55", "탁자 밑에서 친구들과 나란히 올려다보는 차돌이"),
       photo("gallery-60", "소나무 아래에서 초록 옷을 맞춰 입은 친구와 나란히 앉은 차돌이"),
       photo("gallery-59", "햇살 드는 흙길에서 친구 둘과 나란히 선 차돌이"),
       photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 친구와 함께 창밖을 보는 차돌이", ["cafe"]),
