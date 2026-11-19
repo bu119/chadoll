@@ -1,27 +1,42 @@
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { LeashLine } from "@/components/ui/LeashLine";
 import { Photo } from "@/components/ui/Photo";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { heroPhoto } from "@/lib/gallery";
 import { chadol, site } from "@/lib/site";
 
+/**
+ * 휴대폰: 브랜드 → 사진 → 이름·소개 순서로 쌓는다.
+ * 데스크톱: 사진을 왼쪽에 크게, 브랜드와 소개를 오른쪽 아래에 둔다.
+ */
 export function Hero() {
   return (
-    <section className="px-5 pb-16 pt-8 sm:px-8 md:pb-24 md:pt-14">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
-        <Photo photo={heroPhoto} preload sizes="(min-width: 768px) 45vw, 100vw" />
+    <section className="px-5 pb-16 pt-8 sm:px-8 md:pb-24 md:pt-12">
+      <div className="mx-auto grid max-w-6xl gap-x-12 md:grid-cols-12 md:grid-rows-[1fr_auto] lg:gap-x-16">
+        <div className="md:col-span-6 md:col-start-7 md:row-start-1 md:self-end">
+          {/* 휴대폰은 바로 위 헤더에 로고가 있으니 서브타이틀만 둔다. 이름까지 첫 화면에 보이게 하려는 것. */}
+          <Wordmark className="hidden text-[clamp(3.5rem,6.4vw,5.75rem)] text-cocoa md:block" />
+          {/* 리드줄 선은 서브타이틀 너비에 딱 맞춘다. */}
+          <div className="md:mt-3 md:inline-block">
+            <p className="font-serif text-2xl italic text-brown">{site.subtitle}</p>
+            <LeashLine className="mt-3 hidden w-full text-leash md:block" />
+          </div>
+        </div>
 
-        <div>
-          <h1 className="font-hand text-ink">
-            <span className="block break-keep text-5xl leading-tight sm:text-6xl sm:leading-tight">
-              {site.tagline},
-            </span>
-            {/* 리드줄 선은 이름 너비에 딱 맞춘다. */}
-            <span className="inline-block">
-              <span className="block text-[clamp(7rem,17vw,12rem)] leading-[0.9]">{chadol.fullName}</span>
-              <LeashLine className="block w-full text-butter" />
-            </span>
+        <Photo
+          photo={heroPhoto}
+          preload
+          ratio="4/5"
+          sizes="(min-width: 768px) 42vw, 100vw"
+          className="mt-6 md:col-span-5 md:col-start-1 md:row-span-2 md:row-start-1 md:mt-0 md:[&>div]:aspect-[3/4]"
+        />
+
+        <div className="mt-8 md:col-span-6 md:col-start-7 md:row-start-2 md:mt-10">
+          <h1 className="break-keep text-cocoa">
+            <span className="block text-xl font-medium text-brown sm:text-2xl">{site.tagline},</span>
+            <span className="mt-1 block text-5xl font-bold tracking-[-0.03em] sm:text-6xl">{chadol.fullName}</span>
           </h1>
-          <p className="mt-6 max-w-md break-keep text-xl text-ink">
+          <p className="mt-5 max-w-md break-keep text-xl text-cocoa">
             간식과 산책을 사랑하는 {chadol.breedName}이에요. 차돌이의 하루를 천천히 구경하고 가세요.
           </p>
           <SocialLinks className="mt-5" />

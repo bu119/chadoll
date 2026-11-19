@@ -1,7 +1,10 @@
-# 차돌이 홈페이지 (chadoll)
+# CHADOLL (차돌이 홈페이지)
 
-우리 강아지 차돌이를 소개하고 자랑하는 개인 홈페이지.
+우리 강아지 차돌이의 사진·일상·추억을 모은 작은 라이프스타일 매거진.
 `chadoll` = 차돌 + doll(인형), "인형 같은 차돌이".
+
+- 브랜드명: **CHADOLL** ("차돌이네"는 쓰지 않는다). 서브타이틀: **Little Moments, Big Memories.**
+- 서브타이틀은 표지(Hero)와 푸터 두 곳에만 쓴다. 이름·문구는 `lib/site.ts`의 `site`에서 관리한다.
 
 > 세상에서 제일 귀여운 간식 사냥꾼, 차돌이를 소개합니다 🍖✨
 
@@ -36,19 +39,24 @@
 
 ```
 app/
-  layout.tsx          공통 메뉴 · 푸터 · 메타데이터
-  page.tsx            메인 소개
-  diary/              차돌이 일기 (목록, [slug] 상세)
+  layout.tsx          공통 메뉴 · 푸터 · 글꼴 · 기본 메타데이터
+  page.tsx            HOME: 표지, 소개 요약, 함께한 날, 대표 사진, 걸어온 길
+  about/              ABOUT: 차돌이 소개 전체
+  moments/            MOMENTS: 사진첩 전체, [tag] 주제별 사진
+  stories/            STORIES: 차돌이 일기 (목록, [slug] 상세) — 2단계
   friends/            차돌이의 친구들 (목록, [slug] 상세)
   guestbook/          방명록
+  sitemap.ts robots.ts
 components/
-  ui/                 공통 조각 (Button, Card, Tag ...)
-  layout/             Header, Footer, SocialLinks
-  home/ diary/ friends/   페이지 전용 컴포넌트
+  ui/                 공통 조각 (Photo, Section, Kicker, Wordmark, MoreLink, LeashLine ...)
+  layout/             Header, NavLinks, Footer, SocialLinks
+  home/ about/ moments/ stories/ friends/   페이지 전용 컴포넌트
 content/
   friends.ts          친구 목록 데이터
 lib/
-  site.ts             차돌이 정보, SNS 링크
+  site.ts             브랜드, 차돌이 정보, 메뉴, SNS 링크
+  gallery.ts          사진 데이터, 주제(tag), getMoments(tag), getFeaturedPhotos()
+  metadata.ts         페이지 메타데이터(pageMetadata)
   date.ts             나이 · 함께한 일수 계산
   diary.ts            getDiaries(), getDiary(slug)  (DB에서 읽기)
   friends.ts          getFriends(), getFriend(slug)
@@ -57,8 +65,18 @@ public/images/        home/ diary/ friends/
 
 ## 페이지별 규칙
 
-### 차돌이 일기 (`/diary`)
-- 하루일기와 산책 에피소드를 **하나로 통일**한다. 구분은 `category`로 한다.
+### 메뉴
+- 영문 메뉴 + 한글 보조(휴대폰에서만 보인다): HOME 홈 · ABOUT 소개 · MOMENTS 사진 · STORIES 이야기 (`lib/site.ts`의 navItems)
+- 준비된 페이지만 메뉴에 연다(`enabled`). STORIES는 일기 기록이 생기면 연다.
+
+### 사진첩 (`/moments`)
+- 장면(숲길·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
+- 주제(tag)로 거른다: 나들이 · 느긋한 날 · 날씨 · 친구들 · 계절. 장면에 기본 주제를 달고, 사진에만 더 붙는 주제는 `photo(file, alt, ["company"])`처럼 단다.
+- 주제별 페이지는 `/moments/[tag]`로 미리 만든다(정적 생성).
+- 첫 화면의 대표 사진은 `lib/gallery.ts`의 `featuredFiles` 순서를 따른다.
+
+### 차돌이 일기 (`/stories`)
+- 메뉴 이름은 STORIES. 하루일기와 산책 에피소드, 성장 기록을 **하나로 통일**한다. 구분은 `category`로 한다.
 - DB에 저장한다. 글쓰기·수정·삭제는 보호자만 할 수 있다 (Server Actions).
 
 ```ts
@@ -92,21 +110,27 @@ public/images/        home/ diary/ friends/
   - 인스타그램 (일상): https://www.instagram.com/ch.adorable/
   - 인스타그램 (산책): https://www.instagram.com/imchadoll/
 - 인스타그램이 두 개이므로 아이콘 옆에 "일상", "산책" 라벨을 붙여 구분한다.
-- 일기 상세 페이지 하단에는 `category`에 맞는 인스타그램(일상/산책) 링크를 보여준다.
+- STORIES(일기) 상세 페이지 하단에는 `category`에 맞는 인스타그램(일상/산책) 링크를 보여준다.
 - 위치: 메인 첫 화면과 푸터. 아이콘 + 새 탭 열기(`rel="noopener noreferrer"`).
 
 ## 디자인 · 문구
 
-- 콘셉트는 "차돌이의 일상을 모은 손글씨 포토 앨범". 사진이 주인공이고, 특정 계절에 치우치지 않는다.
-- 색은 차돌이 털색이 중심이다: 크림 종이(`paper`), 베이지 속지(`page`), 털색(`fur`), 짙은 갈색(`cocoa`, `ink`).
-  포인트색은 노란 리드줄색(`butter`) 하나뿐이다. 색은 `app/globals.css`의 Tailwind 테마 변수 한 곳에서 관리한다.
-- 글꼴은 두 가지만 쓴다. 제목과 사진 메모는 나눔손글씨 펜(`font-hand`, 획이 가늘어 크게 쓴다), 본문은 고운돋움.
-- 사진은 원본 비율(3:4)로 크고 반듯하게, 테두리·그림자 없이 모서리만 살짝 둥글게 둔다(`components/ui/Photo.tsx`).
-  표지는 사진 한 장만 크게 쓴다.
-- 그림자·블러·그라데이션·둥근 카드 반복·스크롤 애니메이션·영문 장식 라벨·순서 없는 번호 매기기는 쓰지 않는다.
-- 섹션마다 배치를 다르게 하고 왼쪽 정렬을 기본으로 한다. 노란 리드줄 선(`LeashLine`)이 사이트의 표식이다.
-- **모바일 우선**, 글자는 크고 읽기 쉽게 (어르신 방문자 고려). 보조 글자도 투명도 대신 `ink-soft`를 쓴다.
-- 화면 문구는 모두 한글, 귀엽고 다정한 말투.
+- 콘셉트는 "Warm Editorial · 사진 중심의 작은 라이프스타일 매거진". 사진이 주인공이고 UI는 사진보다 눈에 띄지 않는다. 특정 계절에 치우치지 않는다.
+- 색은 차돌이 털색에서 가져온다. `app/globals.css`의 Tailwind 테마 변수 한 곳에서 관리한다.
+  - 바탕 `ivory`(#F8F5EF), 띠 `cream`(#E8D8C1), 구분선 `line`
+  - 글자: 제목·본문 `cocoa`(#40352D), 보조 `brown`(#75604F). 투명도 대신 `brown`을 쓴다.
+  - `golden`(#C9A77E)은 밑줄·점·선 같은 장식에만 쓴다. 대비가 낮아 글자에는 쓰지 않는다.
+  - 포인트색은 노란 리드줄색(`leash`) 하나뿐이고, 리드줄 선(`LeashLine`)은 표지와 함께한 날 두 곳에만 쓴다.
+- 글꼴은 두 가지만 쓴다.
+  - 한글 본문·제목: Pretendard Variable (`pretendard` 패키지의 dynamic-subset CSS). 본문 400, 소제목 600, 제목 700.
+  - 영문: Cormorant Garamond(`font-serif`). 로고(CHADOLL), 서브타이틀, 섹션 위 라벨(`Kicker`), 메뉴, 숫자에만 쓴다. 숫자는 `lining-nums`.
+- 섹션 제목 구조: 영문 라벨(`Kicker`, 메뉴 이름과 같은 단어만) → 한글 제목 → 본문 → 사진. 장식용 영문 문구는 더하지 않는다.
+- 사진은 원본(3:4)을 기준으로 배치에 맞춰 3:4 · 4:5 · 1:1로 자른다(`components/ui/Photo.tsx`의 `ratio`). 테두리·그림자 없이 모서리만 아주 살짝(3px).
+- 큰 사진과 작은 사진의 크기를 분명히 다르게 하고, 같은 모양 카드를 반복하지 않는다.
+- 그림자·블러·그라데이션·둥근 카드 반복·스크롤 애니메이션·과한 아이콘은 쓰지 않는다.
+- 섹션마다 배치를 다르게 하고 왼쪽 정렬을 기본으로 한다.
+- **모바일 우선**, 글자는 크고 읽기 쉽게 (어르신 방문자 고려). 본문 18px 이상, 누르는 곳은 48px 이상.
+- 화면 문구는 한글, 귀엽고 다정한 말투. 영문은 브랜드·메뉴·라벨에만.
 - 이모지는 꼭 필요한 곳에만 쓴다. 제목·라벨·사진 메모에는 쓰지 않고, 메인 페이지는 이모지 없이 만든다.
 - 사진은 `photos/`(커밋하지 않음)에 원본을 두고 `node scripts/resize-photos.mjs`로 1200×1600으로 줄여 `public/images/home/`에 넣는다.
 - 이미지 파일명은 소문자와 하이픈, `alt`는 한글로 의미 있게 쓴다. 2MB가 넘으면 리사이즈한다.
@@ -123,6 +147,8 @@ public/images/        home/ diary/ friends/
 - `main`: 항상 배포 가능한 상태. **직접 커밋하지 않는다.**
 - 작업 브랜치: `타입/영문-설명` (타입은 커밋 규칙과 같음)
   - 예: `feat/friends-page`, `fix/mobile-header`, `content/diary-2026-11-16`
+- 보관 브랜치: `archive/v버전-영문-설명` — 지난 디자인 보관용. 수정·병합·삭제하지 않는다.
+  - `archive/v1-handwritten-album`: CHADOLL 리뉴얼 전 "차돌이네" 손글씨 앨범 버전 (`f1c702d`)
 - 흐름: `main`에서 브랜치 생성 → 작업 · 커밋 → push (Vercel Preview로 확인) → PR → Squash merge → 브랜치 삭제
 - PR 제목은 커밋 메시지 형식을 따른다. 본문에는 변경 내용과 확인한 화면을 적는다.
 - 예외: 일기 · 사진 추가 같은 `content` 작업은 보호자가 원하면 `main`에 바로 커밋해도 된다.
@@ -155,7 +181,8 @@ public/images/        home/ diary/ friends/
 ## 로드맵
 
 - [ ] 1단계: 메인 소개 (Hero, 프로필, 함께한 날 카운터, 갤러리, 타임라인, SNS 링크) → 배포
-- [ ] 2단계: DB 연결 → 차돌이 일기 + 방명록
+  - CHADOLL 리뉴얼: HOME · ABOUT · MOMENTS 분리, 사진 주제(tag), 매거진 디자인
+- [ ] 2단계: DB 연결 → 차돌이 일기(STORIES 메뉴 열기) + 방명록
 - [ ] 3단계: 차돌이의 친구들 (도감형 사진 카드)
 
 메뉴는 확장을 고려해 만들되, 아직 없는 페이지는 메뉴에 노출하지 않는다.

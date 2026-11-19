@@ -1,11 +1,13 @@
+import { AboutPreview } from "@/components/home/AboutPreview";
 import { DaysCounter } from "@/components/home/DaysCounter";
-import { Gallery } from "@/components/home/Gallery";
+import { FeaturedMoments } from "@/components/home/FeaturedMoments";
 import { Hero } from "@/components/home/Hero";
-import { ProfileCard } from "@/components/home/ProfileCard";
 import { Timeline } from "@/components/home/Timeline";
-import { Section } from "@/components/ui/Section";
+import { pageMetadata } from "@/lib/metadata";
+import { site } from "@/lib/site";
 import { getTodaySnapshot } from "@/lib/today";
-import { getGalleryScenes } from "@/lib/gallery";
+
+export const metadata = pageMetadata({ description: site.description, path: "/" });
 
 export default async function HomePage() {
   const { daysTogether } = await getTodaySnapshot();
@@ -13,11 +15,9 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <ProfileCard />
+      <AboutPreview />
       <DaysCounter serverDays={daysTogether} />
-      <Section id="gallery" title="차돌이 사진첩" description="사진을 누르면 크게 볼 수 있어요.">
-        <Gallery scenes={getGalleryScenes()} />
-      </Section>
+      <FeaturedMoments />
       <Timeline />
     </>
   );

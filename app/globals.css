@@ -2,25 +2,26 @@
 
 /* 차돌이 털색에서 가져온 색. 색은 이 파일 한 곳에서만 관리한다. */
 @theme {
-  /* 앨범 종이 */
-  --color-paper: #f8f1e4;
-  --color-page: #efe1c8;
-  --color-line: #e2d3b8;
-  /* 글자 */
-  --color-ink: #33261c;
-  --color-ink-soft: #6f5b4a;
-  /* 차돌이 털 */
-  --color-fur: #c99a62;
-  --color-cocoa: #4a3426;
-  /* 노란 리드줄: 하나뿐인 포인트색 */
-  --color-butter: #f2d878;
+  /* 바탕: 아이보리(기본) · 크림(띠) */
+  --color-ivory: #f8f5ef;
+  --color-cream: #e8d8c1;
+  /* 구분선 */
+  --color-line: #e4d8c6;
+  /* 털색. 선·점 같은 장식에만 쓰고 글자에는 쓰지 않는다. (아이보리 위 대비 2.1) */
+  --color-golden: #c9a77e;
+  /* 보조 글자 (아이보리 위 대비 5.5) */
+  --color-brown: #75604f;
+  /* 제목·본문 (아이보리 위 대비 10.9) */
+  --color-cocoa: #40352d;
+  /* 노란 리드줄: 하나뿐인 포인트색. LeashLine 에만 쓴다. */
+  --color-leash: #f2d878;
 }
 
 @theme inline {
-  /* 본문 */
-  --font-sans: var(--font-gowun), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  /* 제목과 사진 메모에만 쓰는 펜글씨. 획이 가늘어서 크게 쓴다. */
-  --font-hand: var(--font-pen), var(--font-gowun), "Malgun Gothic", cursive;
+  /* 한글 본문과 제목 */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 영문 브랜드·라벨·숫자에만 쓴다. 한글이 섞이면 Pretendard 로 보인다. */
+  --font-serif: var(--font-cormorant), "Pretendard Variable", Georgia, serif;
 }
 
 html {
@@ -33,12 +34,12 @@ html:has(dialog[open]) {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-ivory);
+  color: var(--color-cocoa);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-ink);
+  outline: 3px solid var(--color-cocoa);
   outline-offset: 3px;
 }
 

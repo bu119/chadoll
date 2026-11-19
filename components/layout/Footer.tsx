@@ -1,25 +1,49 @@
+import Link from "next/link";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { Photo } from "@/components/ui/Photo";
+import { Wordmark } from "@/components/ui/Wordmark";
 import { farewellPhoto } from "@/lib/gallery";
 import { getTodaySnapshot } from "@/lib/today";
-import { site } from "@/lib/site";
+import { getNavItems, site } from "@/lib/site";
 
 export async function Footer() {
   const { year } = await getTodaySnapshot();
+  const items = getNavItems();
 
   return (
-    <footer className="bg-page px-5 py-14 sm:px-8 sm:py-20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-end sm:gap-12">
-        <Photo photo={farewellPhoto} sizes="176px" className="w-36 shrink-0 sm:w-44" />
-        <div>
-          <p className="break-keep font-hand text-6xl leading-none text-ink sm:text-7xl">
-            차돌이 보러 또 놀러 오세요
-          </p>
-          <SocialLinks className="mt-5" />
-          <p className="mt-6 break-keep text-base text-ink-soft">
+    <footer className="bg-cream px-5 py-14 sm:px-8 sm:py-20">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-8">
+        <div className="md:col-span-7">
+          <Wordmark className="text-4xl text-cocoa sm:text-5xl" />
+          <p className="mt-3 font-serif text-xl italic text-brown">{site.subtitle}</p>
+          <p className="mt-8 break-keep text-xl font-semibold text-cocoa">차돌이 보러 또 놀러 오세요</p>
+          <SocialLinks className="mt-3" />
+          {items.length > 1 ? (
+            <nav aria-label="아래 메뉴" className="mt-6">
+              <ul className="flex flex-wrap gap-x-6">
+                {items.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="inline-flex min-h-12 items-center gap-2 font-serif text-base font-semibold tracking-[0.1em] text-cocoa hover:underline hover:underline-offset-[6px]"
+                    >
+                      {item.label}
+                      <span className="font-sans text-sm font-normal tracking-normal text-brown">{item.hint}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ) : null}
+          <p className="mt-6 break-keep text-base text-brown">
             © {year} {site.name}. 차돌이 사진은 허락 없이 가져가지 말아 주세요.
           </p>
         </div>
+        <Photo
+          photo={farewellPhoto}
+          sizes="(min-width: 768px) 240px, 160px"
+          className="w-40 md:col-span-3 md:col-start-10 md:w-full md:self-end"
+        />
       </div>
     </footer>
   );
