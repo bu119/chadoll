@@ -1,4 +1,4 @@
-/** 차돌이의 노란 리드줄을 닮은 손그림 선. 색은 text-* 클래스로 정한다. */
+/** 차돌이의 노란 리드줄을 닮은 손그림 선. 사이트의 표식이라 표지와 함께한 날 두 곳에만 쓴다. 색은 text-leash. */
 export function LeashLine({ className = "" }: { className?: string }) {
   return (
     <svg

@@ -11,33 +11,35 @@ export async function Timeline() {
 
   return (
     <Section id="timeline" title="차돌이가 걸어온 길">
-      <div className="grid gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-        {/* 세로선은 리드줄 색 */}
-        <ol className="border-l-[3px] border-butter md:col-span-7">
+      <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+        <ol className="border-b border-line md:col-span-7">
           {items.map((item) => (
-            <li key={item.id} className="relative pb-12 pl-7 last:pb-0 sm:pl-10">
-              {item.current ? (
-                <span aria-hidden="true" className="absolute -left-[9.5px] top-1 h-4 w-4 rounded-full bg-fur" />
-              ) : null}
-              <p className="text-base leading-none text-ink-soft">{item.when}</p>
-              <h3 className="mt-2 font-hand text-5xl leading-none text-ink sm:text-6xl">{item.title}</h3>
-              <p className="mt-3 max-w-lg break-keep text-xl text-ink">
-                {item.current ? (
-                  <>
-                    어느덧 <AgeText serverAge={age} />살!{" "}
-                  </>
-                ) : null}
-                {item.description}
+            <li key={item.id} className="border-t border-line py-8 sm:grid sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <p className="flex items-center gap-2 text-lg font-semibold leading-tight text-brown">
+                {item.current ? <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-golden" /> : null}
+                {item.when}
               </p>
+              <div>
+                <h3 className="mt-2 text-2xl font-bold tracking-[-0.02em] text-cocoa sm:mt-0">{item.title}</h3>
+                <p className="mt-2 max-w-lg break-keep text-lg text-cocoa">
+                  {item.current ? (
+                    <>
+                      어느덧 <AgeText serverAge={age} />살!{" "}
+                    </>
+                  ) : null}
+                  {item.description}
+                </p>
+              </div>
             </li>
           ))}
         </ol>
 
         <Photo
           photo={nowPhoto}
-          sizes="(min-width: 768px) 36vw, 384px"
+          sizes="(min-width: 768px) 36vw, 100vw"
+          ratio="4/5"
           caption="간식 생각에 입맛 다시는 중"
-          className="mx-auto w-full max-w-sm md:col-span-5 md:max-w-none md:self-end"
+          className="md:col-span-4 md:col-start-9 md:self-end"
         />
       </div>
     </Section>

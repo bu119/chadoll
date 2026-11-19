@@ -1,11 +1,32 @@
+import type { TraitId } from "@/lib/site";
+
+/** 사진 주제. 한 사진이 여러 주제에 들 수 있다. */
+export type Tag = "outdoors" | "slow" | "weather" | "company" | "seasons";
+
+export type TagInfo = {
+  id: Tag;
+  /** 화면에 보이는 한글 이름 */
+  label: string;
+  /** 영문 이름 (작은 라벨용) */
+  en: string;
+};
+
+const tags: TagInfo[] = [
+  { id: "outdoors", label: "나들이", en: "OUTDOORS" },
+  { id: "slow", label: "느긋한 날", en: "SLOW DAYS" },
+  { id: "weather", label: "날씨", en: "WEATHER" },
+  { id: "company", label: "친구들", en: "GOOD COMPANY" },
+  { id: "seasons", label: "계절", en: "SEASONS" },
+];
+
 export type Photo = {
   src: string;
   alt: string;
   width: number;
   height: number;
+  /** 장면의 주제 말고 이 사진에만 더 붙는 주제 */
+  tags?: Tag[];
 };
-
-import type { TraitId } from "@/lib/site";
 
 export type SceneId =
   | "autumn"
@@ -18,19 +39,24 @@ export type SceneId =
   | "rain"
   | "friends";
 
+/** 크게 보기에서 쓰는 사진: 어느 장면의 사진인지 함께 담는다. */
+export type MomentPhoto = Photo & { scene: string };
+
 /** 사진첩의 한 장면. 첫 번째 사진을 가장 크게 보여준다. */
 export type GalleryScene = {
   id: SceneId;
   title: string;
   note: string;
+  /** 장면 안 사진 모두에 붙는 주제 */
+  tags: Tag[];
   photos: Photo[];
 };
 
 const size = { width: 1200, height: 1600 };
 
 /** 파일 이름은 scripts/resize-photos.mjs 의 표와 같아야 한다. */
-function photo(file: string, alt: string): Photo {
-  return { src: `/images/home/${file}.jpg`, alt, ...size };
+function photo(file: string, alt: string, extraTags?: Tag[]): Photo {
+  return { src: `/images/home/${file}.jpg`, alt, ...size, ...(extraTags ? { tags: extraTags } : {}) };
 }
 
 /** 표지 사진 */
@@ -57,6 +83,7 @@ export const farewellPhoto: Photo = photo("gallery-05", "노란 낙엽이 떨어
 const scenes: GalleryScene[] = [
   {
     id: "forest",
+    tags: ["outdoors"],
     title: "숲길",
     note: "나무 냄새 맡으며 걷는 날은 표정부터 달라요.",
     photos: [
@@ -67,6 +94,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "autumn",
+    tags: ["outdoors", "seasons"],
     title: "가을",
     note: "낙엽 밟는 소리를 제일 좋아해요.",
     photos: [
@@ -80,6 +108,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "winter",
+    tags: ["seasons"],
     title: "겨울",
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
@@ -91,6 +120,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "sunny",
+    tags: ["slow", "weather"],
     title: "햇살 좋은 날",
     note: "볕 좋은 자리는 누구보다 잘 찾아요.",
     photos: [
@@ -102,6 +132,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "walk",
+    tags: ["outdoors"],
     title: "산책길",
     note: "매일 걷는 길도 차돌이랑 걸으면 새로워요.",
     photos: [
@@ -115,10 +146,11 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "picnic",
+    tags: ["outdoors"],
     title: "소풍",
     note: "돗자리만 펴면 웃음이 나요.",
     photos: [
-      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이"),
+      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이", ["company"]),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
       photo("gallery-31", "해 질 녘 공원에서 분홍 하네스를 하고 옆을 바라보는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
@@ -127,6 +159,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "cafe",
+    tags: ["slow"],
     title: "카페",
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
@@ -142,6 +175,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "rain",
+    tags: ["weather"],
     title: "비 오는 날",
     note: "우비만 입으면 비 오는 날 산책도 문제없어요.",
     photos: [
@@ -152,6 +186,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "friends",
+    tags: ["company"],
     title: "친구들과",
     note: "조용히, 천천히 다가오는 친구가 좋아요.",
     photos: [
@@ -165,10 +200,51 @@ const scenes: GalleryScene[] = [
   },
 ];
 
-export function getGalleryScenes(): GalleryScene[] {
-  return scenes;
+export function getTags(): TagInfo[] {
+  return tags;
 }
 
-export function getGalleryPhotos(): Photo[] {
-  return scenes.flatMap((scene) => scene.photos);
+export function isTag(value: string): value is Tag {
+  return tags.some((tag) => tag.id === value);
+}
+
+/** 사진 한 장의 주제: 장면의 주제 + 사진에만 붙은 주제 */
+function getPhotoTags(scene: GalleryScene, item: Photo): Tag[] {
+  return [...scene.tags, ...(item.tags ?? [])];
+}
+
+/** 사진첩 장면. 주제를 주면 그 주제의 사진만 남긴다. */
+export function getMoments(tag?: Tag): GalleryScene[] {
+  if (!tag) return scenes;
+  return scenes
+    .map((scene) => ({
+      ...scene,
+      photos: scene.photos.filter((item) => getPhotoTags(scene, item).includes(tag)),
+    }))
+    .filter((scene) => scene.photos.length > 0);
+}
+
+/** 첫 화면에 먼저 보여주는 사진. 장면마다 하나씩, 이 순서대로 놓는다. */
+const featuredFiles = [
+  "gallery-44", // 숲길
+  "gallery-41", // 햇살 좋은 날
+  "gallery-34", // 친구들과
+  "gallery-03", // 가을
+  "gallery-17", // 소풍
+  "gallery-09", // 카페
+  "gallery-47", // 비 오는 날
+];
+
+/** 장면들을 크게 보기 순서대로 한 줄로 편다. */
+export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
+  return list.flatMap((scene) => scene.photos.map((item) => ({ ...item, scene: scene.title })));
+}
+
+export function getFeaturedPhotos(): MomentPhoto[] {
+  const all = toMomentPhotos(scenes);
+  return featuredFiles.map((file) => {
+    const found = all.find((item) => item.src === `/images/home/${file}.jpg`);
+    if (!found) throw new Error(`사진첩에 없는 대표 사진: ${file}`);
+    return found;
+  });
 }
