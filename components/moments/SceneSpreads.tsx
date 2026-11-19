@@ -17,14 +17,17 @@ type Spread = "lead" | "pair" | "text" | "strip" | "single";
 // 이웃한 장면끼리 다른 방식을 쓴다.
 const spreadOf: Record<SceneId, Spread> = {
   forest: "lead",
+  spring: "text",
   autumn: "pair",
   winter: "strip",
   sunny: "lead",
+  sea: "pair",
   walk: "text",
   picnic: "pair",
   cafe: "text",
   rain: "lead",
   friends: "pair",
+  closeup: "lead",
 };
 
 /** 주제를 골라 사진 수가 줄면 그 수에 맞는 방식으로 바꾼다. */
