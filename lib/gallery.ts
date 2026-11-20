@@ -4,28 +4,6 @@ import type { TraitId } from "@/lib/site";
 /** 사진 찍은 달. scripts/photo-dates.mjs 가 원본에서 읽어 만들고, 없는 것은 손으로 채운다. */
 const takenDates: Record<string, string | null> = photoDates;
 
-/**
- * 사진 주제. 차돌이가 좋아하는 것을 기준으로 나눈다. 한 사진이 여러 주제에 들 수 있다.
- * 계절은 장면 이름(봄·여름·가을·겨울)으로 보이므로 주제로 두지 않는다.
- */
-export type Tag = "walks" | "trips" | "cafe" | "friends" | "faces";
-
-export type TagInfo = {
-  id: Tag;
-  /** 화면에 보이는 한글 이름 */
-  label: string;
-  /** 영문 이름 (작은 라벨용) */
-  en: string;
-};
-
-const tags: TagInfo[] = [
-  { id: "walks", label: "산책", en: "WALKS" },
-  { id: "trips", label: "나들이", en: "DAY TRIPS" },
-  { id: "cafe", label: "카페", en: "CAFE" },
-  { id: "friends", label: "친구들", en: "FRIENDS" },
-  { id: "faces", label: "얼굴", en: "PORTRAITS" },
-];
-
 export type Photo = {
   /** 파일 이름 (예: gallery-44). 크게 보기 주소의 ?photo= 값으로 쓴다. */
   id: string;
@@ -33,8 +11,6 @@ export type Photo = {
   alt: string;
   width: number;
   height: number;
-  /** 장면의 주제 말고 이 사진에만 더 붙는 주제 */
-  tags?: Tag[];
   /** 찍은 달 (예: "2019-05"). 모르면 없다. */
   taken?: string;
 };
@@ -61,22 +37,19 @@ export type GalleryScene = {
   id: SceneId;
   title: string;
   note: string;
-  /** 장면 안 사진 모두에 붙는 주제 */
-  tags: Tag[];
   photos: Photo[];
 };
 
 const size = { width: 1200, height: 1600 };
 
 /** 파일 이름은 scripts/resize-photos.mjs 의 표와 같아야 한다. */
-function photo(file: string, alt: string, extraTags?: Tag[]): Photo {
+function photo(file: string, alt: string): Photo {
   const taken = takenDates[file];
   return {
     id: file,
     src: `/images/home/${file}.jpg`,
     alt,
     ...size,
-    ...(extraTags ? { tags: extraTags } : {}),
     ...(taken ? { taken } : {}),
   };
 }
@@ -107,8 +80,7 @@ export const farewellPhoto: Photo = {
 const scenes: GalleryScene[] = [
   {
     id: "puppy",
-    tags: ["faces"],
-    title: "어릴 적",
+    title: "아기 차돌",
     note: "손바닥만 하던 때부터 늘 웃는 얼굴이었어요.",
     photos: [
       // 생후 3개월(우리 집에 온 무렵) 사진을 먼저, 8개월 사진은 그다음에
@@ -124,29 +96,27 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "spring",
-    tags: ["walks"],
     title: "봄",
     note: "연둣빛 잔디 위에서는 발걸음이 가벼워요.",
     photos: [
       photo("gallery-62", "햇살 드는 초록 잔디밭 돌길 위에 선 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
       photo("gallery-65", "노란 하네스에 손수건을 두르고 옆을 바라보는 차돌이"),
-      photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴", ["faces"]),
-      photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴", ["faces"]),
+      photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
+      photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
       photo("gallery-63", "초록 잔디에 앉아 노란 하네스를 하고 하늘을 올려다보는 차돌이"),
     ],
   },
   {
     id: "sea",
-    tags: ["trips"],
     title: "여름",
     note: "뜨거운 햇살 아래서도, 파도 앞에서도 의젓해요.",
     photos: [
       photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
       photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
       photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
-      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이", ["walks"]),
-      photo("gallery-66", "구름 낀 하늘 아래 잔디밭에서 웃는 차돌이", ["walks"]),
+      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
+      photo("gallery-66", "구름 낀 하늘 아래 잔디밭에서 웃는 차돌이"),
       photo("gallery-68", "파란 파라솔 아래에서 물안경을 쓰고 눈을 감은 차돌이"),
       photo("gallery-106", "품에 안겨 바다 쪽을 바라보는 차돌이 옆얼굴"),
       photo("gallery-108", "노란 구명조끼를 입고 바다에 떠서 이쪽을 보는 차돌이"),
@@ -159,7 +129,6 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "autumn",
-    tags: ["walks"],
     title: "가을",
     note: "낙엽 밟는 소리를 제일 좋아해요.",
     photos: [
@@ -180,34 +149,19 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "winter",
-    tags: [],
     title: "겨울",
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
-      photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이", ["faces"]),
-      photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이", ["faces"]),
-      photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이", ["faces"]),
-      photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이", ["walks"]),
-      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이", ["faces"]),
-      photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴", ["faces"]),
-    ],
-  },
-  {
-    id: "snack",
-    tags: ["faces"],
-    title: "간식 사냥꾼",
-    note: "간식 앞에서는 누구보다 진지해요.",
-    photos: [
-      photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
-      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
-      photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 차돌이"),
-      photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 차돌이"),
-      photo("gallery-15", "주황 조끼를 입고 산책하다 뼈 간식을 물고 올려다보는 차돌이", ["walks"]),
+      photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이"),
+      photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이"),
+      photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이"),
+      photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이"),
+      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
+      photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴"),
     ],
   },
   {
     id: "walk",
-    tags: ["walks"],
     title: "산책길",
     note: "매일 걷는 길도 차돌이랑 걸으면 새로워요.",
     photos: [
@@ -224,7 +178,6 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "rain",
-    tags: ["walks"],
     title: "비 오는 날",
     note: "우비만 입으면 비 오는 날 산책도 문제없어요.",
     photos: [
@@ -235,11 +188,10 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "picnic",
-    tags: ["trips"],
     title: "소풍",
     note: "돗자리만 펴면 웃음이 나요.",
     photos: [
-      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이", ["friends"]),
+      photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이"),
       photo("gallery-77", "체크무늬 돗자리에 앉아 활짝 웃는 차돌이"),
       photo("gallery-102", "민트색 테두리 담요를 두르고 하늘을 올려다보는 차돌이"),
       photo("gallery-76", "꽃무늬 돗자리 위에서 옆을 바라보며 웃는 차돌이"),
@@ -250,7 +202,6 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "cafe",
-    tags: ["cafe"],
     title: "카페",
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
@@ -273,16 +224,27 @@ const scenes: GalleryScene[] = [
     ],
   },
   {
+    id: "snack",
+    title: "간식 사냥꾼",
+    note: "간식 앞에서는 누구보다 진지해요.",
+    photos: [
+      photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
+      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
+      photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 차돌이"),
+      photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 차돌이"),
+      photo("gallery-15", "주황 조끼를 입고 산책하다 뼈 간식을 물고 올려다보는 차돌이"),
+    ],
+  },
+  {
     id: "friends",
-    tags: ["friends"],
-    title: "친구들과",
+    title: "친구들",
     note: "조용히, 천천히 다가오는 친구가 좋아요.",
     photos: [
       photo("gallery-34", "유모차에 하얀 친구 토리와 나란히 탄 차돌이"),
       photo("gallery-61", "잔디밭에서 호두와 나란히 앉은 차돌이"),
       photo("gallery-60", "소나무 아래에서 초록 옷을 맞춰 입은 소담이와 나란히 앉은 차돌이"),
       photo("gallery-59", "햇살 드는 흙길에서 소담이, 호두와 나란히 선 차돌이"),
-      photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 호두와 함께 창밖을 보는 차돌이", ["cafe"]),
+      photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 호두와 함께 창밖을 보는 차돌이"),
       photo("gallery-26", "돗자리 위에서 친구들과 어울리는 차돌이"),
       photo("gallery-27", "잔디밭에서 친구와 나란히 선 차돌이"),
       photo("gallery-25", "탁자 옆에서 토리, 소담이와 함께 고개를 내민 차돌이"),
@@ -290,8 +252,7 @@ const scenes: GalleryScene[] = [
   },
   {
     id: "closeup",
-    tags: ["faces"],
-    title: "가까이서",
+    title: "더 가까이",
     note: "가까이 보면 더 복슬복슬해요.",
     photos: [
       photo("gallery-69", "반짝이는 배경 앞 하얀 털 방석에 앉아 웃는 차돌이"),
@@ -308,35 +269,44 @@ const scenes: GalleryScene[] = [
   },
 ];
 
-export function getTags(): TagInfo[] {
-  return tags;
+/** 사진첩 장면 전체 */
+export function getMoments(): GalleryScene[] {
+  return scenes;
 }
 
-export function isTag(value: string): value is Tag {
-  return tags.some((tag) => tag.id === value);
-}
+/**
+ * 장면을 묶는 주제. 사진첩 위 바로가기에 이 순서대로 보이고, 장면도 이 순서대로 놓는다.
+ * 사진은 장면 하나에, 장면은 주제 하나에만 속한다. 장면이 하나뿐인 주제는 장면 이름을 주제 이름과 같게 한다.
+ */
+const sceneGroups: { title: string; scenes: SceneId[] }[] = [
+  { title: "아기 차돌", scenes: ["puppy"] },
+  { title: "사계절", scenes: ["spring", "sea", "autumn", "winter"] },
+  { title: "산책", scenes: ["walk", "rain"] },
+  { title: "소풍", scenes: ["picnic"] },
+  { title: "카페", scenes: ["cafe"] },
+  { title: "간식 사냥꾼", scenes: ["snack"] },
+  { title: "친구들", scenes: ["friends"] },
+  { title: "더 가까이", scenes: ["closeup"] },
+];
 
-/** 사진 한 장의 주제: 장면의 주제 + 사진에만 붙은 주제 */
-function getPhotoTags(scene: GalleryScene, item: Photo): Tag[] {
-  return [...scene.tags, ...(item.tags ?? [])];
-}
+export type SceneGroup = { title: string; scenes: GalleryScene[] };
 
-/** 사진첩 장면. 주제를 주면 그 주제의 사진만 남긴다. */
-export function getMoments(tag?: Tag): GalleryScene[] {
-  if (!tag) return scenes;
-  return scenes
-    .map((scene) => ({
-      ...scene,
-      photos: scene.photos.filter((item) => getPhotoTags(scene, item).includes(tag)),
-    }))
-    .filter((scene) => scene.photos.length > 0);
+export function getSceneGroups(): SceneGroup[] {
+  return sceneGroups.map((group) => ({
+    title: group.title,
+    scenes: group.scenes.map((id) => {
+      const scene = scenes.find((item) => item.id === id);
+      if (!scene) throw new Error(`없는 장면: ${id}`);
+      return scene;
+    }),
+  }));
 }
 
 /** 첫 화면에 먼저 보여주는 사진. 장면마다 하나씩, 이 순서대로 놓는다. */
 const featuredFiles = [
-  "gallery-44", // 숲길
-  "gallery-41", // 햇살 좋은 날
-  "gallery-34", // 친구들과
+  "gallery-44", // 가을 (2021 숲길)
+  "gallery-41", // 카페 (테라스)
+  "gallery-34", // 친구들
   "gallery-03", // 가을
   "gallery-17", // 소풍
   "gallery-09", // 카페

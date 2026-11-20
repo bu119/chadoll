@@ -22,16 +22,16 @@ const spreadOf: Record<SceneId, Spread> = {
   sea: "pair",
   autumn: "lead",
   winter: "text",
-  snack: "pair",
-  walk: "text",
+  walk: "pair",
   rain: "lead",
   picnic: "text",
   cafe: "lead",
-  friends: "pair",
-  closeup: "text",
+  snack: "pair",
+  friends: "text",
+  closeup: "lead",
 };
 
-/** 주제를 골라 사진 수가 줄면 그 수에 맞는 방식으로 바꾼다. */
+/** 사진이 한두 장뿐인 장면은 그 수에 맞는 방식으로 바꾼다. */
 function pickSpread(scene: GalleryScene): Spread {
   const n = scene.photos.length;
   if (n === 1) return "single";
