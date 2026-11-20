@@ -74,7 +74,7 @@ export const PHOTOS = {
   "gallery-51": 21,
   "gallery-52": 26,
   "gallery-53": { n: 30, crop: { left: 0.25, top: 0.26, size: 0.5 } },
-  "gallery-56": 55,
+  "gallery-56": { n: 55, crop: { left: 0.08, top: 0.17, size: 0.8 } }, // 위쪽 커튼을 줄이고 엎드린 차돌이 위주로
   // 2026-11 새로 고른 사진
   "gallery-57": 43, // 카페 (원본이 지워진 gallery-24 대신)
   // 친구들과 (보호자 동의를 받은 사진만)
