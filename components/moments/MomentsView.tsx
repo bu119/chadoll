@@ -35,7 +35,7 @@ export function MomentsView() {
           <span className="whitespace-nowrap">(사진 {photos.length}장)</span>
         </p>
 
-        {/* 장면이 여러 개인 주제는 주제 이름 뒤에 장면 버튼을 묶고, 하나뿐이면 버튼 하나로 보인다. */}
+        {/* 장면이 여러 개인 주제는 한 줄을 따로 차지해 주제 이름 뒤에 장면 버튼을 묶고, 하나뿐이면 버튼 하나로 보인다. */}
         <nav aria-label="사진첩 바로가기" className="mt-8">
           <ul className="flex flex-wrap gap-2">
             {getSceneGroups().map((group) =>
@@ -44,7 +44,7 @@ export function MomentsView() {
                   <SceneLink scene={group.scenes[0]} />
                 </li>
               ) : (
-                <li key={group.title} className="flex flex-wrap items-center gap-2">
+                <li key={group.title} className="flex w-full flex-wrap items-center gap-2">
                   <span className="pr-1 text-lg font-semibold text-brown">{group.title}</span>
                   <ul className="contents">
                     {group.scenes.map((scene) => (
