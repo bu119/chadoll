@@ -6,7 +6,7 @@ const takenDates: Record<string, string | null> = photoDates;
 
 /**
  * 사진 주제. 차돌이가 좋아하는 것을 기준으로 나눈다. 한 사진이 여러 주제에 들 수 있다.
- * 계절은 장면 이름(봄·여름 바다·가을·겨울)으로 보이므로 주제로 두지 않는다.
+ * 계절은 장면 이름(봄·여름·가을·겨울)으로 보이므로 주제로 두지 않는다.
  */
 export type Tag = "walks" | "trips" | "cafe" | "friends" | "faces";
 
@@ -145,7 +145,27 @@ const scenes: GalleryScene[] = [
       photo("gallery-63", "초록 잔디에 앉아 노란 하네스를 하고 하늘을 올려다보는 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
       photo("gallery-65", "노란 하네스에 손수건을 두르고 옆을 바라보는 차돌이"),
-      photo("gallery-66", "구름 낀 하늘 아래 잔디밭에서 웃는 차돌이"),
+    ],
+  },
+  {
+    id: "sea",
+    tags: ["trips"],
+    title: "여름",
+    note: "뜨거운 햇살 아래서도, 파도 앞에서도 의젓해요.",
+    photos: [
+      photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
+      photo("gallery-68", "파란 파라솔 아래에서 물안경을 쓰고 눈을 감은 차돌이"),
+      photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
+      photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
+      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이", ["walks"]),
+      photo("gallery-106", "품에 안겨 바다 쪽을 바라보는 차돌이 옆얼굴"),
+      photo("gallery-108", "노란 구명조끼를 입고 바다에 떠서 이쪽을 보는 차돌이"),
+      photo("gallery-107", "노란 구명조끼를 입고 바다에서 헤엄치는 차돌이"),
+      photo("gallery-109", "바닷가 평상에 엎드려 앞발에 얼굴을 묻고 자는 차돌이"),
+      photo("gallery-99", "노란 구명조끼 위로 얼굴을 내민 차돌이"),
+      photo("gallery-100", "분홍 수건을 두르고 바다 쪽을 바라보는 차돌이"),
+      photo("gallery-66", "구름 낀 하늘 아래 잔디밭에서 웃는 차돌이", ["walks"]),
+      photo("gallery-31", "해 질 녘 공원에서 분홍 하네스를 하고 옆을 바라보는 차돌이"),
     ],
   },
   {
@@ -193,24 +213,6 @@ const scenes: GalleryScene[] = [
     ],
   },
   {
-    id: "sea",
-    tags: ["trips"],
-    title: "여름 바다",
-    note: "파도 앞에서도 의젓해요.",
-    photos: [
-      photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
-      photo("gallery-68", "파란 파라솔 아래에서 물안경을 쓰고 눈을 감은 차돌이"),
-      photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
-      photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
-      photo("gallery-106", "품에 안겨 바다 쪽을 바라보는 차돌이 옆얼굴"),
-      photo("gallery-108", "노란 구명조끼를 입고 바다에 떠서 이쪽을 보는 차돌이"),
-      photo("gallery-107", "노란 구명조끼를 입고 바다에서 헤엄치는 차돌이"),
-      photo("gallery-109", "바닷가 평상에 엎드려 앞발에 얼굴을 묻고 자는 차돌이"),
-      photo("gallery-99", "노란 구명조끼 위로 얼굴을 내민 차돌이"),
-      photo("gallery-100", "분홍 수건을 두르고 바다 쪽을 바라보는 차돌이"),
-    ],
-  },
-  {
     id: "walk",
     tags: ["walks"],
     title: "산책길",
@@ -223,7 +225,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-12", "햇살이 드는 잔디밭에서 산책 중인 차돌이"),
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
-      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
       photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
       photo("gallery-113", "마른 잔디 돌길에서 혀를 내밀고 옆을 보는 차돌이"),
       photo("gallery-114", "노을빛 흙길에 앉아 활짝 웃는 차돌이"),
@@ -237,7 +238,6 @@ const scenes: GalleryScene[] = [
     photos: [
       photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이", ["friends"]),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
-      photo("gallery-31", "해 질 녘 공원에서 분홍 하네스를 하고 옆을 바라보는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
       photo("gallery-18", "풀밭에 편 돗자리 위에 엎드려 쉬는 차돌이"),
       photo("gallery-76", "꽃무늬 돗자리 위에서 옆을 바라보며 웃는 차돌이"),
@@ -364,7 +364,7 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
  */
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
-  { file: "gallery-92" }, // 2016-08 여름 바다
+  { file: "gallery-92" }, // 2016-08 여름
   { file: "gallery-42" }, // 2021-11 숲길
   { file: "gallery-64" }, // 2022-05 봄
   { file: "gallery-37" }, // 2023-11 겨울
