@@ -55,13 +55,14 @@ export function MomentsView({ group }: { group?: GroupId }) {
             ))}
           </ul>
         </nav>
-        <p className="mt-4 text-base text-brown" aria-live="polite">
+        {/* 사진 수는 주제 버튼에 보이므로, 주제를 바꿀 때 화면 읽기 프로그램에만 알린다. */}
+        <p className="sr-only" aria-live="polite">
           사진 {photos.length}장
         </p>
 
         {/* 고른 주제의 장면으로 바로 가기. 장면이 하나뿐이면 두지 않는다. */}
         {scenes.length > 1 ? (
-          <nav aria-label="장면 바로가기" className="mt-2">
+          <nav aria-label="장면 바로가기" className="mt-4">
             <ul className="-ml-3 flex flex-wrap">
               {scenes.map((scene) => (
                 <li key={scene.id}>
