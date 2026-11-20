@@ -246,13 +246,22 @@ function Num({ children }: { children: number }) {
   return <span className="font-serif text-base lining-nums">{children}</span>;
 }
 
-/** 장면 이름 뒤에 붙는 " · 2021년 11월 · 차돌이 7살" */
+/** 장면 이름 뒤에 붙는 " · 2021년 11월 · 차돌이 7살" (1살 전이면 "생후 8개월") */
 function TakenText({ taken }: { taken: string }) {
-  const { year, month, age } = getTakenDate(taken);
+  const { year, month, age, months } = getTakenDate(taken);
   return (
     <>
       {" · "}
-      <Num>{year}</Num>년 <Num>{month}</Num>월 · 차돌이 <Num>{age}</Num>살
+      <Num>{year}</Num>년 <Num>{month}</Num>월 ·{" "}
+      {age >= 1 ? (
+        <>
+          차돌이 <Num>{age}</Num>살
+        </>
+      ) : (
+        <>
+          생후 <Num>{months}</Num>개월
+        </>
+      )}
     </>
   );
 }
