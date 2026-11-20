@@ -332,14 +332,16 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 }
 
 /**
- * ABOUT "솜뭉치에서 신사로": 해마다 한 장, 오래된 순서로 놓는다.
+ * ABOUT "솜뭉치에서 신사로": 해마다 한 장, 오래된 순서로 놓는다. 같은 해라도 나이가 다르면 한 장씩 더 둘 수 있다.
  * 찍은 날(content/photo-dates.json)이 있는 사진만 쓸 수 있고, 나이는 찍은 달로 계산한다.
  * 사진을 바꾸려면 file 만 바꾸면 된다. note 가 없으면 장면 이름을 보여준다.
  */
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
-  { file: "gallery-94", note: "바다로 떠난 여름" }, // 2016-08
-  { file: "gallery-43", note: "숲길 산책" }, // 2021-11
+  { file: "gallery-87", note: "가방 속 낮잠" }, // 2016-03 1살
+  { file: "gallery-94", note: "공원 산책" }, // 2016-08 2살
+  { file: "gallery-97", note: "나무 데크 산책길" }, // 2021-02 6살
+  { file: "gallery-43", note: "숲길 산책" }, // 2021-11 7살
   { file: "gallery-64", note: "봄 잔디밭에서" }, // 2022-05
   { file: "gallery-37", note: "크리스마스트리 앞에서" }, // 2023-11
   { file: "gallery-32", note: "초록 리본 단 날" }, // 2024-12
