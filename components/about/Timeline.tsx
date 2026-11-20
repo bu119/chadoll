@@ -14,7 +14,8 @@ const big = "(min-width: 768px) 46vw, 100vw";
 const small = "(min-width: 768px) 22vw, 46vw";
 
 function placeOf(index: number, count: number): Place {
-  if (index === 0) return { item: "col-span-2 md:row-span-2", ratio: "4/5", sizes: big };
+  // 아기 사진은 귀가 사진 맨 위에 닿아 있어서 원본 비율(3:4) 그대로 둔다.
+  if (index === 0) return { item: "col-span-2 md:row-span-2", ratio: "3/4", sizes: big };
   if (index === count - 1) return { item: "col-span-2 md:self-end", ratio: "1/1", sizes: big };
   // 휴대폰에서는 둘씩 짝지은 오른쪽 사진을, 데스크톱 아래 줄에서는 두 번째 사진을 내려 엇갈리게 한다.
   const right = index % 2 === 0 ? "mt-12" : "";
