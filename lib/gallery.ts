@@ -203,6 +203,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
       photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 차돌이"),
       photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 차돌이"),
+      photo("gallery-15", "주황 조끼를 입고 산책하다 뼈 간식을 물고 올려다보는 차돌이", ["walks"]),
     ],
   },
   {
@@ -216,7 +217,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
       photo("gallery-113", "마른 잔디 돌길에서 혀를 내밀고 옆을 보는 차돌이"),
       photo("gallery-114", "노을빛 흙길에 앉아 활짝 웃는 차돌이"),
-      photo("gallery-15", "주황색 조끼를 입고 보도블록 위에서 올려다보는 차돌이"),
       photo("gallery-14", "초록 공원에서 분홍 하네스를 하고 뒤돌아보는 차돌이"),
       photo("gallery-12", "햇살이 드는 잔디밭에서 산책 중인 차돌이"),
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
