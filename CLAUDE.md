@@ -70,7 +70,7 @@ public/images/        home/ diary/ friends/
 - 준비된 페이지만 메뉴에 연다(`enabled`). STORIES는 일기 기록이 생기면 연다.
 
 ### 사진첩 (`/moments`)
-- 장면(숲길·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
+- 장면(봄·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
 - 주제(tag)는 차돌이가 좋아하는 것을 기준으로 거른다: 산책 · 나들이 · 카페 · 친구들 · 얼굴. 계절은 장면 이름(봄·여름·가을·겨울)으로 보이므로 주제로 두지 않는다.
 - 장면에 기본 주제를 달고, 사진에만 더 붙는 주제는 `photo(file, alt, ["friends"])`처럼 단다. 모든 사진이 주제 하나 이상에 들어가게 한다. 주제 버튼에는 사진 수를 함께 보여준다.
 - 주제별 페이지는 `/moments/[tag]`로 미리 만든다(정적 생성).
