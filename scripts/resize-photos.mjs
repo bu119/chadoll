@@ -12,9 +12,9 @@ const QUALITY = 80;
 
 // 공유 미리보기는 표지 사진에서 잘라 쓴다.
 const OG = { n: PHOTOS.main, top: 250 };
-// 푸터 사진은 가로 원본에서 차돌이 위주로 5:2로 잘라 쓴다. (left·top·width: 원본 대비 비율)
-const FAREWELL = { n: 92, left: 0.1, top: 0.14, width: 0.8 };
-const FAREWELL_SIZE = { width: 2000, height: 800 };
+// 푸터 사진은 가로 원본에서 차돌이 위주로 3:2로 잘라 쓴다. (left·top·width: 원본 대비 비율)
+const FAREWELL = { n: 92, left: 0.2, top: 0.13, width: 0.5625 };
+const FAREWELL_SIZE = { width: 1800, height: 1200 };
 // 탭 아이콘은 차돌이 그림(1번, 정사각형)에서 그림 부분만 잘라 쓴다.
 const ICON = { n: 1, left: 158, top: 112, size: 810 };
 

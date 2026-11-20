@@ -100,13 +100,13 @@ export const nowPhoto: Photo = photo(
   "gallery-40",
   "햇살 드는 테라스에서 혀로 코를 핥는 차돌이",
 );
-/** 푸터의 인사 사진. 가로로 길게(5:2) 따로 만든 사진이다. (scripts/resize-photos.mjs 의 FAREWELL) */
+/** 푸터의 인사 사진. 가로(3:2)로 따로 만든 사진이다. (scripts/resize-photos.mjs 의 FAREWELL) */
 export const farewellPhoto: Photo = {
   id: "farewell",
   src: "/images/home/farewell.jpg",
   alt: "햇살 아래 포대기에 얼굴만 내밀고 꾸벅꾸벅 조는 차돌이",
-  width: 2000,
-  height: 800,
+  width: 1800,
+  height: 1200,
 };
 
 const scenes: GalleryScene[] = [

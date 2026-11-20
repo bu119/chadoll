@@ -11,8 +11,7 @@ export const ratioClass: Record<PhotoRatio, string> = {
   "3/4": "aspect-[3/4]",
   "4/5": "aspect-[4/5]",
   "1/1": "aspect-square",
-  // 휴대폰에서는 가운데(차돌이 쪽)만 남도록 덜 길게
-  wide: "aspect-[3/2] md:aspect-[5/2]",
+  wide: "aspect-[3/2]",
 };
 
 type PhotoProps = {

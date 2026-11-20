@@ -126,7 +126,7 @@ public/images/        home/ diary/ friends/
   - 한글 본문·제목: Pretendard Variable (`pretendard` 패키지의 dynamic-subset CSS). 본문 400, 소제목 600, 제목 700.
   - 영문: Cormorant Garamond(`font-serif`). 로고(CHADOLL), 서브타이틀, 섹션 위 라벨(`Kicker`), 메뉴, 숫자에만 쓴다. 숫자는 `lining-nums`.
 - 섹션 제목 구조: 영문 라벨(`Kicker`, 메뉴 이름과 같은 단어만) → 한글 제목 → 본문 → 사진. 장식용 영문 문구는 더하지 않는다.
-- 사진은 원본(3:4)을 기준으로 배치에 맞춰 3:4 · 4:5 · 1:1로 자른다(`components/ui/Photo.tsx`의 `ratio`). 푸터 사진만 가로로 길게(휴대폰 3:2, 데스크톱 5:2, `ratio="wide"`) 쓰고, 파일은 `resize-photos.mjs`의 `FAREWELL`로 따로 만든다. 테두리·그림자 없이 모서리만 아주 살짝(3px).
+- 사진은 원본(3:4)을 기준으로 배치에 맞춰 3:4 · 4:5 · 1:1로 자른다(`components/ui/Photo.tsx`의 `ratio`). 푸터 사진만 가로 3:2(`ratio="wide"`)로 쓰고, 파일은 `resize-photos.mjs`의 `FAREWELL`로 따로 만든다. 테두리·그림자 없이 모서리만 아주 살짝(3px).
 - 큰 사진과 작은 사진의 크기를 분명히 다르게 하고, 같은 모양 카드를 반복하지 않는다.
 - 그림자·블러·그라데이션·둥근 카드 반복·스크롤 애니메이션·과한 아이콘은 쓰지 않는다.
 - 섹션마다 배치를 다르게 하고 왼쪽 정렬을 기본으로 한다.
