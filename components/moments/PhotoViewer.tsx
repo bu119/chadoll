@@ -8,9 +8,9 @@ import {
   useRef,
   useState,
   type KeyboardEvent,
-  type PointerEvent,
   type ReactNode,
 } from "react";
+import { usePinchZoom } from "@/components/moments/usePinchZoom";
 import { photoShape } from "@/components/ui/Photo";
 import { getTakenDate } from "@/lib/date";
 import type { MomentPhoto } from "@/lib/gallery";
@@ -44,6 +44,8 @@ function urlWithPhoto(id: string | null): string {
  * 사진을 크게 보는 창. 안쪽의 PhotoButton 을 누르면 열린다.
  * 넘기기는 photos 순서를 따른다. (주제를 고르면 고른 사진 안에서만 넘어간다.)
  *
+ * 휴대폰에서는 두 손가락으로 사진만 확대하고, 두 번 톡톡 누르면 2.5배로 본다. (usePinchZoom)
+ *
  * 열 때 방문 기록을 한 칸 남겨서 휴대폰 뒤로가기가 창만 닫게 한다.
  * 어떻게 닫히든(×, Esc, 뒤로가기) 닫힌 뒤 그 한 칸을 정리하므로 기록이 쌓이지 않는다.
  */
@@ -51,7 +53,6 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState<number | null>(null);
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
-  const swipe = useRef<{ x: number; y: number } | null>(null);
   /** 닫은 뒤 포커스를 돌려줄 사진 버튼 */
   const opener = useRef<HTMLElement | null>(null);
   // 아래 effect 들은 처음 한 번만 걸어 두므로 photos 는 ref 로 본다.
@@ -64,7 +65,28 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
   const currentId = current?.id ?? null;
   const at = (step: number) => (index === null ? null : photos[(index + step + photos.length) % photos.length]);
 
+  const move = (step: number) => {
+    resetZoom();
+    setIndex((i) => (i === null ? i : (i + step + photos.length) % photos.length));
+  };
+
+  // 휴대폰에서 1배일 때 옆으로 밀어 넘기기 (확대 중에는 사진 이동으로만 쓴다)
+  const {
+    contentRef: zoomRef,
+    style: zoomStyle,
+    animate: animateZoom,
+    isZoomed,
+    reset: resetZoom,
+    handlers: zoomHandlers,
+  } = usePinchZoom({
+    aspect: current ? current.width / current.height : 3 / 4,
+    onSwipe: (dx, dy) => {
+      if (Math.abs(dx) > SWIPE_DISTANCE && Math.abs(dx) > Math.abs(dy)) move(dx < 0 ? 1 : -1);
+    },
+  });
+
   const show = (found: number) => {
+    resetZoom();
     setIndex(found);
     if (!dialogRef.current?.open) dialogRef.current?.showModal();
   };
@@ -77,8 +99,6 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
     show(found);
   };
   const close = () => dialogRef.current?.close();
-  const move = (step: number) =>
-    setIndex((i) => (i === null ? i : (i + step + photos.length) % photos.length));
 
   // 링크(?photo=)로 들어오면 그 사진을 연 채로 시작한다.
   // 정적 생성을 지키려고 서버가 아니라 마운트 뒤 브라우저 주소에서 읽는다.
@@ -127,6 +147,7 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
   }, [currentId]);
 
   const onClose = () => {
+    resetZoom();
     setIndex(null);
     // ×·Esc 로 닫혔으면 열 때 남긴 한 칸이 그대로 있으니 정리한다.
     // 뒤로가기로 닫혔으면 이미 주소에 photo 가 없다.
@@ -140,19 +161,6 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
   const onKeyDown = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === "ArrowLeft") move(-1);
     if (event.key === "ArrowRight") move(1);
-  };
-
-  // 휴대폰에서 옆으로 밀어 넘기기
-  const onPointerDown = (event: PointerEvent) => {
-    swipe.current = { x: event.clientX, y: event.clientY };
-  };
-  const onPointerUp = (event: PointerEvent) => {
-    const start = swipe.current;
-    swipe.current = null;
-    if (!start) return;
-    const dx = event.clientX - start.x;
-    const dy = event.clientY - start.y;
-    if (Math.abs(dx) > SWIPE_DISTANCE && Math.abs(dx) > Math.abs(dy)) move(dx < 0 ? 1 : -1);
   };
 
   const prev = at(-1);
@@ -180,17 +188,21 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
               </button>
             </div>
 
+            {/* touch-none: 브라우저 화면 확대 대신 사진만 확대·이동한다. */}
             <div
-              className="relative min-h-0 flex-1 touch-pan-y px-3 py-3 sm:px-8"
-              onPointerDown={onPointerDown}
-              onPointerUp={onPointerUp}
+              className={`relative min-h-0 flex-1 touch-none select-none overflow-hidden px-3 py-3 sm:px-8 ${isZoomed ? "cursor-grab active:cursor-grabbing" : ""}`}
+              {...zoomHandlers}
             >
               {loadedSrc !== current.src ? (
                 <p className="absolute inset-0 flex items-center justify-center text-base text-cream">
                   사진을 불러오는 중이에요
                 </p>
               ) : null}
-              <div className="relative mx-auto h-full w-full max-w-3xl">
+              <div
+                ref={zoomRef}
+                style={zoomStyle}
+                className={`relative mx-auto h-full w-full max-w-3xl ${animateZoom ? "transition-transform duration-200" : ""}`}
+              >
                 <Image
                   key={current.src}
                   src={current.src}
