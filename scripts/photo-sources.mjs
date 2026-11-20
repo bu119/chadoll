@@ -134,4 +134,19 @@ export const PHOTOS = {
   "gallery-96": 154,
   // 산책길 (처음엔 푸터 후보였던 데크 길 사진)
   "gallery-97": 125,
+  // 2026-11 새 사진
+  "gallery-98": 136, // 어릴 적 (원본 720×960)
+  "gallery-99": 155, // 여름 바다
+  "gallery-100": 156,
+  "gallery-101": 157, // 갸우뚱 (소개 "다 알아듣고 있어요")
+  "gallery-102": { n: 158, position: "top" }, // 9:16. 아래쪽 인스타 아이디 글씨가 안 보이게 위쪽을 남긴다
+  "gallery-103": 159, // 카페
+  "gallery-104": 160, // 뼈 간식 (소개 "간식 사냥꾼이에요")
+  "gallery-105": 161,
+  "gallery-106": 162, // 여름 바다
+  "gallery-107": { n: 163, crop: { left: 0.17, top: 0, width: 0.42, height: 1 } }, // 가로 사진에서 차돌이 쪽만
+  "gallery-108": { n: 164, crop: { left: 0.22, top: 0, width: 0.42, height: 1 } },
+  "gallery-109": { n: 165, crop: { left: 0.16, top: 0.47, size: 0.53 } }, // 뒤쪽 피서객이 안 나오게 아래쪽만
+  "gallery-110": 166,
+  "gallery-111": { n: 167, crop: { left: 0, top: 0, width: 0.58, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
 };
