@@ -43,7 +43,7 @@ export const PHOTOS = {
   "gallery-10": 29,
   "gallery-22": 37,
   "gallery-23": 39,
-  "gallery-30": { n: 50, crop: { left: 0.06, top: 0, size: 0.65 } }, // 바닥을 줄이고 위쪽 차돌이 위주로
+  "gallery-30": { n: 50, crop: { left: 0.01, top: 0.04, size: 0.75 } }, // 꼬리부터 발끝까지 차돌이가 가운데 오게
   // 숲길
   "gallery-42": 122,
   "gallery-43": { n: 121, position: "left" },
