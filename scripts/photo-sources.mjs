@@ -20,7 +20,7 @@ export const PHOTOS = {
   "gallery-02": 15,
   "gallery-03": 8,
   "gallery-04": 20,
-  "gallery-05": 4,
+  "gallery-05": { n: 4, crop: { left: 0.12, top: 0.135, size: 0.8 } }, // 낙엽 길은 남기고 배경을 조금 줄인다
   "gallery-11": 31,
   "gallery-12": { n: 25, crop: { left: 0.2, top: 0.13, size: 0.75 } }, // 잔디밭 오른쪽에 있던 차돌이를 가운데로
   "gallery-13": { n: 36, crop: { left: 0.2, top: 0.19, size: 0.7 } },
@@ -128,7 +128,7 @@ export const PHOTOS = {
   "gallery-92": { n: 148, crop: { left: 0.2, top: 0.28, size: 0.7 } },
   "gallery-93": { n: 149, crop: { left: 0.12, top: 0.2, size: 0.65 } },
   // 산책길
-  "gallery-94": 150,
+  "gallery-94": { n: 150, crop: { left: 0.065, top: 0.15, size: 0.85 } }, // 흙길 배경을 조금 줄인다
   // 겨울
   "gallery-95": 153,
   "gallery-96": 154,
