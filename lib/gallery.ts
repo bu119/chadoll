@@ -188,6 +188,7 @@ const scenes: GalleryScene[] = [
     photos: [
       photo("gallery-38", "햇살 드는 나무 데크 위에 서서 올려다보는 차돌이"),
       photo("gallery-39", "테라스 의자에 놓인 겉옷 옆에 앉은 차돌이"),
+      photo("gallery-40", "햇살 드는 테라스에서 혀로 코를 핥는 차돌이"),
       photo("gallery-41", "햇살에 눈을 감고 혀를 내민 차돌이"),
     ],
   },
