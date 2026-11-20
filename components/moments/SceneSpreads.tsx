@@ -17,7 +17,6 @@ type Spread = "lead" | "pair" | "text" | "strip" | "single";
 // 이웃한 장면끼리 다른 방식을 쓴다.
 const spreadOf: Record<SceneId, Spread> = {
   puppy: "text",
-  forest: "lead",
   spring: "text",
   autumn: "pair",
   winter: "text",

@@ -46,7 +46,6 @@ export type SceneId =
   | "sea"
   | "closeup"
   | "walk"
-  | "forest"
   | "sunny"
   | "winter"
   | "picnic"
@@ -125,17 +124,6 @@ const scenes: GalleryScene[] = [
     ],
   },
   {
-    id: "forest",
-    tags: ["walks"],
-    title: "숲길",
-    note: "나무 냄새 맡으며 걷는 날은 표정부터 달라요.",
-    photos: [
-      photo("gallery-44", "숲속에서 정면을 보며 웃는 차돌이"),
-      photo("gallery-42", "숲길에서 먼 곳을 바라보는 차돌이 옆얼굴"),
-      photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
-    ],
-  },
-  {
     id: "spring",
     tags: ["walks"],
     title: "봄",
@@ -145,6 +133,8 @@ const scenes: GalleryScene[] = [
       photo("gallery-63", "초록 잔디에 앉아 노란 하네스를 하고 하늘을 올려다보는 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
       photo("gallery-65", "노란 하네스에 손수건을 두르고 옆을 바라보는 차돌이"),
+      photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴", ["faces"]),
+      photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴", ["faces"]),
     ],
   },
   {
@@ -184,6 +174,9 @@ const scenes: GalleryScene[] = [
       photo("gallery-78", "빨갛게 물든 단풍나무 아래 낙엽 길에 선 차돌이"),
       photo("gallery-79", "주황빛 단풍잎이 수북이 쌓인 곳에 들어간 차돌이"),
       photo("gallery-05", "노란 낙엽이 떨어진 길에서 뒤돌아보는 차돌이"),
+      photo("gallery-44", "숲속에서 정면을 보며 웃는 차돌이"),
+      photo("gallery-42", "숲길에서 먼 곳을 바라보는 차돌이 옆얼굴"),
+      photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
     ],
   },
   {
@@ -302,8 +295,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-116", "반짝이는 하늘색 배경 앞에 앉아 옆을 보며 웃는 차돌이"),
       photo("gallery-115", "창가 소파의 가방 위에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-70", "단풍잎 장식 사이에서 고개를 갸웃하며 웃는 차돌이"),
-      photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
-      photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
       photo("gallery-73", "햇살 아래 복슬복슬한 털로 앉아 웃는 차돌이"),
       photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
       photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 간식 사냥꾼 차돌이"),
@@ -365,7 +356,7 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
   { file: "gallery-92" }, // 2016-08 여름
-  { file: "gallery-42" }, // 2021-11 숲길
+  { file: "gallery-42", note: "숲길" }, // 2021-11 (사진첩에서는 가을 장면)
   { file: "gallery-64" }, // 2022-05 봄
   { file: "gallery-37" }, // 2023-11 겨울
   { file: "gallery-32" }, // 2024-12 겨울
