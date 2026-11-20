@@ -23,6 +23,8 @@ const tags: TagInfo[] = [
 ];
 
 export type Photo = {
+  /** 파일 이름 (예: gallery-44). 크게 보기 주소의 ?photo= 값으로 쓴다. */
+  id: string;
   src: string;
   alt: string;
   width: number;
@@ -62,7 +64,7 @@ const size = { width: 1200, height: 1600 };
 
 /** 파일 이름은 scripts/resize-photos.mjs 의 표와 같아야 한다. */
 function photo(file: string, alt: string, extraTags?: Tag[]): Photo {
-  return { src: `/images/home/${file}.jpg`, alt, ...size, ...(extraTags ? { tags: extraTags } : {}) };
+  return { id: file, src: `/images/home/${file}.jpg`, alt, ...size, ...(extraTags ? { tags: extraTags } : {}) };
 }
 
 /** 표지 사진 */
@@ -293,7 +295,7 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 export function getFeaturedPhotos(): MomentPhoto[] {
   const all = toMomentPhotos(scenes);
   return featuredFiles.map((file) => {
-    const found = all.find((item) => item.src === `/images/home/${file}.jpg`);
+    const found = all.find((item) => item.id === file);
     if (!found) throw new Error(`사진첩에 없는 대표 사진: ${file}`);
     return found;
   });
