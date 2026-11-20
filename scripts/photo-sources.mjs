@@ -156,4 +156,6 @@ export const PHOTOS = {
   "gallery-115": 128, // 가까이서
   "gallery-116": 132, // 가까이서 (gallery-69와 같은 날)
   "gallery-117": { n: 34, crop: { left: 0.17, top: 0.15, size: 0.75 } }, // 소풍. 보라 돗자리, 꼬리까지 보이게
+  "gallery-118": { n: 92, crop: { left: 0.2, top: 0, width: 0.5625, height: 1 } }, // 더 가까이. 포대기에서 조는 얼굴(푸터 사진과 같은 원본)
+  "gallery-119": { n: 91, crop: { left: 0.12, top: 0.12, size: 0.8 } }, // 더 가까이. 포대기에서 조는 얼굴
 };
