@@ -192,7 +192,7 @@ const scenes: GalleryScene[] = [
     note: "돗자리만 펴면 웃음이 나요.",
     photos: [
       photo("gallery-21", "소풍 나온 잔디밭에서 친구들 사이에 서 있는 차돌이"),
-      photo("gallery-26", "소풍 돗자리 위에서 친구들 사이에 서서 올려다보는 차돌이"),
+      photo("gallery-26", "소풍 돗자리 위에서 고개를 들어 올려다보는 차돌이"),
       photo("gallery-77", "체크무늬 돗자리에 앉아 활짝 웃는 차돌이"),
       photo("gallery-102", "민트색 테두리 담요를 두르고 하늘을 올려다보는 차돌이"),
       photo("gallery-76", "꽃무늬 돗자리 위에서 옆을 바라보며 웃는 차돌이"),
