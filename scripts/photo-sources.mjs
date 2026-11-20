@@ -35,7 +35,7 @@ export const PHOTOS = {
   "gallery-17": 54,
   "gallery-18": 53,
   "gallery-31": 45,
-  "gallery-20": 48,
+  "gallery-20": { n: 48, crop: { left: 0.15, top: 0.185, size: 0.65 } }, // 뒤의 사람 다리를 줄인다
   "gallery-21": { n: 47, crop: { left: 0.18, top: 0.085, size: 0.75 } },
   // 카페
   "gallery-08": { n: 23, crop: { left: 0.155, top: 0.205, size: 0.75 } },
