@@ -42,7 +42,7 @@ app/
   layout.tsx          공통 메뉴 · 푸터 · 글꼴 · 기본 메타데이터
   page.tsx            HOME: 표지, 소개 요약, 함께한 날, 대표 사진
   about/              ABOUT: 차돌이 소개 전체, 솜뭉치에서 신사로(해마다 한 장)
-  moments/            MOMENTS: 사진첩 (주제별 장면 바로가기)
+  moments/            MOMENTS: 사진첩 전체, [group] 주제별 사진
   stories/            STORIES: 차돌이 일기 (목록, [slug] 상세) — 2단계
   friends/            차돌이의 친구들 (목록, [slug] 상세)
   guestbook/          방명록
@@ -55,7 +55,7 @@ content/
   friends.ts          친구 목록 데이터
 lib/
   site.ts             브랜드, 차돌이 정보, 메뉴, SNS 링크
-  gallery.ts          사진 데이터, 장면, 주제(sceneGroups), getMoments(), getSceneGroups(), getFeaturedPhotos()
+  gallery.ts          사진 데이터, 장면, 주제(sceneGroups), getMoments(group), getSceneGroups(), getFeaturedPhotos()
   metadata.ts         페이지 메타데이터(pageMetadata)
   date.ts             나이 · 함께한 일수 계산
   diary.ts            getDiaries(), getDiary(slug)  (DB에서 읽기)
@@ -73,7 +73,8 @@ public/images/        home/ diary/ friends/
 - 장면(봄·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
 - 사진은 장면 하나에, 장면은 주제 하나에만 속한다. 주제는 `lib/gallery.ts`의 `sceneGroups`에서 정하고, 사진첩 장면도 이 순서대로 놓는다: 아기 차돌 · 사계절(봄·여름·가을·겨울) · 산책(산책길·비 오는 날) · 소풍 · 카페 · 간식 사냥꾼 · 친구들 · 더 가까이.
 - 장면이 하나뿐인 주제는 장면 이름을 주제 이름과 같게 한다. 주제 이름에 "차돌이"처럼 모든 사진에 해당하는 말이나 "나들이"처럼 범위가 애매한 말은 쓰지 않는다.
-- 사진첩 위 바로가기 버튼은 장면으로 바로 내려가고(`#장면id`), 사진 수를 함께 보여준다. 사진을 거르는 필터나 주제별 페이지는 두지 않는다(옛 `/moments/*` 주소는 `/moments`로 잇는다).
+- 주제 버튼(전체 + 주제, 사진 수 함께)을 누르면 그 주제의 장면만 보인다. 주제별 페이지는 `/moments/[group]`로 미리 만든다(정적 생성). 옛 주제 주소는 `next.config.ts`에서 새 주소로 잇는다.
+- 주제 버튼 아래에는 보이는 장면의 이름이 있고, 누르면 그 장면으로 내려간다(`#장면id`). 장면이 하나뿐이면 두지 않는다.
 - 첫 화면의 대표 사진은 `lib/gallery.ts`의 `featuredFiles` 순서를 따른다.
 - ABOUT의 "솜뭉치에서 신사로"는 `lib/gallery.ts`의 `growthFiles`(해마다 한 장, 오래된 순)를 따른다. 찍은 날이 있는 사진만 쓰고, 나이는 찍은 달로 계산한다.
 
