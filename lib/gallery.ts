@@ -90,11 +90,11 @@ export const profilePhoto: Photo = photo("gallery-50", "단풍 든 공원 잔디
 
 /** "차돌이는요" 소개 다섯 칸의 사진 */
 export const traitPhotos: Record<TraitId, Photo> = {
-  snack: photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 간식 사냥꾼 차돌이"),
+  snack: photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
   adventure: photo("gallery-51", "낙엽 진 보도를 걷다가 뒤돌아보는 차돌이"),
   cafe: photo("gallery-52", "카페 테이블 앞 아이스커피 뒤에서 웃는 차돌이"),
   cat: photo("gallery-56", "카페 의자 방석에 고양이처럼 엎드린 차돌이"),
-  smart: photo("gallery-53", "잔디밭에서 이쪽으로 신나게 달려오는 차돌이"),
+  smart: photo("gallery-101", "식탁 의자에 앉아 고개를 갸우뚱하며 올려다보는 차돌이"),
 };
 /** 푸터의 인사 사진. 가로(3:2)로 따로 만든 사진이다. (scripts/resize-photos.mjs 의 FAREWELL) */
 export const farewellPhoto: Photo = {
