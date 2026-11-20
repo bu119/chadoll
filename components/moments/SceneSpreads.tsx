@@ -68,11 +68,17 @@ const special: Record<Spread, string[]> = {
   single: ["md:col-span-4 md:col-start-6 md:aspect-[3/4]"],
 };
 
-/** 줄지어 놓는 사진의 너비: 한 줄에 서너 장이 고르게 들어가게 */
-function restSpan(count: number): string {
+/**
+ * 줄지어 놓는 사진의 너비: 한 줄에 서너 장이 고르게 들어가게.
+ * count 는 줄지어 놓는 사진 수, k 는 그중 몇 번째(0부터)인지.
+ */
+function restSpan(count: number, k: number): string {
   if (count % 4 === 0) return "md:col-span-3";
-  // 넷씩 놓으면 한 장만 남는 수(5, 13 …)는 셋씩 놓는다.
-  if (count % 3 === 0 || count % 4 === 1 || count < 4) return "md:col-span-4";
+  if (count % 3 === 0 || count < 4) return "md:col-span-4";
+  // 넷씩으로도 셋씩으로도 한 장이 남는 수(13, 25 …)는 셋씩 놓다가 마지막 넉 장만 넷으로 놓는다.
+  if (count % 4 === 1 && count % 3 === 1) return k >= count - 4 ? "md:col-span-3" : "md:col-span-4";
+  // 넷씩 놓으면 한 장만 남는 수(5, 9 …)는 셋씩 놓는다.
+  if (count % 4 === 1) return "md:col-span-4";
   return "md:col-span-3";
 }
 
@@ -81,8 +87,8 @@ function itemClass(spread: Spread, i: number, restCount: number): string {
   const fixed = special[spread][i];
   if (fixed) return fixed;
   // strip: 한 줄로 놓고 하나 걸러 하나씩 내린다.
-  if (spread === "strip") return `aspect-square md:aspect-[3/4] ${restSpan(restCount)} ${i % 2 === 1 ? "md:mt-12" : ""}`;
-  return `aspect-square ${restSpan(restCount)}`;
+  if (spread === "strip") return `aspect-square md:aspect-[3/4] ${restSpan(restCount, i)} ${i % 2 === 1 ? "md:mt-12" : ""}`;
+  return `aspect-square ${restSpan(restCount, i - featuredCount[spread])}`;
 }
 
 function sizesOf(spread: Spread, i: number): string {
@@ -122,7 +128,7 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
               const collapsed = i >= MOBILE_VISIBLE && !isExpanded;
               const place =
                 spread === "strip" && i === 0
-                  ? `col-span-2 aspect-[4/5] md:aspect-[3/4] ${restSpan(restCount)}`
+                  ? `col-span-2 aspect-[4/5] md:aspect-[3/4] ${restSpan(restCount, 0)}`
                   : itemClass(spread, i, restCount);
               return (
                 <PhotoButton
