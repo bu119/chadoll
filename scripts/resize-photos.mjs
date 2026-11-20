@@ -12,6 +12,9 @@ const QUALITY = 80;
 
 // 공유 미리보기는 표지 사진에서 잘라 쓴다.
 const OG = { n: PHOTOS.main, top: 250 };
+// 푸터 사진은 가로 원본에서 차돌이 위주로 5:2로 잘라 쓴다. (left·top·width: 원본 대비 비율)
+const FAREWELL = { n: 92, left: 0.1, top: 0.14, width: 0.8 };
+const FAREWELL_SIZE = { width: 2000, height: 800 };
 // 탭 아이콘은 차돌이 그림(1번, 정사각형)에서 그림 부분만 잘라 쓴다.
 const ICON = { n: 1, left: 158, top: 112, size: 810 };
 
@@ -51,6 +54,26 @@ await sharp(await (await fitted(OG.n)).toBuffer())
   .jpeg({ quality: QUALITY, mozjpeg: true })
   .toFile(path.join(OUT_DIR, "og.jpg"));
 console.log("og.jpg  (1200×630)");
+
+{
+  const meta = await sharp(source(FAREWELL.n)).metadata();
+  const turned = (meta.orientation ?? 1) >= 5; // 옆으로 누운 원본은 가로·세로가 바뀐다
+  const width = turned ? meta.height : meta.width;
+  const height = turned ? meta.width : meta.height;
+  const cropWidth = Math.round(width * FAREWELL.width);
+  await sharp(source(FAREWELL.n))
+    .rotate()
+    .extract({
+      left: Math.round(width * FAREWELL.left),
+      top: Math.round(height * FAREWELL.top),
+      width: cropWidth,
+      height: Math.round((cropWidth * FAREWELL_SIZE.height) / FAREWELL_SIZE.width),
+    })
+    .resize(FAREWELL_SIZE.width, FAREWELL_SIZE.height)
+    .jpeg({ quality: QUALITY, mozjpeg: true })
+    .toFile(path.join(OUT_DIR, "farewell.jpg"));
+  console.log(`farewell.jpg  ← 김차돌 (${FAREWELL.n}).jpg  (${FAREWELL_SIZE.width}×${FAREWELL_SIZE.height})`);
+}
 
 await sharp(source(ICON.n))
   .extract({ left: ICON.left, top: ICON.top, width: ICON.size, height: ICON.size })

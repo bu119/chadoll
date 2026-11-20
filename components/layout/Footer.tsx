@@ -12,8 +12,14 @@ export async function Footer() {
 
   return (
     <footer className="bg-cream px-5 py-14 sm:px-8 sm:py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-12 md:gap-8">
-        <div className="md:col-span-7">
+      <div className="mx-auto max-w-6xl">
+        <Photo
+          photo={farewellPhoto}
+          ratio="wide"
+          sizes="(min-width: 1152px) 1152px, 100vw"
+          className="mb-10 sm:mb-14"
+        />
+        <div>
           <Wordmark className="text-4xl text-cocoa sm:text-5xl" />
           <p className="mt-3 font-serif text-xl italic text-brown">{site.subtitle}</p>
           <p className="mt-8 break-keep text-xl font-semibold text-cocoa">차돌이 보러 또 놀러 오세요</p>
@@ -39,11 +45,6 @@ export async function Footer() {
             © {year} {site.name}. 차돌이 사진은 허락 없이 가져가지 말아 주세요.
           </p>
         </div>
-        <Photo
-          photo={farewellPhoto}
-          sizes="(min-width: 768px) 240px, 160px"
-          className="w-40 md:col-span-3 md:col-start-10 md:w-full md:self-end"
-        />
       </div>
     </footer>
   );
