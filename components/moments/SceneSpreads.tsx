@@ -108,6 +108,7 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
         return (
           <section
             key={scene.id}
+            id={scene.id}
             aria-labelledby={`scene-${scene.id}`}
             className="grid scroll-mt-24 grid-cols-2 gap-3 sm:gap-4 md:grid-cols-12 md:gap-6"
           >

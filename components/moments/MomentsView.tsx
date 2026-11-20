@@ -60,6 +60,21 @@ export function MomentsView({ tag }: { tag?: Tag }) {
           사진 {photos.length}장
         </p>
 
+        <nav aria-label="장면 바로가기" className="mt-6">
+          <ul className="-ml-3 flex flex-wrap">
+            {scenes.map((scene) => (
+              <li key={scene.id}>
+                <a
+                  href={`#${scene.id}`}
+                  className="inline-flex min-h-12 items-center px-3 text-lg text-brown decoration-golden decoration-2 underline-offset-[7px] hover:text-cocoa hover:underline"
+                >
+                  {scene.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <div className="mt-12 sm:mt-16">
           <PhotoViewer photos={photos}>
             <SceneSpreads scenes={scenes} />
