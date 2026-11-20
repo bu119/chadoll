@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { pageMetadata } from "@/lib/metadata";
 import { getSiteUrl, site } from "@/lib/site";
 import "./globals.css";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );
