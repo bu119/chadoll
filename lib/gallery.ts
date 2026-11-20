@@ -95,11 +95,6 @@ export const traitPhotos: Record<TraitId, Photo> = {
   cat: photo("gallery-56", "카페 의자 방석에 고양이처럼 엎드린 차돌이"),
   smart: photo("gallery-53", "잔디밭에서 이쪽으로 신나게 달려오는 차돌이"),
 };
-/** 타임라인 "지금" 옆에 두는 사진 */
-export const nowPhoto: Photo = photo(
-  "gallery-40",
-  "햇살 드는 테라스에서 혀로 코를 핥는 차돌이",
-);
 /** 푸터의 인사 사진. 가로(3:2)로 따로 만든 사진이다. (scripts/resize-photos.mjs 의 FAREWELL) */
 export const farewellPhoto: Photo = {
   id: "farewell",
@@ -338,6 +333,34 @@ const featuredFiles = [
 /** 장면들을 크게 보기 순서대로 한 줄로 편다. */
 export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
   return list.flatMap((scene) => scene.photos.map((item) => ({ ...item, scene: scene.title })));
+}
+
+/**
+ * 첫 화면 "차돌이가 걸어온 길": 해마다 한 장, 오래된 순서로 놓는다.
+ * 찍은 날(content/photo-dates.json)이 있는 사진만 쓸 수 있고, 나이는 찍은 달로 계산한다.
+ * 사진을 바꾸려면 file 만 바꾸면 된다. note 가 없으면 장면 이름을 보여준다.
+ */
+const growthFiles: { file: string; note?: string }[] = [
+  { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
+  { file: "gallery-92" }, // 2016-08 여름 바다
+  { file: "gallery-42" }, // 2021-11 숲길
+  { file: "gallery-64" }, // 2022-05 봄
+  { file: "gallery-37" }, // 2023-11 겨울
+  { file: "gallery-32" }, // 2024-12 겨울
+  { file: "gallery-79" }, // 2025-11 가을
+  { file: "gallery-01", note: "오늘도 간식 사냥 중" }, // 2026-11 지금
+];
+
+export type GrowthPhoto = MomentPhoto & { taken: string; note: string };
+
+export function getGrowthPhotos(): GrowthPhoto[] {
+  const all = toMomentPhotos(scenes);
+  return growthFiles.map(({ file, note }) => {
+    const found = all.find((item) => item.id === file);
+    if (!found) throw new Error(`사진첩에 없는 걸어온 길 사진: ${file}`);
+    if (!found.taken) throw new Error(`찍은 날이 없는 걸어온 길 사진: ${file}`);
+    return { ...found, taken: found.taken, note: note ?? found.scene };
+  });
 }
 
 export function getFeaturedPhotos(): MomentPhoto[] {

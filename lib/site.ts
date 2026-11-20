@@ -119,37 +119,3 @@ const navItems: NavItem[] = [
 export function getNavItems(): NavItem[] {
   return navItems.filter((item) => item.enabled);
 }
-
-export type TimelineItem = {
-  id: string;
-  when: string;
-  title: string;
-  description: string;
-  /** "현재" 항목은 나이를 오늘 날짜로 계산해 보여준다. */
-  current?: boolean;
-};
-
-export function getTimeline(): TimelineItem[] {
-  return [
-    {
-      id: "birth",
-      when: "2014년 4월",
-      title: "차돌이 탄생",
-      description: "작고 동글동글한 갈색 솜뭉치가 세상에 태어났어요.",
-    },
-    {
-      id: "home",
-      when: "2014년 7월 24일",
-      title: "우리 집에 온 날",
-      description:
-        "생후 3개월, 차돌이가 가족이 되었어요. 이날부터 매일이 더 행복해졌답니다.",
-    },
-    {
-      id: "now",
-      when: "지금",
-      title: "오늘도 간식 사냥 중",
-      description: "여전히 산책을 사랑하는 동네 신사로 지내고 있어요.",
-      current: true,
-    },
-  ];
-}
