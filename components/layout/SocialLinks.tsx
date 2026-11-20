@@ -10,7 +10,7 @@ export function SocialLinks({ className = "" }: SocialLinksProps) {
   if (links.length === 0) return null;
 
   return (
-    <ul className={`flex flex-wrap gap-x-6 gap-y-1 ${className}`}>
+    <ul className={`flex flex-wrap gap-x-4 gap-y-1 sm:gap-x-6 ${className}`}>
       {links.map((link) => (
         <li key={link.id}>
           <a

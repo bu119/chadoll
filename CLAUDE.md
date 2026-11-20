@@ -3,7 +3,7 @@
 우리 강아지 차돌이의 사진·일상·추억을 모은 작은 라이프스타일 매거진.
 `chadoll` = 차돌 + doll(인형), "인형 같은 차돌이".
 
-- 브랜드명: **CHADOLL** ("차돌이네"는 쓰지 않는다). 서브타이틀: **Little Moments, Big Memories.**
+- 브랜드명: **CHADOLL** ("차돌이네"는 쓰지 않는다). 서브타이틀: **A Fluffy Little Gentleman.**
 - 서브타이틀은 표지(Hero)와 푸터 두 곳에만 쓴다. 이름·문구는 `lib/site.ts`의 `site`에서 관리한다.
 
 > 세상에서 제일 귀여운 간식 사냥꾼, 차돌이를 소개합니다 🍖✨
@@ -118,13 +118,20 @@ public/images/        home/ diary/ friends/
 
 - 콘셉트는 "Warm Editorial · 사진 중심의 작은 라이프스타일 매거진". 사진이 주인공이고 UI는 사진보다 눈에 띄지 않는다. 특정 계절에 치우치지 않는다.
 - 색은 차돌이 털색에서 가져온다. `app/globals.css`의 Tailwind 테마 변수 한 곳에서 관리한다.
-  - 바탕 `ivory`(#F8F5EF), 띠 `cream`(#E8D8C1), 구분선 `line`
-  - 글자: 제목·본문 `cocoa`(#40352D), 보조 `brown`(#75604F). 투명도 대신 `brown`을 쓴다.
-  - `golden`(#C9A77E)은 밑줄·점·선 같은 장식에만 쓴다. 대비가 낮아 글자에는 쓰지 않는다.
+  - `ivory` #FAF8F4 — 기본 바탕 (약 65%)
+  - `cream` #F3EBDD — 띠(함께한 날, 푸터), 사진 불러오기 전 바탕 (약 20%)
+  - `line` #E6DED3 — 구분선
+  - `cocoa` #493D34 — 제목·본문, 사진 크게 보기 바탕 (아이보리 위 대비 9.9)
+  - `brown` #6E5D4F — 보조 글자 (아이보리 위 5.9, 크림 위 5.3). 투명도 대신 `brown`을 쓴다.
+  - `golden` #D8BD9D — 밑줄·점·선 같은 **장식 전용**. 대비가 낮아(아이보리 위 1.7) 글자에는 쓰지 않는다.
+  - `champagne` #E7D2B4 — 제한적으로 쓰는 강조 바탕. **이 위 글자는 `cocoa`만** 쓴다 (7.1).
+  - `greige` #BFB3A6 — 비활성 아이콘 등. 글자에는 쓰지 않는다.
+  - 노란·주황 기운이 강한 베이지는 넓게 쓰지 않는다. 사진 색은 건드리지 않는다.
   - 포인트색은 노란 리드줄색(`leash`) 하나뿐이고, 리드줄 선(`LeashLine`)은 표지와 함께한 날 두 곳에만 쓴다.
 - 글꼴은 두 가지만 쓴다.
-  - 한글 본문·제목: Pretendard Variable (`pretendard` 패키지의 dynamic-subset CSS). 본문 400, 소제목 600, 제목 700.
-  - 영문: Cormorant Garamond(`font-serif`). 로고(CHADOLL), 서브타이틀, 섹션 위 라벨(`Kicker`), 메뉴, 숫자에만 쓴다. 숫자는 `lining-nums`.
+  - 한글 본문·제목: SUIT Variable (`app/fonts/SUIT-Variable.woff2`, next/font/local, `font-sans`). 본문 400, 소제목 600, 제목 700.
+    파일은 자주 쓰는 한글 2,350자 + 영문·기호, 굵기 400–700만 남긴 것이다(`node scripts/subset-font.mjs`로 다시 만든다). 빠진 글자는 시스템 글꼴로 보이고, 400–700 밖의 굵기는 쓰지 않는다.
+  - 영문: Jost (next/font/google, `font-serif`). 로고(CHADOLL), 서브타이틀(이탤릭), 섹션 위 라벨(`Kicker`), 메뉴, 숫자에만 쓴다. 숫자는 `lining-nums`. 영문 글꼴 안에 섞인 한글(예: "4,503일"의 "일")은 SUIT로 보인다.
 - 섹션 제목 구조: 영문 라벨(`Kicker`, 메뉴 이름과 같은 단어만) → 한글 제목 → 본문 → 사진. 장식용 영문 문구는 더하지 않는다.
 - 사진은 원본(3:4)을 기준으로 배치에 맞춰 3:4 · 4:5 · 1:1로 자른다(`components/ui/Photo.tsx`의 `ratio`). 푸터 사진만 가로 3:2(`ratio="wide"`, 데스크톱에서는 옆 글 높이에 맞춤)로 쓰고, 파일은 `resize-photos.mjs`의 `FAREWELL`로 따로 만든다. 테두리·그림자 없이 모서리만 아주 살짝(3px).
 - 큰 사진과 작은 사진의 크기를 분명히 다르게 하고, 같은 모양 카드를 반복하지 않는다.
