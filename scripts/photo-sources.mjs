@@ -149,4 +149,10 @@ export const PHOTOS = {
   "gallery-109": { n: 165, crop: { left: 0.16, top: 0.47, size: 0.53 } }, // 뒤쪽 피서객이 안 나오게 아래쪽만
   "gallery-110": 166,
   "gallery-111": { n: 167, crop: { left: 0, top: 0, width: 0.58, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
+  // 2026-11 날짜를 보호자에게 받은 사진 (원본에 촬영일 없음)
+  "gallery-112": 139, // 어릴 적 (원본 720×960)
+  "gallery-113": { n: 130, crop: { left: 0.2, top: 0, width: 0.75, height: 1 } }, // 산책길. 정사각형 원본에서 오른쪽 귀까지 보이게
+  "gallery-114": 134, // 산책길
+  "gallery-115": 128, // 가까이서
+  "gallery-116": 132, // 가까이서 (gallery-69와 같은 날)
 };

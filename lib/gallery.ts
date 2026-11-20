@@ -116,6 +116,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-82", "알록달록한 가방 안에서 혀를 내밀고 활짝 웃는 아기 차돌이"),
       photo("gallery-84", "손 아래에서 고개를 갸웃하며 올려다보는 아기 차돌이"),
       photo("gallery-98", "마룻바닥에 엎드려 손바닥에 얼굴을 묻은 아기 차돌이"),
+      photo("gallery-112", "마룻바닥에 엎드려 손가락에 코를 대는 아기 차돌이"),
       photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
       photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
@@ -223,6 +224,8 @@ const scenes: GalleryScene[] = [
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
       photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
       photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
+      photo("gallery-113", "마른 잔디 돌길에서 혀를 내밀고 옆을 보는 차돌이"),
+      photo("gallery-114", "노을빛 흙길에 앉아 활짝 웃는 차돌이"),
     ],
   },
   {
@@ -295,6 +298,8 @@ const scenes: GalleryScene[] = [
     note: "가까이 보면 더 복슬복슬해요.",
     photos: [
       photo("gallery-69", "반짝이는 배경 앞 하얀 털 방석에 앉아 웃는 차돌이"),
+      photo("gallery-116", "반짝이는 하늘색 배경 앞에 앉아 옆을 보며 웃는 차돌이"),
+      photo("gallery-115", "창가 소파의 가방 위에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-70", "단풍잎 장식 사이에서 고개를 갸웃하며 웃는 차돌이"),
       photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
       photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
