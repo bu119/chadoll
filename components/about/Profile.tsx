@@ -32,7 +32,7 @@ export async function Profile() {
 
           <dl className="mt-12 border-b border-line">
             <Row label="이름">{chadol.fullName}</Row>
-            <Row label="견종">{chadol.breed}</Row>
+            <Row label="견종">{chadol.breedName}</Row>
             <Row label="나이">
               <AgeText serverAge={age} />살{" "}
               <span className="text-base text-brown">
