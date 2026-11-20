@@ -47,7 +47,6 @@ export type SceneId =
   | "closeup"
   | "walk"
   | "snack"
-  | "sunny"
   | "winter"
   | "picnic"
   | "cafe"
@@ -235,18 +234,6 @@ const scenes: GalleryScene[] = [
     ],
   },
   {
-    id: "sunny",
-    tags: ["cafe"],
-    title: "햇살 좋은 날",
-    note: "볕 좋은 자리는 누구보다 잘 찾아요.",
-    photos: [
-      photo("gallery-38", "햇살 드는 나무 데크 위에 서서 올려다보는 차돌이"),
-      photo("gallery-39", "테라스 의자에 놓인 겉옷 옆에 앉은 차돌이"),
-      photo("gallery-40", "햇살 드는 테라스에서 혀로 코를 핥는 차돌이"),
-      photo("gallery-41", "햇살에 눈을 감고 혀를 내민 차돌이"),
-    ],
-  },
-  {
     id: "picnic",
     tags: ["trips"],
     title: "소풍",
@@ -269,6 +256,10 @@ const scenes: GalleryScene[] = [
     photos: [
       photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이"),
       photo("gallery-91", "카페 테라스에서 바람에 귀가 날리며 옆을 보는 차돌이"),
+      photo("gallery-38", "햇살 드는 나무 데크 위에 서서 올려다보는 차돌이"),
+      photo("gallery-39", "테라스 의자에 놓인 겉옷 옆에 앉은 차돌이"),
+      photo("gallery-40", "햇살 드는 테라스에서 혀로 코를 핥는 차돌이"),
+      photo("gallery-41", "햇살에 눈을 감고 혀를 내민 차돌이"),
       photo("gallery-103", "카페 의자 등받이에 턱을 괴고 꾸벅꾸벅 조는 차돌이"),
       photo("gallery-75", "빵이 담긴 접시 앞 의자에 앉아 웃는 차돌이"),
       photo("gallery-74", "카페 소파 자리에서 고개를 내밀고 웃는 차돌이"),

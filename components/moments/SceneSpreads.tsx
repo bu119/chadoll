@@ -25,7 +25,6 @@ const spreadOf: Record<SceneId, Spread> = {
   snack: "pair",
   walk: "text",
   rain: "lead",
-  sunny: "pair",
   picnic: "text",
   cafe: "lead",
   friends: "pair",
