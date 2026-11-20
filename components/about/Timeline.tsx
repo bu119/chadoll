@@ -58,11 +58,23 @@ function GrowthItem({ photo, place, now }: { photo: GrowthPhoto; place: Place; n
   );
 }
 
+/** 설명 문장용 나이: "생후 3개월" · "12살" */
+function ageText(taken: string): string {
+  const { age, months } = getTakenDate(taken);
+  return age < 1 ? `생후 ${months}개월` : `${age}살`;
+}
+
 export function Timeline() {
   const photos = getGrowthPhotos();
+  const first = ageText(photos[0].taken);
+  const last = ageText(photos[photos.length - 1].taken);
 
   return (
-    <Section id="timeline" title="차돌이가 걸어온 길" description="해마다 한 장씩, 차돌이가 자라 온 모습이에요.">
+    <Section
+      id="timeline"
+      title="솜뭉치에서 신사로"
+      description={`${first} 작은 솜뭉치가 ${last} 의젓한 신사가 되기까지, 해마다 한 장씩 모았어요.`}
+    >
       <ol className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-8 md:gap-y-12">
         {photos.map((photo, index) => (
           <GrowthItem
