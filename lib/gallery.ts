@@ -269,37 +269,44 @@ const scenes: GalleryScene[] = [
   },
 ];
 
-/** 사진첩 장면 전체 */
-export function getMoments(): GalleryScene[] {
-  return scenes;
+/**
+ * 사진첩 주제. 장면을 묶고, 주제 버튼에 이 순서대로 보이며 장면도 이 순서대로 놓는다.
+ * 사진은 장면 하나에, 장면은 주제 하나에만 속한다. 장면이 하나뿐인 주제는 장면 이름을 주제 이름과 같게 한다.
+ * id 는 주제별 페이지 주소(/moments/[id])로 쓴다.
+ */
+const sceneGroups = [
+  { id: "baby", title: "아기 차돌", scenes: ["puppy"] },
+  { id: "seasons", title: "사계절", scenes: ["spring", "sea", "autumn", "winter"] },
+  { id: "walks", title: "산책", scenes: ["walk", "rain"] },
+  { id: "picnic", title: "소풍", scenes: ["picnic"] },
+  { id: "cafe", title: "카페", scenes: ["cafe"] },
+  { id: "snack", title: "간식 사냥꾼", scenes: ["snack"] },
+  { id: "friends", title: "친구들", scenes: ["friends"] },
+  { id: "closeup", title: "더 가까이", scenes: ["closeup"] },
+] as const satisfies readonly { id: string; title: string; scenes: readonly SceneId[] }[];
+
+export type GroupId = (typeof sceneGroups)[number]["id"];
+
+export type SceneGroup = { id: GroupId; title: string; scenes: GalleryScene[] };
+
+function findScene(id: SceneId): GalleryScene {
+  const scene = scenes.find((item) => item.id === id);
+  if (!scene) throw new Error(`없는 장면: ${id}`);
+  return scene;
 }
 
-/**
- * 장면을 묶는 주제. 사진첩 위 바로가기에 이 순서대로 보이고, 장면도 이 순서대로 놓는다.
- * 사진은 장면 하나에, 장면은 주제 하나에만 속한다. 장면이 하나뿐인 주제는 장면 이름을 주제 이름과 같게 한다.
- */
-const sceneGroups: { title: string; scenes: SceneId[] }[] = [
-  { title: "아기 차돌", scenes: ["puppy"] },
-  { title: "사계절", scenes: ["spring", "sea", "autumn", "winter"] },
-  { title: "산책", scenes: ["walk", "rain"] },
-  { title: "소풍", scenes: ["picnic"] },
-  { title: "카페", scenes: ["cafe"] },
-  { title: "간식 사냥꾼", scenes: ["snack"] },
-  { title: "친구들", scenes: ["friends"] },
-  { title: "더 가까이", scenes: ["closeup"] },
-];
-
-export type SceneGroup = { title: string; scenes: GalleryScene[] };
-
 export function getSceneGroups(): SceneGroup[] {
-  return sceneGroups.map((group) => ({
-    title: group.title,
-    scenes: group.scenes.map((id) => {
-      const scene = scenes.find((item) => item.id === id);
-      if (!scene) throw new Error(`없는 장면: ${id}`);
-      return scene;
-    }),
-  }));
+  return sceneGroups.map((group) => ({ id: group.id, title: group.title, scenes: group.scenes.map(findScene) }));
+}
+
+export function isGroupId(value: string): value is GroupId {
+  return sceneGroups.some((group) => group.id === value);
+}
+
+/** 사진첩 장면. 주제를 주면 그 주제의 장면만 돌려준다. */
+export function getMoments(group?: GroupId): GalleryScene[] {
+  if (!group) return scenes;
+  return getSceneGroups().find((item) => item.id === group)?.scenes ?? [];
 }
 
 /** 첫 화면에 먼저 보여주는 사진. 장면마다 하나씩, 이 순서대로 놓는다. */
