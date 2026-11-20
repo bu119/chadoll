@@ -7,7 +7,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
-import { PHOTOS, source, sourceNumber } from "./photo-sources.mjs";
+import { PHOTOS, sourceNumber, sourceOf } from "./photo-sources.mjs";
 
 const OUT = path.join("content", "photo-dates.json");
 
@@ -70,7 +70,7 @@ for (const [name, entry] of Object.entries(PHOTOS)) {
     continue;
   }
   const n = sourceNumber(entry);
-  const { exif } = await sharp(source(n)).metadata();
+  const { exif } = await sharp(sourceOf(entry)).metadata();
   dates[name] = toYearMonth(readDateTimeOriginal(exif));
   if (!dates[name]) missing.push(`${name}  ← 김차돌 (${n}).jpg`);
 }

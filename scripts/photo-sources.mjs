@@ -4,11 +4,14 @@ import path from "node:path";
 
 export const SRC_DIR = "photos";
 
-/** 원본 번호 → photos/ 의 원본 파일 경로 */
-export const source = (n) => path.join(SRC_DIR, `김차돌 (${n}).jpg`);
+/** 원본 번호 → photos/ 의 원본 파일 경로. PNG 원본은 표에 ext: "png" 를 적는다. */
+export const source = (n, ext = "jpg") => path.join(SRC_DIR, `김차돌 (${n}).${ext}`);
 
 /** 표의 한 줄(숫자 또는 { n, ... })에서 원본 번호만 꺼낸다. */
 export const sourceNumber = (entry) => (typeof entry === "number" ? entry : entry.n);
+
+/** 표의 한 줄(숫자 또는 { n, ext, ... })이 가리키는 원본 파일 경로 */
+export const sourceOf = (entry) => (typeof entry === "number" ? source(entry) : source(entry.n, entry.ext));
 
 // 파일 이름 → photos/ 의 원본 번호. lib/gallery.ts 가 이 파일 이름을 쓴다.
 // 새 사진은 맨 뒤에 이어 붙이고, 이미 있는 이름의 번호는 바꾸지 않는다.
@@ -111,24 +114,24 @@ export const PHOTOS = {
   // 2026-11 아기 때 사진과 새 사진
   // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
   // 배경이 바닥뿐인 사진은 차돌이가 가운데 오게 잘라 쓴다.
-  "gallery-81": 143,
+  "gallery-81": 142,
   "gallery-82": { n: 137, crop: { left: 0.02, top: 0, width: 0.96, height: 0.72 } }, // 9:16. 귀와 앞발이 다 보이게, 아래 담요만 조금 줄인다
-  "gallery-83": { n: 141, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
-  "gallery-84": { n: 142, crop: { left: 0.2, top: 0.15, size: 0.7 } },
+  "gallery-83": { n: 140, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
+  "gallery-84": { n: 141, crop: { left: 0.2, top: 0.15, size: 0.7 } },
   "gallery-85": { n: 138, crop: { left: 0.2, top: 0, size: 0.7 } },
-  "gallery-86": 144,
-  "gallery-87": { n: 147, crop: { left: 0.4, top: 0.08, size: 0.6 } }, // 가방 위로 나온 얼굴 쪽
+  "gallery-86": 143,
+  "gallery-87": { n: 146, crop: { left: 0.4, top: 0.08, size: 0.6 } }, // 가방 위로 나온 얼굴 쪽
   // 가까이서
-  "gallery-88": 145,
+  "gallery-88": 144,
   "gallery-89": 151,
   "gallery-90": 152,
   // 카페
-  "gallery-91": 146,
+  "gallery-91": 145,
   // 여름
-  "gallery-92": { n: 148, crop: { left: 0.2, top: 0.28, size: 0.7 } },
-  "gallery-93": { n: 149, crop: { left: 0.12, top: 0.2, size: 0.65 } },
+  "gallery-92": { n: 147, crop: { left: 0.2, top: 0.28, size: 0.7 } },
+  "gallery-93": { n: 148, crop: { left: 0.12, top: 0.2, size: 0.65 } },
   // 산책길
-  "gallery-94": { n: 150, crop: { left: 0.065, top: 0.15, size: 0.85 } }, // 흙길 배경을 조금 줄인다
+  "gallery-94": { n: 149, crop: { left: 0.065, top: 0.15, size: 0.85 } }, // 흙길 배경을 조금 줄인다
   // 겨울
   "gallery-95": 153,
   "gallery-96": 154,
@@ -148,7 +151,7 @@ export const PHOTOS = {
   "gallery-108": { n: 164, crop: { left: 0.22, top: 0, width: 0.42, height: 1 } },
   "gallery-109": { n: 165, crop: { left: 0.16, top: 0.47, size: 0.53 } }, // 뒤쪽 피서객이 안 나오게 아래쪽만
   "gallery-110": 166,
-  "gallery-111": { n: 167, crop: { left: 0, top: 0, width: 0.58, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
+  "gallery-111": { n: 150, crop: { left: 0, top: 0, width: 0.58, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
   // 2026-11 날짜를 보호자에게 받은 사진 (원본에 촬영일 없음)
   "gallery-112": 139, // 어릴 적 (원본 720×960)
   "gallery-113": { n: 130, crop: { left: 0.2, top: 0, width: 0.75, height: 1 } }, // 산책길. 정사각형 원본에서 오른쪽 귀까지 보이게
@@ -158,4 +161,39 @@ export const PHOTOS = {
   "gallery-117": { n: 34, crop: { left: 0.17, top: 0.15, size: 0.75 } }, // 소풍. 보라 돗자리, 꼬리까지 보이게
   "gallery-118": { n: 92, crop: { left: 0.2, top: 0, width: 0.5625, height: 1 } }, // 더 가까이. 포대기에서 조는 얼굴(푸터 사진과 같은 원본)
   "gallery-119": { n: 91, crop: { left: 0.12, top: 0.12, size: 0.8 } }, // 더 가까이. 포대기에서 조는 얼굴
+  // 2026-11 어릴 적부터의 새 사진 (날짜가 없는 원본은 보호자에게 받은 달을 손으로 채웠다)
+  "gallery-120": 169, // 더 가까이 · 첫 화면 "차돌이는요"
+  // 아기 차돌
+  "gallery-121": 191, // 집에 온 다음 주, 상자 속
+  "gallery-122": 190,
+  "gallery-123": 176, // 원본 750×1000
+  "gallery-124": 186, // 정사각형 원본
+  // 봄
+  "gallery-125": 187,
+  "gallery-126": 188,
+  "gallery-127": { n: 2, ext: "png", crop: { left: 0.18, top: 0.04, width: 0.66, height: 0.665 } }, // 아래쪽 무릎이 덜 나오게 얼굴 쪽만
+  // 여름
+  "gallery-128": { n: 173, crop: { left: 0.22, top: 0.28, size: 0.45 } }, // 넓은 모래사장에서 차돌이 쪽으로
+  // 겨울
+  "gallery-129": 172,
+  "gallery-130": 177,
+  "gallery-131": 178,
+  "gallery-132": { n: 167, crop: { left: 0.17, top: 0.22, size: 0.75 } }, // 왼쪽 사람을 줄이고 차돌이 위주로
+  "gallery-133": { n: 168, crop: { left: 0.41, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 차돌이 쪽만
+  // 산책길
+  "gallery-134": { n: 174, crop: { left: 0.15, top: 0.3, size: 0.65 } }, // 아파트를 줄이고 달려오는 차돌이 위주로
+  "gallery-135": { n: 175, crop: { left: 0.2, top: 0.25, size: 0.7 } },
+  "gallery-136": { n: 189, crop: { left: 0.05, top: 0.28, size: 0.7 } },
+  "gallery-137": { n: 180, crop: { left: 0.12, top: 0.15, size: 0.8 } }, // 위쪽 사람 다리를 줄인다
+  "gallery-138": { n: 181, crop: { left: 0, top: 0.12, size: 0.88 } }, // 위쪽 신발을 줄인다
+  "gallery-139": { n: 182, crop: { left: 0.24, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 얼굴 쪽
+  // 호숫가
+  "gallery-140": 183,
+  "gallery-141": 184,
+  "gallery-142": 185,
+  "gallery-143": { n: 179, crop: { left: 0.33, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 차돌이 쪽만
+  // 더 가까이
+  "gallery-144": 170,
+  "gallery-145": 171,
+  "gallery-146": { n: 192, crop: { left: 0.42, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
 };

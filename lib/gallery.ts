@@ -27,6 +27,7 @@ export type SceneId =
   | "picnic"
   | "cafe"
   | "rain"
+  | "lake"
   | "friends";
 
 /** 크게 보기에서 쓰는 사진: 어느 장면의 사진인지 함께 담는다. */
@@ -61,7 +62,7 @@ export const heroPhoto: Photo = photo("main", "복슬복슬한 털을 뽐내며 
 export const profilePhoto: Photo = photo("gallery-50", "단풍 든 공원 잔디밭에서 정면을 보며 활짝 웃는 차돌이");
 
 /** 첫 화면 짧은 소개 옆 사진. 소개 페이지 첫머리(profilePhoto)와 겹치지 않게 다른 사진을 쓴다. */
-export const aboutPreviewPhoto: Photo = photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이");
+export const aboutPreviewPhoto: Photo = photo("gallery-120", "혀를 살짝 내밀고 활짝 웃는 차돌이 얼굴");
 
 /** "차돌이는요" 소개 다섯 칸의 사진 */
 export const traitPhotos: Record<TraitId, Photo> = {
@@ -86,14 +87,17 @@ const scenes: GalleryScene[] = [
     title: "아기 차돌",
     note: "손바닥만 하던 때부터 늘 웃는 얼굴이었어요.",
     photos: [
-      // 생후 3개월(우리 집에 온 무렵) 사진을 먼저, 8개월 사진은 그다음에
       photo("gallery-82", "알록달록한 담요 위에서 혀를 내밀고 활짝 웃는 아기 차돌이"),
       photo("gallery-84", "손 아래에서 고개를 갸웃하며 올려다보는 아기 차돌이"),
       photo("gallery-98", "마룻바닥에 엎드려 손바닥에 얼굴을 묻은 아기 차돌이"),
       photo("gallery-112", "마룻바닥에 엎드려 손가락에 코를 대는 아기 차돌이"),
       photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
       photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
+      photo("gallery-121", "종이 상자 밖으로 얼굴을 내민 아기 차돌이"),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
+      photo("gallery-122", "벌러덩 누워 보호자 손을 꼭 잡은 아기 차돌이"),
+      photo("gallery-123", "얼룩말 무늬 담요 앞에서 올려다보는 어린 차돌이"),
+      photo("gallery-124", "하얀 털옷을 입고 귀를 쫑긋 세운 어린 차돌이"),
     ],
   },
   {
@@ -102,11 +106,14 @@ const scenes: GalleryScene[] = [
     note: "연둣빛 잔디 위에서는 발걸음이 가벼워요.",
     photos: [
       photo("gallery-62", "햇살 드는 초록 잔디밭 돌길 위에 선 차돌이"),
+      photo("gallery-125", "벚꽃잎이 떨어진 보도블록에 앉아 입을 벌리고 웃는 차돌이"),
+      photo("gallery-126", "벚꽃잎 깔린 길에 앉아 올려다보며 웃는 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
       photo("gallery-65", "노란 하네스에 손수건을 두르고 옆을 바라보는 차돌이"),
       photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
       photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
       photo("gallery-63", "초록 잔디에 앉아 노란 하네스를 하고 하늘을 올려다보는 차돌이"),
+      photo("gallery-127", "벚꽃잎 길에서 무릎 앞으로 다가와 활짝 웃는 차돌이"),
     ],
   },
   {
@@ -115,6 +122,7 @@ const scenes: GalleryScene[] = [
     note: "뜨거운 햇살 아래서도, 파도 앞에서도 의젓해요.",
     photos: [
       photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
+      photo("gallery-128", "빨간 하네스를 하고 파도 치는 모래사장을 걸어가는 차돌이"),
       photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
       photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
       photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
@@ -154,10 +162,15 @@ const scenes: GalleryScene[] = [
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
       photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
+      photo("gallery-129", "파란 패딩을 입고 보호자 손에 앞발을 올린 차돌이"),
+      photo("gallery-130", "마른 잔디 돌길에 앉아 활짝 웃는 차돌이"),
+      photo("gallery-131", "돌길 위에서 혀를 내밀고 올려다보는 차돌이 얼굴"),
       photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이"),
       photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이"),
       photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이"),
+      photo("gallery-132", "햇살 드는 마른 잔디밭에 서서 옆을 바라보는 차돌이"),
+      photo("gallery-133", "흙길에서 혀로 코를 핥으며 서 있는 차돌이"),
       photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴"),
     ],
   },
@@ -167,6 +180,12 @@ const scenes: GalleryScene[] = [
     note: "매일 걷는 길도 차돌이랑 걸으면 새로워요.",
     photos: [
       photo("gallery-13", "햇살 드는 푸른 풀밭에 서서 옆을 바라보는 차돌이"),
+      photo("gallery-134", "아파트 단지 산책길을 신나게 달려오는 차돌이"),
+      photo("gallery-135", "보도블록 위를 혀를 내밀고 달려오는 차돌이"),
+      photo("gallery-136", "햇살 아래 보도블록을 달려오는 차돌이"),
+      photo("gallery-137", "나무 옆 흙길에서 활짝 웃는 차돌이"),
+      photo("gallery-138", "보도블록 위에서 꼬리를 세우고 뒤돌아 웃는 차돌이"),
+      photo("gallery-139", "복슬복슬한 꼬리를 세우고 고개를 돌려 웃는 차돌이"),
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
       photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
       photo("gallery-113", "마른 잔디 돌길에서 혀를 내밀고 옆을 보는 차돌이"),
@@ -175,6 +194,17 @@ const scenes: GalleryScene[] = [
       photo("gallery-12", "햇살이 드는 잔디밭에서 산책 중인 차돌이"),
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
       photo("gallery-01", "공원 돌길을 따라 씩씩하게 걸어오는 차돌이"),
+    ],
+  },
+  {
+    id: "lake",
+    title: "호숫가",
+    note: "물가 데크를 걸으면 바람이 시원해요.",
+    photos: [
+      photo("gallery-140", "호숫가 데크 난간 앞에서 혀를 내밀고 웃는 차돌이"),
+      photo("gallery-141", "호숫가 데크에서 눈을 감고 바람을 맞는 차돌이"),
+      photo("gallery-142", "호숫가 데크에서 꼬리를 세우고 올려다보며 웃는 차돌이"),
+      photo("gallery-143", "호수가 보이는 데크 난간 앞에서 웃는 차돌이"),
     ],
   },
   {
@@ -260,7 +290,11 @@ const scenes: GalleryScene[] = [
       photo("gallery-69", "반짝이는 배경 앞 하얀 털 방석에 앉아 웃는 차돌이"),
       photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
       photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
+      photo("gallery-145", "꽃무늬 이불 위에서 분홍 헤어롤을 앞발로 잡고 씹는 차돌이"),
+      photo("gallery-144", "하늘색 나비넥타이를 하고 벤치에 앉아 웃는 차돌이"),
+      photo("gallery-146", "하늘색 담요 위에서 햇살을 받으며 조는 차돌이"),
       photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
+      photo("gallery-120", "혀를 살짝 내밀고 활짝 웃는 차돌이 얼굴"),
       photo("gallery-73", "햇살 아래 복슬복슬한 털로 앉아 웃는 차돌이"),
       photo("gallery-111", "노란 하네스를 하고 앞발을 베고 곤히 자는 차돌이"),
       photo("gallery-70", "단풍잎 장식 사이에서 고개를 갸웃하며 웃는 차돌이"),
@@ -283,7 +317,7 @@ const scenes: GalleryScene[] = [
 const sceneGroups = [
   { id: "baby", title: "아기 차돌", scenes: ["puppy"] },
   { id: "seasons", title: "사계절", scenes: ["spring", "sea", "autumn", "winter"] },
-  { id: "walks", title: "산책", scenes: ["walk", "rain"] },
+  { id: "walks", title: "산책", scenes: ["walk", "lake", "rain"] },
   { id: "picnic", title: "소풍", scenes: ["picnic"] },
   { id: "cafe", title: "카페", scenes: ["cafe"] },
   { id: "snack", title: "간식 사냥꾼", scenes: ["snack"] },
@@ -338,8 +372,12 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
  */
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
+  { file: "gallery-135", note: "처음 맞는 봄 산책" }, // 2015-03 생후 11개월
   { file: "gallery-87", note: "가방 속 낮잠" }, // 2016-03 1살
   { file: "gallery-94", note: "공원 산책" }, // 2016-08 2살
+  { file: "gallery-129", note: "손! 하는 겨울 산책" }, // 2017-01 2살
+  { file: "gallery-144", note: "나비넥타이 신사" }, // 2017-06 3살
+  { file: "gallery-146", note: "햇살 아래 낮잠" }, // 2018-10 4살
   { file: "gallery-97", note: "나무 데크 산책길" }, // 2021-02 6살
   { file: "gallery-43", note: "숲길 산책" }, // 2021-11 7살
   { file: "gallery-64", note: "봄 잔디밭에서" }, // 2022-05
