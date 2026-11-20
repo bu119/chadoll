@@ -134,6 +134,7 @@ public/images/        home/ diary/ friends/
 - 화면 문구는 한글, 귀엽고 다정한 말투. 영문은 브랜드·메뉴·라벨에만.
 - 이모지는 꼭 필요한 곳에만 쓴다. 제목·라벨·사진 메모에는 쓰지 않고, 메인 페이지는 이모지 없이 만든다.
 - 사진은 `photos/`(커밋하지 않음)에 원본을 두고 `node scripts/resize-photos.mjs`로 1200×1600으로 줄여 `public/images/home/`에 넣는다.
+- 새 사진은 `scripts/photo-sources.mjs`의 `PHOTOS`에 이어 붙이고, `node scripts/photo-dates.mjs`로 촬영일을 `content/photo-dates.json`에 기록한다. 원본에 날짜가 없으면 null로 남으니 "YYYY-MM"으로 손으로 채운다(다시 실행해도 채운 값은 지켜진다).
 - 이미지 파일명은 소문자와 하이픈, `alt`는 한글로 의미 있게 쓴다. 2MB가 넘으면 리사이즈한다.
 
 ## 코드 규칙
