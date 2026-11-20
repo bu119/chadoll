@@ -40,8 +40,8 @@
 ```
 app/
   layout.tsx          공통 메뉴 · 푸터 · 글꼴 · 기본 메타데이터
-  page.tsx            HOME: 표지, 소개 요약, 함께한 날, 대표 사진, 걸어온 길
-  about/              ABOUT: 차돌이 소개 전체
+  page.tsx            HOME: 표지, 소개 요약, 함께한 날, 대표 사진
+  about/              ABOUT: 차돌이 소개 전체, 걸어온 길(해마다 한 장)
   moments/            MOMENTS: 사진첩 전체, [tag] 주제별 사진
   stories/            STORIES: 차돌이 일기 (목록, [slug] 상세) — 2단계
   friends/            차돌이의 친구들 (목록, [slug] 상세)
@@ -75,7 +75,7 @@ public/images/        home/ diary/ friends/
 - 장면에 기본 주제를 달고, 사진에만 더 붙는 주제는 `photo(file, alt, ["friends"])`처럼 단다. 모든 사진이 주제 하나 이상에 들어가게 한다. 주제 버튼에는 사진 수를 함께 보여준다.
 - 주제별 페이지는 `/moments/[tag]`로 미리 만든다(정적 생성).
 - 첫 화면의 대표 사진은 `lib/gallery.ts`의 `featuredFiles` 순서를 따른다.
-- 첫 화면 "차돌이가 걸어온 길"은 `lib/gallery.ts`의 `growthFiles`(해마다 한 장, 오래된 순)를 따른다. 찍은 날이 있는 사진만 쓰고, 나이는 찍은 달로 계산한다.
+- ABOUT의 "차돌이가 걸어온 길"은 `lib/gallery.ts`의 `growthFiles`(해마다 한 장, 오래된 순)를 따른다. 찍은 날이 있는 사진만 쓰고, 나이는 찍은 달로 계산한다.
 
 ### 차돌이 일기 (`/stories`)
 - 메뉴 이름은 STORIES. 하루일기와 산책 에피소드, 성장 기록을 **하나로 통일**한다. 구분은 `category`로 한다.

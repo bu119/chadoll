@@ -336,7 +336,7 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 }
 
 /**
- * 첫 화면 "차돌이가 걸어온 길": 해마다 한 장, 오래된 순서로 놓는다.
+ * ABOUT "차돌이가 걸어온 길": 해마다 한 장, 오래된 순서로 놓는다.
  * 찍은 날(content/photo-dates.json)이 있는 사진만 쓸 수 있고, 나이는 찍은 달로 계산한다.
  * 사진을 바꾸려면 file 만 바꾸면 된다. note 가 없으면 장면 이름을 보여준다.
  */
