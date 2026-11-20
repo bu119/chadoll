@@ -12,6 +12,7 @@ import {
   type ReactNode,
 } from "react";
 import { photoShape } from "@/components/ui/Photo";
+import { getTakenDate } from "@/lib/date";
 import type { MomentPhoto } from "@/lib/gallery";
 
 type OpenPhoto = (id: string, button: HTMLElement) => void;
@@ -207,7 +208,10 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
                 ‹
               </button>
               <p className="min-w-0 flex-1 break-keep text-center text-base leading-snug sm:text-lg">
-                <span className="block text-sm text-cream">{current.scene}</span>
+                <span className="block text-sm text-cream">
+                  {current.scene}
+                  {current.taken ? <TakenText taken={current.taken} /> : null}
+                </span>
                 {current.alt}
               </p>
               <button type="button" onClick={() => move(1)} aria-label="다음 사진" className={barButton}>
@@ -234,6 +238,31 @@ export function PhotoViewer({ photos, children }: { photos: MomentPhoto[]; child
         ) : null}
       </dialog>
     </ViewerContext>
+  );
+}
+
+/** 숫자는 영문 글꼴(lining-nums)로 */
+function Num({ children }: { children: number }) {
+  return <span className="font-serif text-base lining-nums">{children}</span>;
+}
+
+/** 장면 이름 뒤에 붙는 " · 2021년 11월 · 차돌이 7살" (1살 전이면 "생후 8개월") */
+function TakenText({ taken }: { taken: string }) {
+  const { year, month, age, months } = getTakenDate(taken);
+  return (
+    <>
+      {" · "}
+      <Num>{year}</Num>년 <Num>{month}</Num>월 ·{" "}
+      {age >= 1 ? (
+        <>
+          차돌이 <Num>{age}</Num>살
+        </>
+      ) : (
+        <>
+          생후 <Num>{months}</Num>개월
+        </>
+      )}
+    </>
   );
 }
 
