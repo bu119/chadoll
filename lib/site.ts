@@ -4,8 +4,8 @@ export const site = {
   /** 브랜드 이름. 로고·헤더·푸터·메타데이터에 쓴다. */
   name: "CHADOLL",
   /** 브랜드 서브타이틀. 표지와 푸터 두 곳에만 쓴다. */
-  subtitle: "Little Moments, Big Memories.",
-  title: "CHADOLL — Little Moments, Big Memories.",
+  subtitle: "A Fluffy Little Gentleman.",
+  title: "CHADOLL — A Fluffy Little Gentleman.",
   tagline: "세상에서 제일 귀여운 간식 사냥꾼",
   description:
     "세상에서 제일 귀여운 간식 사냥꾼, 갈색 포메라니안 차돌이의 사진과 이야기를 모아 둔 집이에요.",
