@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Jost } from "next/font/google";
+import localFont from "next/font/local";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { pageMetadata } from "@/lib/metadata";
 import { getSiteUrl, site } from "@/lib/site";
-// 한글 본문: Pretendard. 쓰인 글자 묶음만 내려받도록 나뉜 파일을 직접 호스팅한다.
-import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
+
+// 한글 본문·제목: SUIT Variable (OFL-1.1, app/fonts/SUIT-LICENSE.txt)
+const suit = localFont({
+  src: "./fonts/SUIT-Variable.woff2",
+  variable: "--font-suit",
+  weight: "100 900",
+  display: "swap",
+});
 
 // 영문 브랜드·라벨·숫자에만 쓰는 글꼴
 const jost = Jost({
@@ -33,7 +40,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${jost.variable} h-full antialiased`}>
+    <html lang="ko" className={`${suit.variable} ${jost.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans text-lg leading-[1.75]">
         <Header />
         <main className="flex-1">{children}</main>

@@ -19,9 +19,9 @@
 
 @theme inline {
   /* 한글 본문과 제목 */
-  --font-sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  /* 영문 브랜드·라벨·숫자에만 쓴다. 한글이 섞이면 Pretendard 로 보인다. */
-  --font-serif: var(--font-jost), "Pretendard Variable", Georgia, serif;
+  --font-sans: var(--font-suit), -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 영문 브랜드·라벨·숫자에만 쓴다(Jost). 한글이 섞이면 SUIT 로 보인다. 예: "4,503일"의 "일" */
+  --font-serif: var(--font-jost), var(--font-suit), Georgia, serif;
 }
 
 html {
