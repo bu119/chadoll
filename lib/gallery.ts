@@ -198,6 +198,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-76", "꽃무늬 돗자리 위에서 옆을 바라보며 웃는 차돌이"),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
+      photo("gallery-117", "보라색 하트 무늬 돗자리에 엎드려 옆을 바라보는 차돌이"),
       photo("gallery-27", "체크무늬 돗자리 옆 잔디밭을 걸어오며 웃는 차돌이"),
       photo("gallery-18", "풀밭에 편 돗자리 위에 엎드려 쉬는 차돌이"),
     ],
