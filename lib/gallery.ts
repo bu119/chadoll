@@ -46,6 +46,7 @@ export type SceneId =
   | "sea"
   | "closeup"
   | "walk"
+  | "snack"
   | "sunny"
   | "winter"
   | "picnic"
@@ -119,7 +120,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
       photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
-      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
       photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
     ],
   },
@@ -191,6 +191,18 @@ const scenes: GalleryScene[] = [
       photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이", ["walks"]),
       photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이", ["faces"]),
       photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이", ["faces"]),
+    ],
+  },
+  {
+    id: "snack",
+    tags: ["faces"],
+    title: "간식 사냥꾼",
+    note: "간식 앞에서는 누구보다 진지해요.",
+    photos: [
+      photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
+      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
+      photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 차돌이"),
+      photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 차돌이"),
     ],
   },
   {
@@ -297,9 +309,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-70", "단풍잎 장식 사이에서 고개를 갸웃하며 웃는 차돌이"),
       photo("gallery-73", "햇살 아래 복슬복슬한 털로 앉아 웃는 차돌이"),
       photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
-      photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 간식 사냥꾼 차돌이"),
-      photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 간식 사냥꾼 차돌이"),
-      photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
       photo("gallery-111", "노란 하네스를 하고 앞발을 베고 곤히 자는 차돌이"),
       photo("gallery-110", "동그란 안경을 쓰고 의자에 앉은 선비 차돌이"),
       photo("gallery-105", "분홍 꽃벽 앞에서 노란 하네스를 하고 정면을 보는 차돌이"),
