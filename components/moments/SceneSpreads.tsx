@@ -71,7 +71,8 @@ const special: Record<Spread, string[]> = {
 /** 줄지어 놓는 사진의 너비: 한 줄에 서너 장이 고르게 들어가게 */
 function restSpan(count: number): string {
   if (count % 4 === 0) return "md:col-span-3";
-  if (count % 3 === 0 || count < 4) return "md:col-span-4";
+  // 넷씩 놓으면 한 장만 남는 수(5, 13 …)는 셋씩 놓는다.
+  if (count % 3 === 0 || count % 4 === 1 || count < 4) return "md:col-span-4";
   return "md:col-span-3";
 }
 
