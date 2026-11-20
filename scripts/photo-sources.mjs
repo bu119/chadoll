@@ -112,7 +112,7 @@ export const PHOTOS = {
   // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
   // 배경이 바닥뿐인 사진은 차돌이가 가운데 오게 잘라 쓴다.
   "gallery-81": 143,
-  "gallery-82": { n: 137, crop: { left: 0.02, top: 0, width: 0.96, height: 0.72 } }, // 9:16. 귀와 앞발이 다 보이게, 아래 가방만 조금 줄인다
+  "gallery-82": { n: 137, crop: { left: 0.02, top: 0, width: 0.96, height: 0.72 } }, // 9:16. 귀와 앞발이 다 보이게, 아래 담요만 조금 줄인다
   "gallery-83": { n: 141, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
   "gallery-84": { n: 142, crop: { left: 0.2, top: 0.15, size: 0.7 } },
   "gallery-85": { n: 138, crop: { left: 0.2, top: 0, size: 0.7 } },

@@ -42,20 +42,20 @@ app/
   layout.tsx          공통 메뉴 · 푸터 · 글꼴 · 기본 메타데이터
   page.tsx            HOME: 표지, 소개 요약, 함께한 날, 대표 사진
   about/              ABOUT: 차돌이 소개 전체, 솜뭉치에서 신사로(해마다 한 장)
-  moments/            MOMENTS: 사진첩 전체, [tag] 주제별 사진
+  moments/            MOMENTS: 사진첩 전체, [group] 주제별 사진
   stories/            STORIES: 차돌이 일기 (목록, [slug] 상세) — 2단계
   friends/            차돌이의 친구들 (목록, [slug] 상세)
   guestbook/          방명록
   sitemap.ts robots.ts
 components/
-  ui/                 공통 조각 (Photo, Section, Kicker, Wordmark, MoreLink, LeashLine ...)
+  ui/                 공통 조각 (Photo, Section, Kicker, Wordmark, MoreLink, LeashLine, BackToTop ...)
   layout/             Header, NavLinks, Footer, SocialLinks
   home/ about/ moments/ stories/ friends/   페이지 전용 컴포넌트
 content/
   friends.ts          친구 목록 데이터
 lib/
   site.ts             브랜드, 차돌이 정보, 메뉴, SNS 링크
-  gallery.ts          사진 데이터, 주제(tag), getMoments(tag), getFeaturedPhotos()
+  gallery.ts          사진 데이터, 장면, 주제(sceneGroups), getMoments(group), getSceneGroups(), getFeaturedPhotos()
   metadata.ts         페이지 메타데이터(pageMetadata)
   date.ts             나이 · 함께한 일수 계산
   diary.ts            getDiaries(), getDiary(slug)  (DB에서 읽기)
@@ -70,10 +70,11 @@ public/images/        home/ diary/ friends/
 - 준비된 페이지만 메뉴에 연다(`enabled`). STORIES는 일기 기록이 생기면 연다.
 
 ### 사진첩 (`/moments`)
-- 장면(숲길·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
-- 주제(tag)는 차돌이가 좋아하는 것을 기준으로 거른다: 산책 · 나들이 · 카페 · 친구들 · 얼굴. 계절은 장면 이름(봄·여름·가을·겨울)으로 보이므로 주제로 두지 않는다.
-- 장면에 기본 주제를 달고, 사진에만 더 붙는 주제는 `photo(file, alt, ["friends"])`처럼 단다. 모든 사진이 주제 하나 이상에 들어가게 한다. 주제 버튼에는 사진 수를 함께 보여준다.
-- 주제별 페이지는 `/moments/[tag]`로 미리 만든다(정적 생성).
+- 장면(봄·가을·카페 …)은 제목과 메모를 가진 펼침면 단위다. 장면마다 놓는 방식은 `components/moments/SceneSpreads.tsx`의 `spreadOf`에서 정하고, 이웃한 장면끼리 다르게 한다.
+- 사진은 장면 하나에, 장면은 주제 하나에만 속한다. 주제는 `lib/gallery.ts`의 `sceneGroups`에서 정하고, 사진첩 장면도 이 순서대로 놓는다: 아기 차돌 · 사계절(봄·여름·가을·겨울) · 산책(산책길·비 오는 날) · 소풍 · 카페 · 간식 사냥꾼 · 친구들 · 더 가까이.
+- 장면이 하나뿐인 주제는 장면 이름을 주제 이름과 같게 한다. 주제 이름에 "차돌이"처럼 모든 사진에 해당하는 말이나 "나들이"처럼 범위가 애매한 말은 쓰지 않는다.
+- 주제 버튼(전체 + 주제, 사진 수 함께)을 누르면 그 주제의 장면만 보인다. 주제별 페이지는 `/moments/[group]`로 미리 만든다(정적 생성). 옛 주제 주소는 `next.config.ts`에서 새 주소로 잇는다.
+- 주제 버튼 아래에는 보이는 장면의 이름이 있고, 누르면 그 장면으로 내려간다(`#장면id`). 장면이 하나뿐이면 두지 않는다.
 - 첫 화면의 대표 사진은 `lib/gallery.ts`의 `featuredFiles` 순서를 따른다.
 - ABOUT의 "솜뭉치에서 신사로"는 `lib/gallery.ts`의 `growthFiles`(해마다 한 장, 오래된 순)를 따른다. 찍은 날이 있는 사진만 쓰고, 나이는 찍은 달로 계산한다.
 
@@ -139,6 +140,7 @@ public/images/        home/ diary/ friends/
 - 그림자·블러·그라데이션·둥근 카드 반복·스크롤 애니메이션·과한 아이콘은 쓰지 않는다.
 - 섹션마다 배치를 다르게 하고 왼쪽 정렬을 기본으로 한다.
 - **모바일 우선**, 글자는 크고 읽기 쉽게 (어르신 방문자 고려). 본문 18px 이상, 누르는 곳은 48px 이상.
+- 모든 페이지에 "맨 위로" 단추(`components/ui/BackToTop.tsx`, 오른쪽 아래 48px 동그라미 화살표)가 있다. 화면 한 번 넘게 내렸을 때만 보인다.
 - 화면 문구는 한글, 귀엽고 다정한 말투. 영문은 브랜드·메뉴·라벨에만.
 - 이모지는 꼭 필요한 곳에만 쓴다. 제목·라벨·사진 메모에는 쓰지 않고, 메인 페이지는 이모지 없이 만든다.
 - 사진은 `photos/`(커밋하지 않음)에 원본을 두고 `node scripts/resize-photos.mjs`로 1200×1600으로 줄여 `public/images/home/`에 넣는다.
@@ -191,7 +193,7 @@ public/images/        home/ diary/ friends/
 ## 로드맵
 
 - [ ] 1단계: 메인 소개 (Hero, 프로필, 함께한 날 카운터, 갤러리, 타임라인, SNS 링크) → 배포
-  - CHADOLL 리뉴얼: HOME · ABOUT · MOMENTS 분리, 사진 주제(tag), 매거진 디자인
+  - CHADOLL 리뉴얼: HOME · ABOUT · MOMENTS 분리, 사진 장면 묶음, 매거진 디자인
 - [ ] 2단계: DB 연결 → 차돌이 일기(STORIES 메뉴 열기) + 방명록
 - [ ] 3단계: 차돌이의 친구들 (도감형 사진 카드)
 

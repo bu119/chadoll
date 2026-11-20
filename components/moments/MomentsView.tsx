@@ -2,23 +2,24 @@ import Link from "next/link";
 import { PhotoViewer } from "@/components/moments/PhotoViewer";
 import { SceneSpreads } from "@/components/moments/SceneSpreads";
 import { Kicker } from "@/components/ui/Kicker";
-import { getMoments, getTags, isTag, toMomentPhotos, type Tag } from "@/lib/gallery";
+import { getMoments, getSceneGroups, toMomentPhotos, type GroupId } from "@/lib/gallery";
 
-const chip =
-  "inline-flex min-h-12 items-center rounded-[3px] border px-5 text-lg transition-colors";
+const chip = "inline-flex min-h-12 items-center rounded-[3px] border px-5 text-lg transition-colors";
 
-/** 사진첩 페이지 본문. tag 가 있으면 그 주제의 사진만 보여준다. */
-export function MomentsView({ tag }: { tag?: Tag }) {
-  const scenes = getMoments(tag);
+/** 사진첩 페이지 본문. group 이 있으면 그 주제의 장면만 보여준다. */
+export function MomentsView({ group }: { group?: GroupId }) {
+  const scenes = getMoments(group);
   const photos = toMomentPhotos(scenes);
-  const filters = [{ href: "/moments", label: "전체", current: !tag }].concat(
-    getTags().map((info) => ({ href: `/moments/${info.id}`, label: info.label, current: info.id === tag })),
+  const groups = getSceneGroups();
+  const countOf = (id?: GroupId) => toMomentPhotos(getMoments(id)).length;
+  const filters = [{ href: "/moments", label: "전체", count: countOf(), current: !group }].concat(
+    groups.map((item) => ({
+      href: `/moments/${item.id}`,
+      label: item.title,
+      count: countOf(item.id),
+      current: item.id === group,
+    })),
   );
-  // 주제 버튼에 붙이는 사진 수
-  const countOf = (href: string) => {
-    const id = href.split("/")[2];
-    return toMomentPhotos(getMoments(id && isTag(id) ? id : undefined)).length;
-  };
 
   return (
     <div className="px-5 pb-20 pt-12 sm:px-8 sm:pb-28 sm:pt-16">
@@ -38,9 +39,7 @@ export function MomentsView({ tag }: { tag?: Tag }) {
                   scroll={false}
                   aria-current={filter.current ? "page" : undefined}
                   className={`${chip} ${
-                    filter.current
-                      ? "border-cocoa bg-cocoa text-ivory"
-                      : "border-line text-cocoa hover:border-golden"
+                    filter.current ? "border-cocoa bg-cocoa text-ivory" : "border-line text-cocoa hover:border-golden"
                   }`}
                 >
                   {filter.label}
@@ -48,7 +47,7 @@ export function MomentsView({ tag }: { tag?: Tag }) {
                     className={`ml-2 font-serif text-xl lining-nums ${filter.current ? "text-ivory" : "text-brown"}`}
                   >
                     <span className="sr-only"> </span>
-                    {countOf(filter.href)}
+                    {filter.count}
                     <span className="sr-only">장</span>
                   </span>
                 </Link>
@@ -56,9 +55,28 @@ export function MomentsView({ tag }: { tag?: Tag }) {
             ))}
           </ul>
         </nav>
-        <p className="mt-4 text-base text-brown" aria-live="polite">
+        {/* 사진 수는 주제 버튼에 보이므로, 주제를 바꿀 때 화면 읽기 프로그램에만 알린다. */}
+        <p className="sr-only" aria-live="polite">
           사진 {photos.length}장
         </p>
+
+        {/* 고른 주제의 장면으로 바로 가기. 장면이 하나뿐이면 두지 않는다. */}
+        {scenes.length > 1 ? (
+          <nav aria-label="장면 바로가기" className="mt-4">
+            <ul className="-ml-3 flex flex-wrap">
+              {scenes.map((scene) => (
+                <li key={scene.id}>
+                  <a
+                    href={`#${scene.id}`}
+                    className="inline-flex min-h-12 items-center px-3 text-lg text-brown decoration-golden decoration-2 underline-offset-[7px] hover:text-cocoa hover:underline"
+                  >
+                    {scene.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
 
         <div className="mt-12 sm:mt-16">
           <PhotoViewer photos={photos}>

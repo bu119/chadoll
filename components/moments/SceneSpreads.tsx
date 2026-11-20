@@ -16,22 +16,22 @@ type Spread = "lead" | "pair" | "text" | "strip" | "single";
 
 // 이웃한 장면끼리 다른 방식을 쓴다.
 const spreadOf: Record<SceneId, Spread> = {
+  // lib/gallery.ts 의 장면 순서대로
   puppy: "text",
-  forest: "lead",
-  spring: "text",
-  autumn: "pair",
+  spring: "lead",
+  sea: "pair",
+  autumn: "lead",
   winter: "text",
-  sunny: "lead",
-  sea: "lead",
-  walk: "text",
-  picnic: "pair",
-  cafe: "text",
+  walk: "pair",
   rain: "lead",
-  friends: "pair",
+  picnic: "text",
+  cafe: "lead",
+  snack: "pair",
+  friends: "text",
   closeup: "lead",
 };
 
-/** 주제를 골라 사진 수가 줄면 그 수에 맞는 방식으로 바꾼다. */
+/** 사진이 한두 장뿐인 장면은 그 수에 맞는 방식으로 바꾼다. */
 function pickSpread(scene: GalleryScene): Spread {
   const n = scene.photos.length;
   if (n === 1) return "single";
@@ -107,6 +107,7 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
         return (
           <section
             key={scene.id}
+            id={scene.id}
             aria-labelledby={`scene-${scene.id}`}
             className="grid scroll-mt-24 grid-cols-2 gap-3 sm:gap-4 md:grid-cols-12 md:gap-6"
           >
