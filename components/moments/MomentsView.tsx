@@ -68,7 +68,7 @@ export function MomentsView({ group }: { group?: GroupId }) {
                 <li key={scene.id}>
                   <a
                     href={`#${scene.id}`}
-                    className="inline-flex min-h-12 items-center px-3 text-lg text-brown decoration-golden decoration-2 underline-offset-[7px] hover:text-cocoa hover:underline"
+                    className="inline-flex min-h-12 min-w-12 items-center justify-center px-3 text-lg text-brown decoration-golden decoration-2 underline-offset-[7px] hover:text-cocoa hover:underline"
                   >
                     {scene.title}
                   </a>

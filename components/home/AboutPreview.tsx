@@ -1,7 +1,7 @@
 import { Kicker } from "@/components/ui/Kicker";
 import { MoreLink } from "@/components/ui/MoreLink";
 import { Photo } from "@/components/ui/Photo";
-import { profilePhoto } from "@/lib/gallery";
+import { aboutPreviewPhoto } from "@/lib/gallery";
 import { chadol } from "@/lib/site";
 
 /** 첫 화면의 짧은 소개. 자세한 내용은 /about 에 있다. */
@@ -15,13 +15,12 @@ export function AboutPreview() {
             차돌이는요
           </h2>
           <p className="mt-6 break-keep text-2xl font-medium leading-relaxed text-cocoa">{chadol.personality}</p>
-          <p className="mt-4 max-w-xl break-keep text-xl text-cocoa">{chadol.temper}</p>
           <MoreLink href="/about" className="mt-8">
             차돌이 더 알아보기
           </MoreLink>
         </div>
         <Photo
-          photo={profilePhoto}
+          photo={aboutPreviewPhoto}
           ratio="4/5"
           sizes="(min-width: 768px) 40vw, 100vw"
           className="md:col-span-5 md:col-start-8"

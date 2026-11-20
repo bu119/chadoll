@@ -35,7 +35,7 @@ export const PHOTOS = {
   "gallery-17": 54,
   "gallery-18": 53,
   "gallery-31": 45,
-  "gallery-20": 48,
+  "gallery-20": { n: 48, crop: { left: 0.125, top: 0.16, size: 0.7 } }, // 뒤의 사람 다리를 줄인다
   "gallery-21": { n: 47, crop: { left: 0.18, top: 0.085, size: 0.75 } },
   // 카페
   "gallery-08": { n: 23, crop: { left: 0.155, top: 0.205, size: 0.75 } },
@@ -61,8 +61,8 @@ export const PHOTOS = {
   // 친구들과 (보호자 동의를 받은 사진만)
   "gallery-34": 76,
   "gallery-25": 41,
-  "gallery-26": 49,
-  "gallery-27": 46,
+  "gallery-26": { n: 49, crop: { left: 0.2175, top: 0.188, size: 0.605 } }, // 사람 다리를 줄이려고 최대한 자른다. 정사각형 칸에서 귀끝 털이 살짝 잘리는 것은 보호자 확인. 얼굴 쪽에 여백을 더 둔다
+  "gallery-27": { n: 46, crop: { left: 0.225, top: 0.2, size: 0.65 } },
   // 처음엔 프로필용이었고 지금은 사진첩(카페)에 있다.
   "gallery-28": 58,
   // 가을
@@ -155,4 +155,7 @@ export const PHOTOS = {
   "gallery-114": 134, // 산책길
   "gallery-115": 128, // 가까이서
   "gallery-116": 132, // 가까이서 (gallery-69와 같은 날)
+  "gallery-117": { n: 34, crop: { left: 0.17, top: 0.15, size: 0.75 } }, // 소풍. 보라 돗자리, 꼬리까지 보이게
+  "gallery-118": { n: 92, crop: { left: 0.2, top: 0, width: 0.5625, height: 1 } }, // 더 가까이. 포대기에서 조는 얼굴(푸터 사진과 같은 원본)
+  "gallery-119": { n: 91, crop: { left: 0.12, top: 0.12, size: 0.8 } }, // 더 가까이. 포대기에서 조는 얼굴
 };

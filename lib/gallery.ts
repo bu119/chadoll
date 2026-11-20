@@ -60,6 +60,9 @@ export const heroPhoto: Photo = photo("main", "복슬복슬한 털을 뽐내며 
 /** 프로필 옆에 두는 사진 */
 export const profilePhoto: Photo = photo("gallery-50", "단풍 든 공원 잔디밭에서 정면을 보며 활짝 웃는 차돌이");
 
+/** 첫 화면 짧은 소개 옆 사진. 소개 페이지 첫머리(profilePhoto)와 겹치지 않게 다른 사진을 쓴다. */
+export const aboutPreviewPhoto: Photo = photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이");
+
 /** "차돌이는요" 소개 다섯 칸의 사진 */
 export const traitPhotos: Record<TraitId, Photo> = {
   snack: photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
@@ -91,7 +94,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
       photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
-      photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
     ],
   },
   {
@@ -135,7 +137,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-03", "알록달록한 단풍을 배경으로 잔디밭에 서 있는 차돌이"),
       photo("gallery-44", "숲속에서 정면을 보며 웃는 차돌이"),
       photo("gallery-42", "숲길에서 먼 곳을 바라보는 차돌이 옆얼굴"),
-      photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
       photo("gallery-79", "주황빛 단풍잎이 수북이 쌓인 곳에 들어간 차돌이"),
       photo("gallery-04", "가로수길에서 혀를 내밀고 웃는 차돌이"),
       photo("gallery-54", "잔디밭을 가로질러 달려오는 차돌이"),
@@ -152,11 +153,11 @@ const scenes: GalleryScene[] = [
     title: "겨울",
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
+      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
       photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이"),
       photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이"),
       photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이"),
-      photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
       photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴"),
     ],
   },
@@ -197,7 +198,10 @@ const scenes: GalleryScene[] = [
       photo("gallery-76", "꽃무늬 돗자리 위에서 옆을 바라보며 웃는 차돌이"),
       photo("gallery-17", "민트색 돗자리에 앉아 눈을 감고 활짝 웃는 차돌이"),
       photo("gallery-20", "체크무늬 돗자리 위에 서서 활짝 웃는 차돌이"),
+      photo("gallery-26", "소풍 돗자리 위에서 고개를 들어 올려다보는 차돌이"),
       photo("gallery-18", "풀밭에 편 돗자리 위에 엎드려 쉬는 차돌이"),
+      photo("gallery-27", "체크무늬 돗자리 옆 잔디밭을 걸어오며 웃는 차돌이"),
+      photo("gallery-117", "보라색 하트 무늬 돗자리에 엎드려 옆을 바라보는 차돌이"),
     ],
   },
   {
@@ -238,15 +242,13 @@ const scenes: GalleryScene[] = [
   {
     id: "friends",
     title: "친구들",
-    note: "조용히, 천천히 다가오는 친구가 좋아요.",
+    note: "같이 걸으면 산책이 두 배로 즐거워요.",
     photos: [
       photo("gallery-34", "유모차에 하얀 친구 토리와 나란히 탄 차돌이"),
       photo("gallery-61", "잔디밭에서 호두와 나란히 앉은 차돌이"),
       photo("gallery-60", "소나무 아래에서 초록 옷을 맞춰 입은 소담이와 나란히 앉은 차돌이"),
       photo("gallery-59", "햇살 드는 흙길에서 소담이, 호두와 나란히 선 차돌이"),
       photo("gallery-58", "카페 의자 위에서 노란 패딩을 입은 호두와 함께 창밖을 보는 차돌이"),
-      photo("gallery-26", "돗자리 위에서 친구들과 어울리는 차돌이"),
-      photo("gallery-27", "잔디밭에서 친구와 나란히 선 차돌이"),
       photo("gallery-25", "탁자 옆에서 토리, 소담이와 함께 고개를 내민 차돌이"),
     ],
   },
@@ -257,9 +259,13 @@ const scenes: GalleryScene[] = [
     photos: [
       photo("gallery-69", "반짝이는 배경 앞 하얀 털 방석에 앉아 웃는 차돌이"),
       photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
+      photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
+      photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
       photo("gallery-73", "햇살 아래 복슬복슬한 털로 앉아 웃는 차돌이"),
       photo("gallery-111", "노란 하네스를 하고 앞발을 베고 곤히 자는 차돌이"),
       photo("gallery-70", "단풍잎 장식 사이에서 고개를 갸웃하며 웃는 차돌이"),
+      photo("gallery-118", "체크무늬 포대기 밖으로 얼굴만 내밀고 꾸벅꾸벅 조는 차돌이"),
+      photo("gallery-119", "보호자 품의 포대기 안에서 눈을 반쯤 감고 조는 차돌이"),
       photo("gallery-116", "반짝이는 하늘색 배경 앞에 앉아 옆을 보며 웃는 차돌이"),
       photo("gallery-115", "창가 소파의 가방 위에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-110", "동그란 안경을 쓰고 의자에 앉은 선비 차돌이"),
@@ -326,18 +332,20 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 }
 
 /**
- * ABOUT "솜뭉치에서 신사로": 해마다 한 장, 오래된 순서로 놓는다.
+ * ABOUT "솜뭉치에서 신사로": 해마다 한 장, 오래된 순서로 놓는다. 같은 해라도 나이가 다르면 한 장씩 더 둘 수 있다.
  * 찍은 날(content/photo-dates.json)이 있는 사진만 쓸 수 있고, 나이는 찍은 달로 계산한다.
  * 사진을 바꾸려면 file 만 바꾸면 된다. note 가 없으면 장면 이름을 보여준다.
  */
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
-  { file: "gallery-92" }, // 2016-08 여름
-  { file: "gallery-42", note: "숲길" }, // 2021-11 (사진첩에서는 가을 장면)
-  { file: "gallery-64" }, // 2022-05 봄
-  { file: "gallery-37" }, // 2023-11 겨울
-  { file: "gallery-32" }, // 2024-12 겨울
-  { file: "gallery-79" }, // 2025-11 가을
+  { file: "gallery-87", note: "가방 속 낮잠" }, // 2016-03 1살
+  { file: "gallery-94", note: "공원 산책" }, // 2016-08 2살
+  { file: "gallery-97", note: "나무 데크 산책길" }, // 2021-02 6살
+  { file: "gallery-43", note: "숲길 산책" }, // 2021-11 7살
+  { file: "gallery-64", note: "봄 잔디밭에서" }, // 2022-05
+  { file: "gallery-37", note: "크리스마스트리 앞에서" }, // 2023-11
+  { file: "gallery-32", note: "초록 리본 단 날" }, // 2024-12
+  { file: "gallery-79", note: "단풍잎 더미 속으로" }, // 2025-11
   { file: "gallery-53", note: "오늘도 간식 사냥 중" }, // 2026-10 지금
 ];
 
