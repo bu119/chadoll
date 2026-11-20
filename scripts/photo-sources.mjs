@@ -20,12 +20,12 @@ export const PHOTOS = {
   "gallery-02": 15,
   "gallery-03": 8,
   "gallery-04": 20,
-  "gallery-05": 4,
+  "gallery-05": { n: 4, crop: { left: 0.12, top: 0.135, size: 0.8 } }, // 낙엽 길은 남기고 배경을 조금 줄인다
   "gallery-11": 31,
-  "gallery-12": 25,
+  "gallery-12": { n: 25, crop: { left: 0.2, top: 0.13, size: 0.75 } }, // 잔디밭 오른쪽에 있던 차돌이를 가운데로
   "gallery-13": { n: 36, crop: { left: 0.2, top: 0.19, size: 0.7 } },
   "gallery-14": 40,
-  "gallery-15": 56,
+  "gallery-15": { n: 56, crop: { left: 0.22, top: 0.12, size: 0.75 } }, // 보도블록 오른쪽에 있던 차돌이를 가운데로
   // 비 오는 날
   // 차돌이가 작게 찍혀서 차돌이 중심으로 잘라 쓴다. (crop: 원본 대비 비율)
   "gallery-45": { n: 19, crop: { left: 0.27, top: 0.24, size: 0.62 } },
@@ -43,14 +43,14 @@ export const PHOTOS = {
   "gallery-10": 29,
   "gallery-22": 37,
   "gallery-23": 39,
-  "gallery-30": 50,
+  "gallery-30": { n: 50, crop: { left: 0.01, top: 0.04, size: 0.75 } }, // 꼬리부터 발끝까지 차돌이가 가운데 오게
   // 숲길
   "gallery-42": 122,
   "gallery-43": { n: 121, position: "left" },
   "gallery-44": { n: 120, position: "left" },
   // 햇살 좋은 날
   "gallery-38": 115,
-  "gallery-39": 116,
+  "gallery-39": { n: 116, crop: { left: 0.13, top: 0, width: 0.5625, height: 1 } }, // 가로 원본에서 왼쪽 차돌이 쪽만 3:4로
   "gallery-40": 117,
   "gallery-41": 118,
   // 겨울
@@ -74,7 +74,7 @@ export const PHOTOS = {
   "gallery-51": 21,
   "gallery-52": 26,
   "gallery-53": { n: 30, crop: { left: 0.25, top: 0.26, size: 0.5 } },
-  "gallery-56": 55,
+  "gallery-56": { n: 55, crop: { left: 0.08, top: 0.17, size: 0.8 } }, // 위쪽 커튼을 줄이고 엎드린 차돌이 위주로
   // 2026-11 새로 고른 사진
   "gallery-57": 43, // 카페 (원본이 지워진 gallery-24 대신)
   // 친구들과 (보호자 동의를 받은 사진만)
@@ -110,11 +110,12 @@ export const PHOTOS = {
   "gallery-80": 123,
   // 2026-11 아기 때 사진과 새 사진
   // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
+  // 배경이 바닥뿐인 사진은 차돌이가 가운데 오게 잘라 쓴다.
   "gallery-81": 143,
   "gallery-82": { n: 137, position: "top" }, // 9:16이라 귀가 잘리지 않게 위쪽을 남긴다
-  "gallery-83": 141,
-  "gallery-84": 142,
-  "gallery-85": 138,
+  "gallery-83": { n: 141, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
+  "gallery-84": { n: 142, crop: { left: 0.2, top: 0.15, size: 0.7 } },
+  "gallery-85": { n: 138, crop: { left: 0.2, top: 0, size: 0.7 } },
   "gallery-86": 144,
   "gallery-87": { n: 147, crop: { left: 0.4, top: 0.08, size: 0.6 } }, // 가방 위로 나온 얼굴 쪽
   // 가까이서
@@ -127,7 +128,7 @@ export const PHOTOS = {
   "gallery-92": { n: 148, crop: { left: 0.2, top: 0.28, size: 0.7 } },
   "gallery-93": { n: 149, crop: { left: 0.12, top: 0.2, size: 0.65 } },
   // 산책길
-  "gallery-94": 150,
+  "gallery-94": { n: 150, crop: { left: 0.065, top: 0.15, size: 0.85 } }, // 흙길 배경을 조금 줄인다
   // 겨울
   "gallery-95": 153,
   "gallery-96": 154,
