@@ -16,19 +16,20 @@ type Spread = "lead" | "pair" | "text" | "strip" | "single";
 
 // 이웃한 장면끼리 다른 방식을 쓴다.
 const spreadOf: Record<SceneId, Spread> = {
+  // lib/gallery.ts 의 장면 순서대로
   puppy: "text",
-  spring: "text",
-  autumn: "pair",
+  spring: "lead",
+  sea: "pair",
+  autumn: "lead",
   winter: "text",
   snack: "pair",
-  sunny: "lead",
-  sea: "lead",
   walk: "text",
-  picnic: "pair",
-  cafe: "text",
   rain: "lead",
+  sunny: "pair",
+  picnic: "text",
+  cafe: "lead",
   friends: "pair",
-  closeup: "lead",
+  closeup: "text",
 };
 
 /** 주제를 골라 사진 수가 줄면 그 수에 맞는 방식으로 바꾼다. */
