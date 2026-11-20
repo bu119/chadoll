@@ -88,8 +88,8 @@ export const PHOTOS = {
   "gallery-64": 105,
   "gallery-65": 112,
   "gallery-66": 81,
-  // 여름 바다
-  "gallery-67": 64,
+  // 여름
+  "gallery-67": { n: 64, crop: { left: 0, top: 0.1, size: 0.8 } }, // 파도 앞 차돌이 위주로 살짝. 위쪽 피서객을 줄인다
   "gallery-68": 79,
   // 가까이서
   "gallery-69": 131,
@@ -112,7 +112,7 @@ export const PHOTOS = {
   // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
   // 배경이 바닥뿐인 사진은 차돌이가 가운데 오게 잘라 쓴다.
   "gallery-81": 143,
-  "gallery-82": { n: 137, position: "top" }, // 9:16이라 귀가 잘리지 않게 위쪽을 남긴다
+  "gallery-82": { n: 137, crop: { left: 0.02, top: 0, width: 0.96, height: 0.72 } }, // 9:16. 귀와 앞발이 다 보이게, 아래 가방만 조금 줄인다
   "gallery-83": { n: 141, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
   "gallery-84": { n: 142, crop: { left: 0.2, top: 0.15, size: 0.7 } },
   "gallery-85": { n: 138, crop: { left: 0.2, top: 0, size: 0.7 } },
@@ -124,7 +124,7 @@ export const PHOTOS = {
   "gallery-90": 152,
   // 카페
   "gallery-91": 146,
-  // 여름 바다
+  // 여름
   "gallery-92": { n: 148, crop: { left: 0.2, top: 0.28, size: 0.7 } },
   "gallery-93": { n: 149, crop: { left: 0.12, top: 0.2, size: 0.65 } },
   // 산책길
@@ -134,4 +134,25 @@ export const PHOTOS = {
   "gallery-96": 154,
   // 산책길 (처음엔 푸터 후보였던 데크 길 사진)
   "gallery-97": 125,
+  // 2026-11 새 사진
+  "gallery-98": 136, // 어릴 적 (원본 720×960)
+  "gallery-99": 155, // 여름
+  "gallery-100": 156,
+  "gallery-101": { n: 157, crop: { left: 0.1, top: 0.2, size: 0.6 } }, // 갸우뚱 (소개 "다 알아듣고 있어요"). 차돌이 중심으로
+  "gallery-102": { n: 158, position: "top" }, // 9:16. 아래쪽 인스타 아이디 글씨가 안 보이게 위쪽을 남긴다
+  "gallery-103": 159, // 카페
+  "gallery-104": 160, // 뼈 간식 (소개 "간식 사냥꾼이에요")
+  "gallery-105": 161,
+  "gallery-106": 162, // 여름
+  "gallery-107": { n: 163, crop: { left: 0.17, top: 0, width: 0.42, height: 1 } }, // 가로 사진에서 차돌이 쪽만
+  "gallery-108": { n: 164, crop: { left: 0.22, top: 0, width: 0.42, height: 1 } },
+  "gallery-109": { n: 165, crop: { left: 0.16, top: 0.47, size: 0.53 } }, // 뒤쪽 피서객이 안 나오게 아래쪽만
+  "gallery-110": 166,
+  "gallery-111": { n: 167, crop: { left: 0, top: 0, width: 0.58, height: 1 } }, // 가로 사진에서 자는 얼굴 쪽
+  // 2026-11 날짜를 보호자에게 받은 사진 (원본에 촬영일 없음)
+  "gallery-112": 139, // 어릴 적 (원본 720×960)
+  "gallery-113": { n: 130, crop: { left: 0.2, top: 0, width: 0.75, height: 1 } }, // 산책길. 정사각형 원본에서 오른쪽 귀까지 보이게
+  "gallery-114": 134, // 산책길
+  "gallery-115": 128, // 가까이서
+  "gallery-116": 132, // 가까이서 (gallery-69와 같은 날)
 };

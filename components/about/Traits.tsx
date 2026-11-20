@@ -3,8 +3,9 @@ import { traitPhotos } from "@/lib/gallery";
 import { getTraits, type Trait } from "@/lib/site";
 
 /**
- * 차돌이의 네 가지 모습. 같은 모양 카드를 반복하지 않도록 자리마다 놓는 방식을 바꾼다.
+ * 차돌이의 다섯 가지 모습. 같은 모양 카드를 반복하지 않도록 자리마다 놓는 방식을 바꾼다.
  * 1: 큰 사진 + 글을 오른쪽 아래 / 2: 글을 왼쪽, 정사각형 사진 오른쪽 / 3·4: 두 장을 엇갈려서
+ * 5: 1을 좌우로 뒤집어 글을 왼쪽 아래, 큰 사진을 오른쪽에
  */
 type Place = { wrap: string; photo: string; text: string; ratio: PhotoRatio; sizes: string };
 
@@ -36,6 +37,13 @@ const places: Place[] = [
     text: "md:mt-5",
     ratio: "3/4",
     sizes: "(min-width: 768px) 40vw, 40vw",
+  },
+  {
+    wrap: "md:col-span-full md:grid md:grid-cols-12 md:items-end md:gap-8",
+    photo: "md:order-2 md:col-span-6 md:col-start-7",
+    text: "mt-5 md:order-1 md:col-span-4 md:col-start-2 md:mt-0 md:pb-4",
+    ratio: "4/5",
+    sizes: "(min-width: 768px) 48vw, 100vw",
   },
 ];
 
