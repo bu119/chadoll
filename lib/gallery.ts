@@ -159,6 +159,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-04", "가로수길에서 혀를 내밀고 웃는 차돌이"),
       photo("gallery-02", "단풍나무 아래 잔디밭에서 고개를 갸웃하는 차돌이"),
       photo("gallery-54", "잔디밭을 가로질러 달려오는 차돌이"),
+      photo("gallery-53", "잔디밭에서 이쪽으로 신나게 달려오는 차돌이"),
       photo("gallery-78", "빨갛게 물든 단풍나무 아래 낙엽 길에 선 차돌이"),
       photo("gallery-79", "주황빛 단풍잎이 수북이 쌓인 곳에 들어간 차돌이"),
       photo("gallery-05", "노란 낙엽이 떨어진 길에서 뒤돌아보는 차돌이"),
@@ -363,7 +364,7 @@ const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-37" }, // 2023-11 겨울
   { file: "gallery-32" }, // 2024-12 겨울
   { file: "gallery-79" }, // 2025-11 가을
-  { file: "gallery-01", note: "오늘도 간식 사냥 중" }, // 2026-11 지금
+  { file: "gallery-53", note: "오늘도 간식 사냥 중" }, // 2026-10 지금
 ];
 
 export type GrowthPhoto = MomentPhoto & { taken: string; note: string };
