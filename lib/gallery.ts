@@ -40,6 +40,7 @@ export type Photo = {
 };
 
 export type SceneId =
+  | "puppy"
   | "autumn"
   | "spring"
   | "sea"
@@ -104,6 +105,21 @@ export const farewellPhoto: Photo = photo("gallery-05", "노란 낙엽이 떨어
 
 const scenes: GalleryScene[] = [
   {
+    id: "puppy",
+    tags: ["faces"],
+    title: "어릴 적",
+    note: "손바닥만 하던 때부터 늘 웃는 얼굴이었어요.",
+    photos: [
+      photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
+      photo("gallery-82", "알록달록한 가방 안에서 혀를 내밀고 활짝 웃는 아기 차돌이"),
+      photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
+      photo("gallery-84", "손 아래에서 고개를 갸웃하며 올려다보는 아기 차돌이"),
+      photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
+      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
+      photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
+    ],
+  },
+  {
     id: "forest",
     tags: ["walks"],
     title: "숲길",
@@ -153,6 +169,8 @@ const scenes: GalleryScene[] = [
       photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이", ["faces"]),
       photo("gallery-32", "초록 리본을 양쪽에 달고 웃는 차돌이 옆얼굴", ["faces"]),
       photo("gallery-35", "분홍 털모자를 쓰고 잔디밭에 서 있는 차돌이", ["walks"]),
+      photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이", ["faces"]),
+      photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이", ["faces"]),
     ],
   },
   {
@@ -174,6 +192,8 @@ const scenes: GalleryScene[] = [
     photos: [
       photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
       photo("gallery-68", "파란 파라솔 아래에서 물안경을 쓰고 눈을 감은 차돌이"),
+      photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
+      photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
     ],
   },
   {
@@ -189,6 +209,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-12", "햇살이 드는 잔디밭에서 산책 중인 차돌이"),
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
+      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
     ],
   },
   {
@@ -222,6 +243,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-57", "털을 짧게 다듬고 분홍 하네스를 한 채 카페 러그 위에 선 차돌이"),
       photo("gallery-74", "카페 소파 자리에서 고개를 내밀고 웃는 차돌이"),
       photo("gallery-75", "빵이 담긴 접시 앞 의자에 앉아 웃는 차돌이"),
+      photo("gallery-91", "카페 테라스에서 바람에 귀가 날리며 옆을 보는 차돌이"),
     ],
   },
   {
@@ -262,6 +284,9 @@ const scenes: GalleryScene[] = [
       photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
       photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
       photo("gallery-73", "햇살 아래 복슬복슬한 털로 앉아 웃는 차돌이"),
+      photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
+      photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 간식 사냥꾼 차돌이"),
+      photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 간식 사냥꾼 차돌이"),
     ],
   },
 ];

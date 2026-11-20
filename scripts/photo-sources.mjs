@@ -108,4 +108,27 @@ export const PHOTOS = {
   "gallery-79": 63,
   // 산책길
   "gallery-80": 123,
+  // 2026-11 아기 때 사진과 새 사진
+  // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
+  "gallery-81": 143,
+  "gallery-82": { n: 137, position: "top" }, // 9:16이라 귀가 잘리지 않게 위쪽을 남긴다
+  "gallery-83": 141,
+  "gallery-84": 142,
+  "gallery-85": 138,
+  "gallery-86": 144,
+  "gallery-87": { n: 147, crop: { left: 0.4, top: 0.08, size: 0.6 } }, // 가방 위로 나온 얼굴 쪽
+  // 가까이서
+  "gallery-88": 145,
+  "gallery-89": 151,
+  "gallery-90": 152,
+  // 카페
+  "gallery-91": 146,
+  // 여름 바다
+  "gallery-92": { n: 148, crop: { left: 0.2, top: 0.28, size: 0.7 } },
+  "gallery-93": { n: 149, crop: { left: 0.12, top: 0.2, size: 0.65 } },
+  // 산책길
+  "gallery-94": 150,
+  // 겨울
+  "gallery-95": 153,
+  "gallery-96": 154,
 };
