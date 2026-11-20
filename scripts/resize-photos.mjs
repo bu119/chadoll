@@ -29,8 +29,9 @@ const fitted = async (n, { position = "centre", crop } = {}) => {
     image = image.extract({
       left: Math.round(width * crop.left),
       top: Math.round(height * crop.top),
-      width: Math.round(width * crop.size),
-      height: Math.round(height * crop.size),
+      // size: 가로·세로를 같은 비율로 자른다. 가로 원본은 width·height 로 따로 정한다.
+      width: Math.round(width * (crop.width ?? crop.size)),
+      height: Math.round(height * (crop.height ?? crop.size)),
     });
   }
   return image.resize(WIDTH, HEIGHT, { fit: "cover", position });
