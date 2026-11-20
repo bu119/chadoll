@@ -40,7 +40,7 @@ export const chadol = {
   dislikes: ["소란스러운 것"],
 } as const;
 
-export type TraitId = "adventure" | "cafe" | "cat" | "smart";
+export type TraitId = "snack" | "adventure" | "cafe" | "cat" | "smart";
 
 export type Trait = {
   id: TraitId;
@@ -48,9 +48,10 @@ export type Trait = {
   text: string;
 };
 
-/** "차돌이는요"에서 사진과 짝지어 보여주는 소개 네 가지 */
+/** "차돌이는요"에서 사진과 짝지어 보여주는 소개 다섯 가지. 대표 별명인 간식 사냥꾼을 맨 앞에 둔다. */
 export function getTraits(): Trait[] {
   return [
+    { id: "snack", title: "간식 사냥꾼이에요", text: "별명이 붙을 만큼 간식을 제일 좋아해요. 뼈 간식을 물면 누구보다 진지해져요." },
     { id: "adventure", title: "모험을 좋아해요", text: "처음 가 보는 길일수록 발걸음이 씩씩해져요." },
     { id: "cafe", title: "카페에선 느긋하게", text: "새로운 곳 구경만큼 카페에서 쉬는 시간도 좋아해요." },
     { id: "cat", title: "고양이 같은 강아지", text: "도도해 보여도 간식 하나면 마음의 문이 금방 열려요." },
