@@ -28,7 +28,7 @@ export async function Footer() {
                       className="inline-flex min-h-12 items-center gap-2 font-serif text-base font-semibold tracking-[0.1em] text-cocoa hover:underline hover:underline-offset-[6px]"
                     >
                       {item.label}
-                      <span className="font-sans text-sm font-normal tracking-normal text-brown">{item.hint}</span>
+                      <span className="font-sans text-sm font-normal tracking-normal text-brown md:hidden">{item.hint}</span>
                     </Link>
                   </li>
                 ))}
