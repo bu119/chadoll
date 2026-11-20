@@ -61,7 +61,7 @@ export const PHOTOS = {
   // 친구들과 (보호자 동의를 받은 사진만)
   "gallery-34": 76,
   "gallery-25": 41,
-  "gallery-26": { n: 49, crop: { left: 0.17, top: 0.115, size: 0.72 } }, // 정사각형 자리에서 차돌이가 가운데 오게
+  "gallery-26": { n: 49, crop: { left: 0.182, top: 0.1375, size: 0.7 } }, // 정사각형 자리에서 차돌이가 가운데 오게
   "gallery-27": { n: 46, crop: { left: 0.225, top: 0.2, size: 0.65 } },
   // 처음엔 프로필용이었고 지금은 사진첩(카페)에 있다.
   "gallery-28": 58,
