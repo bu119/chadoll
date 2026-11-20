@@ -24,12 +24,25 @@ function toDayNumber({ year, month, day }: YearMonthDay): number {
   return Math.floor(Date.UTC(year, month - 1, day) / 86_400_000);
 }
 
-/** 차돌이 만 나이. 태어난 날을 몰라서 태어난 달의 1일을 생일로 본다. */
+/** 어느 해·달의 차돌이 만 나이. 태어난 날을 몰라서 태어난 달의 1일을 생일로 본다. */
+function ageIn(year: number, month: number): number {
+  const birth = chadol.birth;
+  const hadBirthdayThisYear = month >= birth.month;
+  return year - birth.year - (hadBirthdayThisYear ? 0 : 1);
+}
+
+/** 차돌이 만 나이 (오늘 기준) */
 export function getAge(now: Date = new Date()): number {
   const today = getSeoulDate(now);
-  const { year, month } = chadol.birth;
-  const hadBirthdayThisYear = today.month >= month;
-  return today.year - year - (hadBirthdayThisYear ? 0 : 1);
+  return ageIn(today.year, today.month);
+}
+
+export type TakenDate = { year: number; month: number; age: number };
+
+/** 사진 찍은 달("2021-11")과 그때 차돌이 만 나이 */
+export function getTakenDate(taken: string): TakenDate {
+  const [year, month] = taken.split("-").map(Number);
+  return { year, month, age: ageIn(year, month) };
 }
 
 /** 함께한 일수. 우리 집에 온 날을 1일째로 센다. */

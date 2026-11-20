@@ -1,4 +1,8 @@
+import photoDates from "@/content/photo-dates.json";
 import type { TraitId } from "@/lib/site";
+
+/** 사진 찍은 달. scripts/photo-dates.mjs 가 원본에서 읽어 만들고, 없는 것은 손으로 채운다. */
+const takenDates: Record<string, string | null> = photoDates;
 
 /**
  * 사진 주제. 차돌이가 좋아하는 것을 기준으로 나눈다. 한 사진이 여러 주제에 들 수 있다.
@@ -31,6 +35,8 @@ export type Photo = {
   height: number;
   /** 장면의 주제 말고 이 사진에만 더 붙는 주제 */
   tags?: Tag[];
+  /** 찍은 달 (예: "2019-05"). 모르면 없다. */
+  taken?: string;
 };
 
 export type SceneId =
@@ -64,7 +70,15 @@ const size = { width: 1200, height: 1600 };
 
 /** 파일 이름은 scripts/resize-photos.mjs 의 표와 같아야 한다. */
 function photo(file: string, alt: string, extraTags?: Tag[]): Photo {
-  return { id: file, src: `/images/home/${file}.jpg`, alt, ...size, ...(extraTags ? { tags: extraTags } : {}) };
+  const taken = takenDates[file];
+  return {
+    id: file,
+    src: `/images/home/${file}.jpg`,
+    alt,
+    ...size,
+    ...(extraTags ? { tags: extraTags } : {}),
+    ...(taken ? { taken } : {}),
+  };
 }
 
 /** 표지 사진 */
