@@ -61,7 +61,7 @@ export const PHOTOS = {
   // 친구들과 (보호자 동의를 받은 사진만)
   "gallery-34": 76,
   "gallery-25": 41,
-  "gallery-26": { n: 49, crop: { left: 0.169, top: 0.109, size: 0.725 } }, // 정사각형 자리에서 하얀 강아지 머리 윗선까지 보이게
+  "gallery-26": { n: 49, crop: { left: 0.192, top: 0.145, size: 0.68 } }, // 정사각형 칸에서 귀·발 끝에 살짝 여유만 두고 최대한 자른다
   "gallery-27": { n: 46, crop: { left: 0.225, top: 0.2, size: 0.65 } },
   // 처음엔 프로필용이었고 지금은 사진첩(카페)에 있다.
   "gallery-28": 58,
