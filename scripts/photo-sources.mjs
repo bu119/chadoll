@@ -112,7 +112,7 @@ export const PHOTOS = {
   // 어릴 적 (137·138·141·142는 원본이 720×960으로 작아서 작은 자리에 둔다)
   // 배경이 바닥뿐인 사진은 차돌이가 가운데 오게 잘라 쓴다.
   "gallery-81": 143,
-  "gallery-82": { n: 137, position: "top" }, // 9:16이라 귀가 잘리지 않게 위쪽을 남긴다
+  "gallery-82": { n: 137, crop: { left: 0.06, top: 0, width: 0.88, height: 0.66 } }, // 9:16. 귀는 맨 위에 두고 아래 가방을 줄여 몸이 가운데 오게
   "gallery-83": { n: 141, crop: { left: 0.08, top: 0, size: 0.7 } }, // 바닥보다 차돌이 위주로
   "gallery-84": { n: 142, crop: { left: 0.2, top: 0.15, size: 0.7 } },
   "gallery-85": { n: 138, crop: { left: 0.2, top: 0, size: 0.7 } },
@@ -138,7 +138,7 @@ export const PHOTOS = {
   "gallery-98": 136, // 어릴 적 (원본 720×960)
   "gallery-99": 155, // 여름 바다
   "gallery-100": 156,
-  "gallery-101": 157, // 갸우뚱 (소개 "다 알아듣고 있어요")
+  "gallery-101": { n: 157, crop: { left: 0.1, top: 0.2, size: 0.6 } }, // 갸우뚱 (소개 "다 알아듣고 있어요"). 차돌이 중심으로
   "gallery-102": { n: 158, position: "top" }, // 9:16. 아래쪽 인스타 아이디 글씨가 안 보이게 위쪽을 남긴다
   "gallery-103": 159, // 카페
   "gallery-104": 160, // 뼈 간식 (소개 "간식 사냥꾼이에요")
