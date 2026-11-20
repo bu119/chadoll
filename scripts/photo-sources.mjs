@@ -131,4 +131,6 @@ export const PHOTOS = {
   // 겨울
   "gallery-95": 153,
   "gallery-96": 154,
+  // 산책길 (처음엔 푸터 후보였던 데크 길 사진)
+  "gallery-97": 125,
 };

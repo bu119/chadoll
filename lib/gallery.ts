@@ -158,6 +158,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-54", "잔디밭을 가로질러 달려오는 차돌이"),
       photo("gallery-78", "빨갛게 물든 단풍나무 아래 낙엽 길에 선 차돌이"),
       photo("gallery-79", "주황빛 단풍잎이 수북이 쌓인 곳에 들어간 차돌이"),
+      photo("gallery-05", "노란 낙엽이 떨어진 길에서 뒤돌아보는 차돌이"),
     ],
   },
   {
@@ -211,6 +212,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
       photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
+      photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
     ],
   },
   {
