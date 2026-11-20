@@ -130,6 +130,7 @@ public/images/        home/ diary/ friends/
   - 포인트색은 노란 리드줄색(`leash`) 하나뿐이고, 리드줄 선(`LeashLine`)은 표지와 함께한 날 두 곳에만 쓴다.
 - 글꼴은 두 가지만 쓴다.
   - 한글 본문·제목: SUIT Variable (`app/fonts/SUIT-Variable.woff2`, next/font/local, `font-sans`). 본문 400, 소제목 600, 제목 700.
+    파일은 자주 쓰는 한글 2,350자 + 영문·기호, 굵기 400–700만 남긴 것이다(`node scripts/subset-font.mjs`로 다시 만든다). 빠진 글자는 시스템 글꼴로 보이고, 400–700 밖의 굵기는 쓰지 않는다.
   - 영문: Jost (next/font/google, `font-serif`). 로고(CHADOLL), 서브타이틀(이탤릭), 섹션 위 라벨(`Kicker`), 메뉴, 숫자에만 쓴다. 숫자는 `lining-nums`. 영문 글꼴 안에 섞인 한글(예: "4,503일"의 "일")은 SUIT로 보인다.
 - 섹션 제목 구조: 영문 라벨(`Kicker`, 메뉴 이름과 같은 단어만) → 한글 제목 → 본문 → 사진. 장식용 영문 문구는 더하지 않는다.
 - 사진은 원본(3:4)을 기준으로 배치에 맞춰 3:4 · 4:5 · 1:1로 자른다(`components/ui/Photo.tsx`의 `ratio`). 푸터 사진만 가로 3:2(`ratio="wide"`, 데스크톱에서는 옆 글 높이에 맞춤)로 쓰고, 파일은 `resize-photos.mjs`의 `FAREWELL`로 따로 만든다. 테두리·그림자 없이 모서리만 아주 살짝(3px).

@@ -8,10 +8,11 @@ import { getSiteUrl, site } from "@/lib/site";
 import "./globals.css";
 
 // 한글 본문·제목: SUIT Variable (OFL-1.1, app/fonts/SUIT-LICENSE.txt)
+// 자주 쓰는 한글 2,350자와 굵기 400–700 만 남긴 파일이다. 다시 만들기: node scripts/subset-font.mjs
 const suit = localFont({
   src: "./fonts/SUIT-Variable.woff2",
   variable: "--font-suit",
-  weight: "100 900",
+  weight: "400 700",
   display: "swap",
 });
 
