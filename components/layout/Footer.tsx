@@ -39,12 +39,12 @@ export async function Footer() {
             © {year} {site.name}. 차돌이 사진은 허락 없이 가져가지 말아 주세요.
           </p>
         </div>
-        {/* 휴대폰은 푸터 맨 위, 데스크톱은 글 오른쪽에 크게 */}
+        {/* 휴대폰은 푸터 맨 위, 데스크톱은 글 오른쪽에 글과 같은 높이로 */}
         <Photo
           photo={farewellPhoto}
           ratio="wide"
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="order-first md:order-none md:col-span-6 md:col-start-7 md:self-end"
+          className="order-first md:order-none md:col-span-6 md:col-start-7"
         />
       </div>
     </footer>
