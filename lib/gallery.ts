@@ -339,7 +339,7 @@ export function toMomentPhotos(list: GalleryScene[]): MomentPhoto[] {
 const growthFiles: { file: string; note?: string }[] = [
   { file: "gallery-82", note: "우리 집에 온 해" }, // 2014-07 생후 3개월
   { file: "gallery-94", note: "바다로 떠난 여름" }, // 2016-08
-  { file: "gallery-42", note: "숲길 산책" }, // 2021-11
+  { file: "gallery-43", note: "숲길 산책" }, // 2021-11
   { file: "gallery-64", note: "봄 잔디밭에서" }, // 2022-05
   { file: "gallery-37", note: "크리스마스트리 앞에서" }, // 2023-11
   { file: "gallery-32", note: "초록 리본 단 날" }, // 2024-12
