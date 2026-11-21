@@ -19,6 +19,8 @@ export type Photo = {
 
 export type SceneId =
   | "puppy"
+  | "age-one"
+  | "age-two"
   | "autumn"
   | "spring"
   | "sea"
@@ -29,7 +31,6 @@ export type SceneId =
   | "picnic"
   | "cafe"
   | "rain"
-  | "lake"
   | "friends";
 
 /** 크게 보기에서 쓰는 사진: 어느 장면의 사진인지 함께 담는다. */
@@ -87,7 +88,7 @@ export const farewellPhoto: Photo = {
 const scenes: GalleryScene[] = [
   {
     id: "puppy",
-    title: "아기 차돌",
+    title: "솜뭉치 시절",
     note: "손바닥만 하던 때부터 늘 웃는 얼굴이었어요.",
     photos: [
       photo("gallery-82", "알록달록한 담요 위에서 혀를 내밀고 활짝 웃는 아기 차돌이"),
@@ -99,8 +100,47 @@ const scenes: GalleryScene[] = [
       photo("gallery-121", "종이 상자 밖으로 얼굴을 내민 아기 차돌이", { focus: "top" }),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
       photo("gallery-122", "벌러덩 누워 보호자 손을 꼭 잡은 아기 차돌이"),
+      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
       photo("gallery-123", "얼룩말 무늬 담요 앞에서 올려다보는 어린 차돌이"),
+      photo("gallery-134", "아파트 단지 산책길을 신나게 달려오는 차돌이"),
+      photo("gallery-135", "보도블록 위를 혀를 내밀고 달려오는 차돌이"),
+      photo("gallery-136", "햇살 아래 보도블록을 달려오는 차돌이"),
+    ],
+  },
+  {
+    id: "age-one",
+    title: "한 살",
+    note: "첫 돌을 지나며 털도 웃음도 한층 풍성해졌어요.",
+    photos: [
+      photo("gallery-140", "호숫가 데크 난간 앞에서 혀를 내밀고 웃는 차돌이"),
+      photo("gallery-125", "벚꽃잎이 떨어진 보도블록에 앉아 입을 벌리고 웃는 차돌이"),
+      photo("gallery-126", "벚꽃잎 깔린 길에 앉아 올려다보며 웃는 차돌이"),
+      photo("gallery-127", "벚꽃잎 길에서 무릎 앞으로 다가와 활짝 웃는 차돌이"),
       photo("gallery-124", "하얀 털옷을 입고 귀를 쫑긋 세운 어린 차돌이"),
+      photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
+      photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
+      photo("gallery-91", "카페 테라스에서 바람에 귀가 날리며 옆을 보는 차돌이"),
+      photo("gallery-141", "호숫가 데크에서 눈을 감고 바람을 맞는 차돌이"),
+      photo("gallery-142", "호숫가 데크에서 꼬리를 세우고 올려다보며 웃는 차돌이"),
+    ],
+  },
+  {
+    id: "age-two",
+    title: "두 살",
+    note: "바다도 눈길도 씩씩하게 걸었지만 아직 아기 티가 나요.",
+    photos: [
+      photo("gallery-129", "파란 패딩을 입고 보호자 손에 앞발을 올린 차돌이"),
+      photo("gallery-137", "나무 옆 흙길에서 활짝 웃는 차돌이"),
+      photo("gallery-138", "보도블록 위에서 꼬리를 세우고 뒤돌아 웃는 차돌이"),
+      photo("gallery-139", "복슬복슬한 꼬리를 세우고 고개를 돌려 웃는 차돌이"),
+      photo("gallery-143", "호수가 보이는 데크 난간 앞에서 웃는 차돌이"),
+      photo("gallery-128", "빨간 하네스를 하고 파도 치는 모래사장을 걸어가는 차돌이"),
+      photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
+      photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
+      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
+      photo("gallery-130", "마른 잔디 돌길에 앉아 활짝 웃는 차돌이"),
+      photo("gallery-131", "돌길 위에서 혀를 내밀고 올려다보는 차돌이 얼굴"),
+      photo("gallery-145", "꽃무늬 이불 위에서 분홍 헤어롤을 앞발로 잡고 씹는 차돌이"),
     ],
   },
   {
@@ -109,9 +149,6 @@ const scenes: GalleryScene[] = [
     note: "연둣빛 잔디 위에서는 발걸음이 가벼워요.",
     photos: [
       photo("gallery-62", "햇살 드는 초록 잔디밭 돌길 위에 선 차돌이"),
-      photo("gallery-127", "벚꽃잎 길에서 무릎 앞으로 다가와 활짝 웃는 차돌이"),
-      photo("gallery-125", "벚꽃잎이 떨어진 보도블록에 앉아 입을 벌리고 웃는 차돌이"),
-      photo("gallery-126", "벚꽃잎 깔린 길에 앉아 올려다보며 웃는 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
       photo("gallery-65", "노란 하네스에 손수건을 두르고 옆을 바라보는 차돌이"),
       photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
@@ -125,10 +162,6 @@ const scenes: GalleryScene[] = [
     note: "뜨거운 햇살 아래서도, 파도 앞에서도 의젓해요.",
     photos: [
       photo("gallery-67", "파도가 밀려오는 모래사장에 선 차돌이"),
-      photo("gallery-128", "빨간 하네스를 하고 파도 치는 모래사장을 걸어가는 차돌이"),
-      photo("gallery-92", "빨간 하네스를 하고 모래사장에 앉아 바다 쪽을 보는 차돌이"),
-      photo("gallery-93", "빨간 하네스를 하고 모래사장에 서서 바다를 바라보는 차돌이"),
-      photo("gallery-94", "빨간 하네스를 하고 흙길에서 혀를 내밀며 올려다보는 차돌이"),
       photo("gallery-66", "구름 낀 하늘 아래 잔디밭에서 웃는 차돌이"),
       photo("gallery-68", "파란 파라솔 아래에서 물안경을 쓰고 눈을 감은 차돌이"),
       photo("gallery-106", "품에 안겨 바다 쪽을 바라보는 차돌이 옆얼굴"),
@@ -165,9 +198,6 @@ const scenes: GalleryScene[] = [
     note: "리본도 털모자도 차돌이가 하면 다 어울려요.",
     photos: [
       photo("gallery-33", "초록 리본을 달고 초록 옷을 입은 채 웃는 차돌이"),
-      photo("gallery-129", "파란 패딩을 입고 보호자 손에 앞발을 올린 차돌이"),
-      photo("gallery-130", "마른 잔디 돌길에 앉아 활짝 웃는 차돌이"),
-      photo("gallery-131", "돌길 위에서 혀를 내밀고 올려다보는 차돌이 얼굴"),
       photo("gallery-37", "크리스마스트리 앞 하얀 러그에 앉은 차돌이"),
       photo("gallery-95", "크리스마스트리 앞 하얀 털 러그에 엎드려 활짝 웃는 차돌이"),
       photo("gallery-96", "크리스마스트리 옆 하얀 털 러그에 앉아 옆을 바라보는 차돌이"),
@@ -183,12 +213,6 @@ const scenes: GalleryScene[] = [
     note: "매일 걷는 길도 차돌이랑 걸으면 새로워요.",
     photos: [
       photo("gallery-13", "햇살 드는 푸른 풀밭에 서서 옆을 바라보는 차돌이"),
-      photo("gallery-134", "아파트 단지 산책길을 신나게 달려오는 차돌이"),
-      photo("gallery-135", "보도블록 위를 혀를 내밀고 달려오는 차돌이"),
-      photo("gallery-136", "햇살 아래 보도블록을 달려오는 차돌이"),
-      photo("gallery-137", "나무 옆 흙길에서 활짝 웃는 차돌이"),
-      photo("gallery-138", "보도블록 위에서 꼬리를 세우고 뒤돌아 웃는 차돌이"),
-      photo("gallery-139", "복슬복슬한 꼬리를 세우고 고개를 돌려 웃는 차돌이"),
       photo("gallery-80", "나무 데크 길에서 활짝 웃으며 다가오는 차돌이"),
       photo("gallery-97", "나무 데크 위에서 혀를 내밀고 활짝 웃는 차돌이"),
       photo("gallery-113", "마른 잔디 돌길에서 혀를 내밀고 옆을 보는 차돌이"),
@@ -197,17 +221,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-12", "햇살이 드는 잔디밭에서 산책 중인 차돌이"),
       photo("gallery-11", "넓은 잔디밭을 신나게 달려오는 차돌이"),
       photo("gallery-01", "공원 돌길을 따라 씩씩하게 걸어오는 차돌이"),
-    ],
-  },
-  {
-    id: "lake",
-    title: "호숫가",
-    note: "물가 데크를 걸으면 바람이 시원해요.",
-    photos: [
-      photo("gallery-140", "호숫가 데크 난간 앞에서 혀를 내밀고 웃는 차돌이"),
-      photo("gallery-141", "호숫가 데크에서 눈을 감고 바람을 맞는 차돌이"),
-      photo("gallery-142", "호숫가 데크에서 꼬리를 세우고 올려다보며 웃는 차돌이"),
-      photo("gallery-143", "호수가 보이는 데크 난간 앞에서 웃는 차돌이"),
     ],
   },
   {
@@ -243,7 +256,6 @@ const scenes: GalleryScene[] = [
     note: "얌전히 앉아 기다리는 건 차돌이 특기예요.",
     photos: [
       photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이"),
-      photo("gallery-91", "카페 테라스에서 바람에 귀가 날리며 옆을 보는 차돌이"),
       photo("gallery-38", "햇살 드는 나무 데크 위에 서서 올려다보는 차돌이"),
       photo("gallery-39", "테라스 의자에 놓인 겉옷 옆에 앉은 차돌이"),
       photo("gallery-40", "햇살 드는 테라스에서 혀로 코를 핥는 차돌이"),
@@ -266,7 +278,6 @@ const scenes: GalleryScene[] = [
     note: "간식 앞에서는 누구보다 진지해요.",
     photos: [
       photo("gallery-104", "'차돌' 이름표 하네스를 하고 뼈 간식을 꼭 문 차돌이"),
-      photo("gallery-86", "담요 위에 엎드려 뼈 간식을 앞에 둔 어린 차돌이"),
       photo("gallery-89", "뼈 간식을 물고 옆을 바라보는 차돌이"),
       photo("gallery-90", "뼈 간식을 입에 물고 정면을 보는 차돌이"),
       photo("gallery-15", "주황 조끼를 입고 산책하다 뼈 간식을 물고 올려다보는 차돌이"),
@@ -291,9 +302,6 @@ const scenes: GalleryScene[] = [
     note: "가까이 보면 더 복슬복슬해요.",
     photos: [
       photo("gallery-69", "반짝이는 배경 앞 하얀 털 방석에 앉아 웃는 차돌이"),
-      photo("gallery-88", "흙바닥 위에서 입을 벌리고 올려다보는 차돌이 얼굴"),
-      photo("gallery-87", "땡땡이 가방 밖으로 얼굴만 내밀고 조는 차돌이"),
-      photo("gallery-145", "꽃무늬 이불 위에서 분홍 헤어롤을 앞발로 잡고 씹는 차돌이"),
       photo("gallery-144", "하늘색 나비넥타이를 하고 벤치에 앉아 웃는 차돌이"),
       photo("gallery-146", "하늘색 담요 위에서 햇살을 받으며 조는 차돌이"),
       photo("gallery-43", "숲속 평상 위에서 활짝 웃는 차돌이"),
@@ -318,9 +326,9 @@ const scenes: GalleryScene[] = [
  * id 는 주제별 페이지 주소(/moments/[id])로 쓴다.
  */
 const sceneGroups = [
-  { id: "baby", title: "아기 차돌", scenes: ["puppy"] },
+  { id: "baby", title: "아기 차돌", scenes: ["puppy", "age-one", "age-two"] },
   { id: "seasons", title: "사계절", scenes: ["spring", "sea", "autumn", "winter"] },
-  { id: "walks", title: "산책", scenes: ["walk", "lake", "rain"] },
+  { id: "walks", title: "산책", scenes: ["walk", "rain"] },
   { id: "picnic", title: "소풍", scenes: ["picnic"] },
   { id: "cafe", title: "카페", scenes: ["cafe"] },
   { id: "snack", title: "간식 사냥꾼", scenes: ["snack"] },

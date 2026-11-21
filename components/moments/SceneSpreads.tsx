@@ -18,12 +18,13 @@ type Spread = "lead" | "pair" | "text" | "strip" | "single";
 const spreadOf: Record<SceneId, Spread> = {
   // lib/gallery.ts 의 장면 순서대로
   puppy: "text",
-  spring: "lead",
+  "age-one": "pair",
+  "age-two": "lead",
+  spring: "text",
   sea: "pair",
   autumn: "lead",
   winter: "text",
   walk: "pair",
-  lake: "text",
   rain: "lead",
   picnic: "text",
   cafe: "lead",
