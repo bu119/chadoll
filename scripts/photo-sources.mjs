@@ -184,7 +184,7 @@ export const PHOTOS = {
   "gallery-134": { n: 174, crop: { left: 0.15, top: 0.3, size: 0.65 } }, // 아파트를 줄이고 달려오는 차돌이 위주로
   "gallery-135": { n: 175, crop: { left: 0.2, top: 0.25, size: 0.7 } },
   "gallery-136": { n: 189, crop: { left: 0.05, top: 0.28, size: 0.7 } },
-  "gallery-137": { n: 180, crop: { left: 0.12, top: 0.15, size: 0.8 } }, // 위쪽 사람 다리를 줄인다
+  "gallery-137": { n: 180, crop: { left: 0.18, top: 0.09, size: 0.7 } }, // 차돌이를 가운데로, 아래 흙바닥을 줄인다
   "gallery-138": { n: 181, crop: { left: 0, top: 0.12, size: 0.88 } }, // 위쪽 신발을 줄인다
   "gallery-139": { n: 182, crop: { left: 0.24, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 얼굴 쪽
   // 호숫가
