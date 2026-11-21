@@ -169,7 +169,7 @@ export const PHOTOS = {
   "gallery-123": 176, // 원본 750×1000
   "gallery-124": 186, // 정사각형 원본
   // 봄
-  "gallery-125": 187,
+  "gallery-125": { n: 187, crop: { left: 0.1, top: 0.1, size: 0.9 } }, // 가장자리만 살짝 줄여 차돌이를 가운데로 (솜뭉치에서 신사로 2015 · 1살)
   "gallery-126": 188,
   "gallery-127": { n: 2, ext: "png", crop: { left: 0.18, top: 0.04, width: 0.66, height: 0.665 } }, // 아래쪽 무릎이 덜 나오게 얼굴 쪽만
   // 여름
