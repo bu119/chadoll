@@ -185,7 +185,7 @@ export const PHOTOS = {
   "gallery-135": { n: 175, crop: { left: 0.2, top: 0.25, size: 0.7 } },
   "gallery-136": { n: 189, crop: { left: 0.05, top: 0.28, size: 0.7 } },
   "gallery-137": { n: 180, crop: { left: 0.18, top: 0.09, size: 0.7 } }, // 차돌이를 가운데로, 아래 흙바닥을 줄인다
-  "gallery-138": { n: 181, crop: { left: 0, top: 0.12, size: 0.88 } }, // 위쪽 신발을 줄인다
+  "gallery-138": { n: 181, crop: { left: 0, top: 0, size: 0.93 } }, // 꼬리부터 얼굴까지 남기고 차돌이를 가운데로
   "gallery-139": { n: 182, crop: { left: 0.24, top: 0, width: 0.5625, height: 1 } }, // 가로 사진에서 얼굴 쪽
   // 호숫가
   "gallery-140": 183,
