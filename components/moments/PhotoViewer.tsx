@@ -296,7 +296,13 @@ export function PhotoButton({ photo, sizes, className = "" }: PhotoButtonProps) 
       aria-label={`${photo.alt} 사진 크게 보기`}
       className={`relative w-full cursor-zoom-in ${photoShape} ${className}`}
     >
-      <Image src={photo.src} alt={photo.alt} fill sizes={sizes} className="object-cover" />
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        fill
+        sizes={sizes}
+        className={photo.focus === "top" ? "object-cover object-top" : "object-cover"}
+      />
     </button>
   );
 }

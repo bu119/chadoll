@@ -13,6 +13,8 @@ export type Photo = {
   height: number;
   /** 찍은 달 (예: "2019-05"). 모르면 없다. */
   taken?: string;
+  /** 정사각형 칸처럼 더 자를 때 남길 쪽. 귀가 사진 맨 위에 닿은 사진은 "top" 으로 귀가 잘리지 않게 한다. */
+  focus?: "top";
 };
 
 export type SceneId =
@@ -44,7 +46,7 @@ export type GalleryScene = {
 const size = { width: 1200, height: 1600 };
 
 /** 파일 이름은 scripts/resize-photos.mjs 의 표와 같아야 한다. */
-function photo(file: string, alt: string): Photo {
+function photo(file: string, alt: string, { focus }: { focus?: Photo["focus"] } = {}): Photo {
   const taken = takenDates[file];
   return {
     id: file,
@@ -52,6 +54,7 @@ function photo(file: string, alt: string): Photo {
     alt,
     ...size,
     ...(taken ? { taken } : {}),
+    ...(focus ? { focus } : {}),
   };
 }
 
@@ -93,7 +96,7 @@ const scenes: GalleryScene[] = [
       photo("gallery-112", "마룻바닥에 엎드려 손가락에 코를 대는 아기 차돌이"),
       photo("gallery-83", "마룻바닥에 얌전히 앉아 아래를 내려다보는 아기 차돌이"),
       photo("gallery-85", "하얀 바닥에 앉아 이쪽을 보는 솜뭉치 같은 아기 차돌이"),
-      photo("gallery-121", "종이 상자 밖으로 얼굴을 내민 아기 차돌이"),
+      photo("gallery-121", "종이 상자 밖으로 얼굴을 내민 아기 차돌이", { focus: "top" }),
       photo("gallery-81", "까만 눈으로 이쪽을 가만히 바라보는 어린 차돌이 얼굴"),
       photo("gallery-122", "벌러덩 누워 보호자 손을 꼭 잡은 아기 차돌이"),
       photo("gallery-123", "얼룩말 무늬 담요 앞에서 올려다보는 어린 차돌이"),
