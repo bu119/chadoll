@@ -97,7 +97,7 @@ export const PHOTOS = {
   // 가까이서
   "gallery-69": 131,
   "gallery-70": 93,
-  "gallery-71": 109,
+  "gallery-71": { n: 109, crop: { left: 0.1, top: 0.025, size: 0.893 } }, // 얼굴을 가운데로
   "gallery-72": 107,
   "gallery-73": 129,
   // 카페
