@@ -106,6 +106,7 @@ const scenes: GalleryScene[] = [
     note: "연둣빛 잔디 위에서는 발걸음이 가벼워요.",
     photos: [
       photo("gallery-62", "햇살 드는 초록 잔디밭 돌길 위에 선 차돌이"),
+      photo("gallery-127", "벚꽃잎 길에서 무릎 앞으로 다가와 활짝 웃는 차돌이"),
       photo("gallery-125", "벚꽃잎이 떨어진 보도블록에 앉아 입을 벌리고 웃는 차돌이"),
       photo("gallery-126", "벚꽃잎 깔린 길에 앉아 올려다보며 웃는 차돌이"),
       photo("gallery-64", "나무가 우거진 공원 잔디밭에 얌전히 앉은 차돌이"),
@@ -113,7 +114,6 @@ const scenes: GalleryScene[] = [
       photo("gallery-71", "혀를 내밀고 활짝 웃는 차돌이 얼굴"),
       photo("gallery-72", "초록 나무를 배경으로 옆을 바라보는 차돌이 얼굴"),
       photo("gallery-63", "초록 잔디에 앉아 노란 하네스를 하고 하늘을 올려다보는 차돌이"),
-      photo("gallery-127", "벚꽃잎 길에서 무릎 앞으로 다가와 활짝 웃는 차돌이"),
     ],
   },
   {
