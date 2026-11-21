@@ -73,7 +73,7 @@ export const PHOTOS = {
   "gallery-49": { n: 9, crop: { left: 0.155, top: 0.2, size: 0.75 } }, // 위쪽 아파트는 잘라낸다
   "gallery-54": { n: 32, crop: { left: 0.29, top: 0.26, size: 0.42 } },
   // 프로필과 "차돌이는요" 소개 네 칸
-  "gallery-50": 16,
+  "gallery-50": { n: 16, crop: { left: 0.1, top: 0.17, size: 0.75 } }, // ABOUT 첫머리. 공원 배경을 조금 줄이고 차돌이 위주로
   "gallery-51": 21,
   "gallery-52": 26,
   "gallery-53": { n: 30, crop: { left: 0.25, top: 0.26, size: 0.5 } },
