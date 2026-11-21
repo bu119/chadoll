@@ -30,7 +30,14 @@ export function Photo({ photo, sizes, ratio = "3/4", caption, preload = false, c
   return (
     <figure className={className}>
       <div className={`relative ${ratioClass[ratio]} ${photoShape}`}>
-        <Image src={photo.src} alt={photo.alt} fill preload={preload} sizes={sizes} className="object-cover" />
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          preload={preload}
+          sizes={sizes}
+          className={photo.focus === "top" ? "object-cover object-top" : "object-cover"}
+        />
       </div>
       {caption ? <figcaption className="mt-3 break-keep text-base text-brown">{caption}</figcaption> : null}
     </figure>

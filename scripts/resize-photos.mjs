@@ -19,10 +19,10 @@ const FAREWELL_SIZE = { width: 1800, height: 1200 };
 const ICON = { n: 1, left: 158, top: 112, size: 810 };
 
 // 가로 사진은 세로(3:4)로 자른다. position 으로 남길 쪽을 정한다.
-const fitted = async (n, { position = "centre", crop } = {}) => {
-  let image = sharp(source(n)).rotate(); // rotate: EXIF 방향 보정
+const fitted = async (n, { position = "centre", crop, ext } = {}) => {
+  let image = sharp(source(n, ext)).rotate(); // rotate: EXIF 방향 보정
   if (crop) {
-    const meta = await sharp(source(n)).metadata();
+    const meta = await sharp(source(n, ext)).metadata();
     const turned = (meta.orientation ?? 1) >= 5; // 옆으로 누운 원본은 가로·세로가 바뀐다
     const width = turned ? meta.height : meta.width;
     const height = turned ? meta.width : meta.height;
@@ -42,7 +42,7 @@ async function resize(name, entry) {
   const out = path.join(OUT_DIR, `${name}.jpg`);
   await (await fitted(n, options)).jpeg({ quality: QUALITY, mozjpeg: true }).toFile(out);
   const { size } = await stat(out);
-  console.log(`${name}.jpg  ← 김차돌 (${n}).jpg  ${(size / 1024).toFixed(0)}KB`);
+  console.log(`${name}.jpg  ← 김차돌 (${n}).${options.ext ?? "jpg"}  ${(size / 1024).toFixed(0)}KB`);
 }
 
 await mkdir(OUT_DIR, { recursive: true });
