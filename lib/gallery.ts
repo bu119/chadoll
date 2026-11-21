@@ -66,7 +66,7 @@ export const heroPhoto: Photo = photo("main", "복슬복슬한 털을 뽐내며 
 export const profilePhoto: Photo = photo("gallery-50", "단풍 든 공원 잔디밭에서 정면을 보며 활짝 웃는 차돌이");
 
 /** 첫 화면 짧은 소개 옆 사진. 소개 페이지 첫머리(profilePhoto)와 겹치지 않게 다른 사진을 쓴다. */
-export const aboutPreviewPhoto: Photo = photo("gallery-120", "혀를 살짝 내밀고 활짝 웃는 차돌이 얼굴");
+export const aboutPreviewPhoto: Photo = photo("gallery-08", "카페 바닥에서 혀를 내밀고 신난 차돌이");
 
 /** "차돌이는요" 소개 다섯 칸의 사진 */
 export const traitPhotos: Record<TraitId, Photo> = {
