@@ -294,14 +294,15 @@ export function PhotoButton({ photo, sizes, className = "" }: PhotoButtonProps) 
       data-photo-id={photo.id}
       onClick={(event) => open?.(photo.id, event.currentTarget)}
       aria-label={`${photo.alt} 사진 크게 보기`}
-      className={`relative w-full cursor-zoom-in ${photoShape} ${className}`}
+      className={`group relative w-full cursor-zoom-in ${photoShape} ${className}`}
     >
+      {/* 마우스를 올리면 틀 안에서 아주 살짝 다가온다. 크게 볼 수 있다는 신호. */}
       <Image
         src={photo.src}
         alt={photo.alt}
         fill
         sizes={sizes}
-        className={photo.focus === "top" ? "object-cover object-top" : "object-cover"}
+        className={`${photo.focus === "top" ? "object-cover object-top" : "object-cover"} transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.02]`}
       />
     </button>
   );
