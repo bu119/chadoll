@@ -21,6 +21,18 @@
   --color-greige: #bfb3a6;
   /* 노란 리드줄: 하나뿐인 포인트색. LeashLine 에만 쓴다. */
   --color-leash: #f2d878;
+
+  /* 표지 리드줄이 페이지를 열 때 한 번, 왼쪽에서 오른쪽으로 그려진다. 스크롤에는 반응하지 않는다. */
+  --animate-leash-draw: leash-draw 0.9s cubic-bezier(0.33, 1, 0.68, 1) 0.3s both;
+
+  @keyframes leash-draw {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
 }
 
 @theme inline {

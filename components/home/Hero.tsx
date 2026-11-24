@@ -33,8 +33,8 @@ export function Hero() {
             {/* 리드줄 선은 이름 너비에 딱 맞춘다. */}
             <span className="mt-1 inline-block">
               <span className="block text-5xl font-bold tracking-[-0.03em] sm:text-6xl">{chadol.fullName}</span>
-              {/* w-0 min-w-full: 선 자체 너비(213px)가 이름보다 넓어지지 않게 */}
-              <LeashLine className="mt-1 w-0 min-w-full text-leash" />
+              {/* w-0 min-w-full: 선 자체 너비(213px)가 이름보다 넓어지지 않게. 열 때 한 번 그려진다. */}
+              <LeashLine className="mt-1 w-0 min-w-full text-leash motion-safe:animate-leash-draw" />
             </span>
           </h1>
           <p className="mt-5 max-w-md break-keep text-xl text-cocoa">
