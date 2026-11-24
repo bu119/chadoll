@@ -6,6 +6,8 @@ import type { GalleryScene, SceneId } from "@/lib/gallery";
 
 /** 휴대폰에서는 장면마다 이만큼만 먼저 보여주고, 나머지는 "더 보기"로 펼친다. */
 const MOBILE_VISIBLE = 5;
+/** 숨길 사진이 이보다 적으면 접지 않고 다 보여준다. 한두 장 때문에 단추를 누르게 하지 않는다. */
+const MIN_HIDDEN = 3;
 
 /**
  * 장면 하나를 잡지의 펼침면처럼 놓는 방식.
@@ -110,7 +112,8 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
         // strip 은 첫 사진도 줄의 한 칸이다.
         const restCount = spread === "strip" ? scene.photos.length : scene.photos.length - featuredCount[spread];
         const isExpanded = expanded.includes(scene.id);
-        const hiddenCount = Math.max(0, scene.photos.length - MOBILE_VISIBLE);
+        const hiddenCount = scene.photos.length - MOBILE_VISIBLE;
+        const folded = hiddenCount >= MIN_HIDDEN && !isExpanded;
 
         return (
           <section
@@ -127,7 +130,7 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
             </div>
 
             {scene.photos.map((item, i) => {
-              const collapsed = i >= MOBILE_VISIBLE && !isExpanded;
+              const collapsed = folded && i >= MOBILE_VISIBLE;
               const place =
                 spread === "strip" && i === 0
                   ? `col-span-2 aspect-[4/5] md:aspect-[3/4] ${restSpan(restCount, 0)}`
@@ -142,13 +145,19 @@ export function SceneSpreads({ scenes }: { scenes: GalleryScene[] }) {
               );
             })}
 
-            {hiddenCount > 0 && !isExpanded ? (
+            {/* 장면 이름은 바로 위 제목에 있으니 화면에는 짧게, 읽어 주는 기기에는 장면 이름까지. */}
+            {folded ? (
               <button
                 type="button"
                 onClick={() => setExpanded((ids) => [...ids, scene.id])}
-                className="col-span-2 min-h-12 text-lg font-semibold text-cocoa underline decoration-golden decoration-2 underline-offset-[7px] md:hidden"
+                aria-expanded={false}
+                aria-label={`${scene.title} 사진 ${hiddenCount}장 더 보기`}
+                className="col-span-2 mt-1 flex min-h-12 items-center justify-center gap-2 rounded-[3px] border border-line text-lg font-semibold text-cocoa transition-colors hover:border-golden md:hidden"
               >
-                {scene.title} 사진 {hiddenCount}장 더 보기
+                <span>
+                  사진 <span className="font-serif lining-nums">{hiddenCount}</span>장 더 보기
+                </span>
+                <span aria-hidden="true">↓</span>
               </button>
             ) : null}
           </section>
